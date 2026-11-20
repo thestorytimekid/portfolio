@@ -64,14 +64,27 @@ board.innerHTML=OBJ.map((o,i)=>{const sheet=["card","receipt","pol","pol b2","sc
 board.insertAdjacentHTML("afterbegin",`<span class="ring" id="ring"></span>`);
 const els=[...board.querySelectorAll(".obj")];
 
+let lastBW=0;
 function layout(){
   const W=desk.clientWidth;const n=W<700;
-  const B=n?NB:WB;scale=n?Math.min(W/B[0],1.05):Math.max(.48,Math.min(W/B[0],innerHeight/B[1],1.12));
-  if(n!==narrow){narrow=n;const rg=$("#ring");Object.assign(rg.style,n?{left:"360px",top:"830px",width:"170px",height:"170px"}:{left:"690px",top:"330px",width:"180px",height:"180px"});els.forEach((e,i)=>{const q=OBJ[i].n,p=n?[q[0],q[1]+(q[1]>250?70:0),q[2]]:OBJ[i].w;place(e,p[0],p[1],p[2])})}
-  board.style.width=B[0]+"px";board.style.height=B[1]+"px";
-  const off=Math.max(0,(W-B[0]*scale)/2);
-  board.style.transform=`translate(${off}px,0) scale(${scale})`;
-  desk.style.height=Math.round(B[1]*scale)+"px";
+  if(n){
+    scale=Math.min(W/NB[0],1.05);
+    if(n!==narrow){narrow=n;lastBW=0;Object.assign($("#ring").style,{left:"360px",top:"830px",width:"170px",height:"170px"});els.forEach((e,i)=>{const q=OBJ[i].n;place(e,q[0],q[1]+(q[1]>250?70:0),q[2])})}
+    board.style.width=NB[0]+"px";board.style.height=NB[1]+"px";
+    board.style.transform=`translate(${Math.max(0,(W-NB[0]*scale)/2)}px,0) scale(${scale})`;
+    desk.style.height=Math.round(NB[1]*scale)+"px";return;
+  }
+  narrow=false;
+  scale=Math.max(.5,Math.min(innerHeight/WB[1],W/WB[0],1.7));
+  const bw=Math.max(WB[0],Math.round(W/scale)),extra=bw-WB[0];
+  if(bw!==lastBW){lastBW=bw;
+    const mx=x=>x+(Math.min(Math.max(x,0),WB[0])/WB[0])*extra;
+    Object.assign($("#ring").style,{left:mx(690)+"px",top:"330px",width:"180px",height:"180px"});
+    els.forEach((e,i)=>{const p=OBJ[i].w;place(e,mx(p[0]),p[1],p[2])});
+  }
+  board.style.width=bw+"px";board.style.height=WB[1]+"px";
+  board.style.transform=`translate(${Math.max(0,(W-bw*scale)/2)}px,0) scale(${scale})`;
+  desk.style.height=Math.round(WB[1]*scale)+"px";
 }
 function place(e,x,y,r){e.style.left=x+"px";e.style.top=y+"px";e.style.setProperty("--r",r+"deg")}
 const ro=new ResizeObserver(layout);ro.observe(desk);addEventListener("resize",layout);layout();

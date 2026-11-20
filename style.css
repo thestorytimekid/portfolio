@@ -239,5 +239,8 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 .deeper:hover{filter:brightness(1.1)}
 .hl.flip .txt{order:2}
 @media (max-width:900px){.hl{grid-template-columns:minmax(0,1fr)}.hl.flip .txt{order:0}}
+@media (min-width:1700px){main,.end,footer,.tabs,.phero{zoom:1.18}}
+@media (min-width:2300px){main,.end,footer,.tabs,.phero{zoom:1.42}}
+.hl .vids{max-width:560px;justify-self:center;width:100%}
 @media (min-width:901px){.sec .figs.q{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:900px){.phero .wrap,.split{grid-template-columns:minmax(0,1fr)}.pnote{justify-self:start}}
