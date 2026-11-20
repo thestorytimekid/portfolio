@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8bcce3e8">
+<link rel="stylesheet" href="style.css?v=19f80f72">
 </head>
 <body>
 <header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
@@ -131,16 +131,12 @@ let landed=false;const go=()=>{if(landed)return;landed=true;requestAnimationFram
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go);setTimeout(go,1600);
 
 els.forEach((e,i)=>{
-  let sx,sy,ox,oy,moved=false,down=false;
-  e.addEventListener("pointerdown",ev=>{down=true;moved=false;sx=ev.clientX;sy=ev.clientY;ox=parseFloat(e.style.left);oy=parseFloat(e.style.top);e.setPointerCapture(ev.pointerId);e.style.zIndex=++z});
-  e.addEventListener("pointermove",ev=>{if(!down)return;const dx=(ev.clientX-sx)/scale,dy=(ev.clientY-sy)/scale;if(!moved&&Math.hypot(dx,dy)<6/scale)return;moved=true;dragging=true;e.classList.add("lift");e.style.left=ox+dx+"px";e.style.top=oy+dy+"px"});
-  const up=()=>{if(!down)return;down=false;dragging=false;e.classList.remove("lift");if(!moved&&OBJ[i].go)open(OBJ[i].go)};
-  e.addEventListener("pointerup",up);e.addEventListener("pointercancel",()=>{down=false;e.classList.remove("lift")});
-  e.addEventListener("keydown",ev=>{if((ev.key=="Enter"||ev.key==" ")&&OBJ[i].go){ev.preventDefault();open(OBJ[i].go)}});
+  if(!OBJ[i].go)return;
+  e.addEventListener("click",()=>open(OBJ[i].go));
+  e.addEventListener("keydown",ev=>{if(ev.key=="Enter"||ev.key==" "){ev.preventDefault();open(OBJ[i].go)}});
 });
 const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
-let dragging=false;
-desk.addEventListener("pointermove",ev=>{if(RM||dragging||ev.pointerType!="mouse")return;const r=desk.getBoundingClientRect();board.style.setProperty("--mx",((ev.clientX-r.left)/r.width*2-1).toFixed(3));board.style.setProperty("--my",((ev.clientY-r.top)/r.height*2-1).toFixed(3))});
+desk.addEventListener("pointermove",ev=>{if(RM||ev.pointerType!="mouse")return;const r=desk.getBoundingClientRect();board.style.setProperty("--mx",((ev.clientX-r.left)/r.width*2-1).toFixed(3));board.style.setProperty("--my",((ev.clientY-r.top)/r.height*2-1).toFixed(3))});
 desk.addEventListener("pointerleave",()=>{board.style.setProperty("--mx",0);board.style.setProperty("--my",0)});
 const lives=[...board.querySelectorAll("video.live")];
 const io2=new IntersectionObserver(([en])=>lives.forEach(v=>{if(en.isIntersecting&&!RM)v.play().catch(()=>{});else v.pause()}),{threshold:.15});io2.observe(desk);

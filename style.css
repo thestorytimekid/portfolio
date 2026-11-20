@@ -19,9 +19,9 @@ a{color:inherit}
 .ruler{position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,transparent 1px 24px),repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 1px,transparent 1px 6px);background-size:auto 16px,auto 7px;background-repeat:repeat-x;z-index:1;opacity:.7}
 .score{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28) 20%,rgba(255,255,255,.18) 80%,transparent);box-shadow:0 1px 0 rgba(0,0,40,.25)}
 .board{position:relative;transform-origin:0 0}
-.obj{position:absolute;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;outline:none}
+.obj{position:absolute;cursor:default;user-select:none;-webkit-user-select:none;outline:none;-webkit-tap-highlight-color:transparent}
+.obj[role=link]{cursor:pointer}
 .obj:focus-visible{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px #fff)}
-.obj.lift{cursor:grabbing}
 .obj img{pointer-events:none;-webkit-user-drag:none}
 @property --lift{syntax:"<number>";inherits:true;initial-value:1}
 .obj{--h:1;--lift:1;transform:translate(calc(var(--mx,0)*var(--h)*14px),calc(var(--my,0)*var(--h)*10px)) rotate(var(--r)) scale(var(--sc,1));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .2s}
