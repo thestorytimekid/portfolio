@@ -40,7 +40,7 @@ a{color:inherit}
 .sheet{background-color:var(--paper);background-image:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,0) 42%,rgba(40,40,20,.06)),var(--noise);color:#10142a;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 2px 2px rgba(0,0,20,.38),calc(var(--h)*var(--lift)*5px) calc(var(--h)*var(--lift)*9px) calc(var(--h)*var(--lift)*10px) -2px rgba(var(--sh),.34),calc(var(--h)*var(--lift)*12px) calc(var(--h)*var(--lift)*22px) calc(var(--h)*var(--lift)*30px) -8px rgba(var(--sh),.4)}
 .card{--h:1.1;width:480px;padding:40px 42px 34px;border-radius:8px}
 .card h1{margin:0 0 12px;font-size:68px;line-height:1;letter-spacing:-.035em;font-weight:800}
-.card p{margin:0;font-size:21px;line-height:1.35;color:#3b4058}
+.card p{margin:0;font-size:19px;line-height:1.35;color:#3b4058}
 .card .mail{margin-top:22px;display:flex;justify-content:space-between;align-items:end;gap:12px;font-size:15px;color:#10142a}
 .card .tip{position:absolute;top:22px;right:26px;font-size:27px;color:#2343cf;line-height:1;transform:rotate(-5deg)}
 .receipt{--h:.5;width:214px;padding:20px 18px 34px;font-size:13px;line-height:1.5;border-radius:0;-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;filter:drop-shadow(0 10px 14px rgba(4,10,60,.4))}
@@ -324,7 +324,7 @@ const LIVE=id=>`<video class="live" muted loop playsinline preload="metadata" po
 /* desk objects: wide board 1440x860, narrow board 600x1040; [x,y,rot] */
 const OBJ=[
  {k:"mug",w:[-62,-70,0],n:[-700,0,0],html:`<b></b><i></i>`},
- {k:"card",go:"#cv",w:[60,250,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>Stories are the oldest technology we have. Everything else is just technique.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
+ {k:"card",go:"#cv",w:[60,214,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>I like stories, spend most of my time reading, watching films, dissecting scenes, and I hope I spend the rest of my life reading, watching, and telling stories.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
  {k:"receipt",go:"#maple",w:[560,70,4],n:[40,392,-4],html:`<b>Maple.inc</b>Meta ads, 3 months<hr><div class="r"><span>Cost per customer</span><span></span></div><div class="r"><span>Before</span><span>$300.00</span></div><div class="r"><span>Then</span><span>$98.00</span></div><div class="r"><span>Month three</span><span>$63.00</span></div><hr><div class="r tot"><span>Saved</span><span>$237.00</span></div><div class="r"><span>Down</span><span>79%</span></div><hr><div style="text-align:center">Thank you, come again</div>`},
  {k:"stack",go:"#bartlett",w:[850,58,4],n:[300,566,4],html:()=>[2,1,0].map((i,j)=>`<div class="sheet pol" style="transform:rotate(${[-7,5,0][j]}deg) translate(${[-6,8,0][j]}px,${[6,-2,0][j]}px)"><div class="ph">${j==2?LIVE(MEDIA.bartlett[i].id):`<img src="${P(MEDIA.bartlett[i].id)}" alt="">`}</div><div class="cap hand">${j==2?"DOAC clips":""}</div></div>`).join("")+`<div class="clip"></div>`},
  {k:"pol",go:"#aakash",w:[830,450,-6],n:[30,710,-5],html:()=>`<div class="ph">${LIVE("aakash_reel")}</div><div class="cap hand">Aakash: 2k to 65k</div>`},
@@ -332,7 +332,7 @@ const OBJ=[
  {k:"script",go:"#mmh",w:[505,445,-3],n:[30,1060,-3],html:`<span class="brad" style="top:44px"></span><span class="brad" style="top:50%"></span><span class="brad" style="bottom:44px"></span><h3>Metro Media House</h3><div class="by">written and directed by<br>Bhanu Pratap</div><div class="foot">Lead creative strategist<br>2025 to 2026</div>`},
  {k:"sticky",go:"#receipts",w:[1090,395,-4],n:[372,352,5],html:`14.6M plays on six DOAC clips<small>proof inside</small>`},
  {k:"cv",go:"#cv",w:[1150,590,6],n:[322,1230,5],html:`<span class="pclip"></span><b>Bhanu Pratap</b><div class="ln m"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln s"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln"></div><div class="ln s"></div><span class="tag hand">CV 2026</span>`},
- {k:"book",go:"#beyond",w:[96,610,-9],n:[50,1440,-8],html:`<div class="lab hand">Poems and other things</div>`},
+ {k:"book",go:"#beyond",w:[96,636,-9],n:[50,1440,-8],html:`<div class="lab hand">Poems and other things</div>`},
  {k:"stk",w:[214,40,-12],n:[468,40,10],html:`<svg width="122" height="96" viewBox="0 0 122 96"><rect x="4" y="14" width="114" height="78" rx="16" fill="#fff"/><rect x="11" y="22" width="100" height="63" rx="11" fill="#2343cf"/><rect x="36" y="8" width="34" height="18" rx="5" fill="#fff"/><rect x="40" y="12" width="26" height="12" rx="3" fill="#2343cf"/><circle cx="61" cy="54" r="24" fill="#fff"/><circle cx="61" cy="54" r="19" fill="#10142a"/><circle cx="61" cy="54" r="11" fill="#33405f"/><circle cx="55" cy="48" r="4" fill="#fff" opacity=".8"/><rect x="88" y="30" width="14" height="9" rx="2" fill="#ffd23f"/></svg>`},
  {k:"stk",w:[350,14,6],n:[372,1478,-8],html:`<svg width="176" height="64" viewBox="0 0 176 64"><rect x="2" y="2" width="172" height="60" rx="30" fill="#fff"/><rect x="8" y="8" width="160" height="48" rx="24" fill="#ff8a8a"/><circle cx="34" cy="32" r="16" fill="#fff"/><path d="M29 23l13 9-13 9z" fill="#ff5c5c"/><text x="58" y="29" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">just one more</text><text x="58" y="45" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">video essay</text></svg>`},
  {k:"stk",w:[790,380,-8],n:[268,384,-10],html:`<svg width="78" height="76" viewBox="0 0 78 76"><path d="M39 4l9.9 20.6 22.6 3-16.5 15.7 4.1 22.4L39 54.9 18.9 65.7 23 43.3 6.5 27.6l22.6-3z" fill="#ffd23f" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/><path d="M39 16l6 12.6 13.7 1.8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>`},
@@ -343,7 +343,7 @@ const OBJ=[
  {k:"tape",w:[1300,96,40],n:[470,884,32],html:``},
  {k:"pc",w:[760,520,32],n:[262,690,25],html:``}
 ];
-const NB=[600,1800],WB=[1440,900];
+const NB=[600,1870],WB=[1440,900];
 const board=$("#board"),desk=$(".desk");
 let narrow=null,scale=1,z=10;
 
@@ -354,7 +354,7 @@ const els=[...board.querySelectorAll(".obj")];
 function layout(){
   const W=desk.clientWidth;const n=W<700;
   const B=n?NB:WB;scale=n?Math.min(W/B[0],1.05):Math.max(.48,Math.min(W/B[0],innerHeight/B[1],1.12));
-  if(n!==narrow){narrow=n;const rg=$("#ring");Object.assign(rg.style,n?{left:"360px",top:"760px",width:"170px",height:"170px"}:{left:"690px",top:"330px",width:"180px",height:"180px"});els.forEach((e,i)=>{const p=n?OBJ[i].n:OBJ[i].w;place(e,p[0],p[1],p[2])})}
+  if(n!==narrow){narrow=n;const rg=$("#ring");Object.assign(rg.style,n?{left:"360px",top:"830px",width:"170px",height:"170px"}:{left:"690px",top:"330px",width:"180px",height:"180px"});els.forEach((e,i)=>{const q=OBJ[i].n,p=n?[q[0],q[1]+(q[1]>250?70:0),q[2]]:OBJ[i].w;place(e,p[0],p[1],p[2])})}
   board.style.width=B[0]+"px";board.style.height=B[1]+"px";
   const off=Math.max(0,(W-B[0]*scale)/2);
   board.style.transform=`translate(${off}px,0) scale(${scale})`;
