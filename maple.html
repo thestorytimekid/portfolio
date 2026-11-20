@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maple.inc, Bhanu Pratap</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="tabs ptabs" style="margin-top:0"><a href="index.html" class="home">The desk</a><a href="maple.html" class="on">Maple.inc</a><a href="aakash.html">Aakash Bhalla</a><a href="bartlett.html">Steven Bartlett</a><a href="brooks.html">Dr Arthur Brooks</a><a href="mmh.html">Metro Media House</a><a href="cv.html">CV</a><a href="#contact">Contact</a></nav>
+<header class="phero"><div class="wrap"><div class="pcard sheet"><p class="who">Paid ads. Writer and director</p><h1>Maple.inc</h1><p class="intro">Maple makes an AI that answers the phone for restaurants. Busy kitchens miss a lot of calls. Maple picks them up. They needed ads people would actually stop for.</p></div><div class="pnote"><b>$63</b><span>to win a customer, down from $300</span></div></div></header>
+<main>
+<section class="band case sec"><div class="wrap"><h2>What I did</h2><ul class="did"><li class="sheet"><b>Came up with the idea</b><span>Every other company in this space ran the same ad: a picture and a list of features. I went with real phone calls instead.</span></li><li class="sheet"><b>Wrote the ads</b><span>We took real calls between Maple's AI and real customers, and I shaped each one into a short story people want to hear to the end.</span></li><li class="sheet"><b>Directed the ads</b><span>I art directed how they look, so they feel like normal posts in your feed, not like ads.</span></li><li class="sheet"><b>Made them work as ads</b><span>Each one still had to sell. A clear hook, a clear product and a clear reason to try it.</span></li></ul><p class="aside">People skip ads. Almost nobody skips listening in on someone else's phone call.</p></div></section>
+<section class="band case sec"><div class="wrap"><h2>What happened</h2><div class="figs"><div class="fig hi"><b>$63</b><span>to win one customer, by month three</span></div><div class="fig"><b>79%</b><span>cheaper than the $300 we started at</span></div></div><div class="bars"><div class="bar"><span>Before</span><i style="width:100.0%"></i><em>$300</em></div><div class="bar"><span>Then</span><i style="width:32.666666666666664%"></i><em>$98</em></div><div class="bar last"><span>Month three</span><i style="width:21.0%"></i><em>$63</em></div></div><p class="lbl">What it cost to win one customer.</p></div></section>
+<section class="band case sec"><div class="wrap"><h2>The ads</h2><div class="ads"><a class="btn" href="https://www.facebook.com/ads/library/?id=4195112840710312" target="_blank" rel="noopener">Ad one, in Meta's Ad Library</a><a class="btn" href="https://www.facebook.com/ads/library/?id=25153189381040039" target="_blank" rel="noopener">Ad two</a><a class="btn" href="https://www.facebook.com/ads/library/?id=1645467936582705" target="_blank" rel="noopener">Ad three</a></div></div></section>
+
+<section class="band case"><div class="wrap next"><span class="role">Next file</span><a href="aakash.html">Aakash Bhalla</a></div></section>
+</main>
+<section class="band end" id="contact"><div class="wrap">
+  <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
+  <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
+</div></section>
+<footer><span>Bhanu Pratap, 2026</span><a href="index.html">Back to the desk</a></footer>
+<script>
+{const D=document;const vids=[...D.querySelectorAll(".frame video")];
+const io=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&en.intersectionRatio>.55)v.play().catch(()=>{});else v.pause()}),{threshold:[0,.55,1]});vids.forEach(v=>io.observe(v));
+D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{const v=f.querySelector("video");const on=v.muted;vids.forEach(o=>{o.muted=true;o.parentNode.classList.remove("live");o.nextElementSibling.textContent="Tap for sound"});if(on){v.muted=false;v.play().catch(()=>{});f.classList.add("live");f.querySelector(".snd").textContent="Sound on"}}));
+const t=D.querySelector(".tabs"),sen=D.createElement("div");t.before(sen);new IntersectionObserver(([en])=>t.classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0)).observe(sen);}
+</script>
+</body></html>

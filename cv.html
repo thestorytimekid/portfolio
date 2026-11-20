@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV, Bhanu Pratap</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="tabs ptabs" style="margin-top:0"><a href="index.html" class="home">The desk</a><a href="maple.html">Maple.inc</a><a href="aakash.html">Aakash Bhalla</a><a href="bartlett.html">Steven Bartlett</a><a href="brooks.html">Dr Arthur Brooks</a><a href="mmh.html">Metro Media House</a><a href="cv.html" class="on">CV</a><a href="#contact">Contact</a></nav>
+<main>
+<section class="band case" id="cv"><div class="wrap">
+  <div class="head"><h2>CV</h2><span class="role">Writer and director first</span></div>
+  <div class="cvgrid">
+    <div>
+      <p class="copy lede" style="margin:0 0 26px;max-width:60ch">I've spent 3+ years making content for people you know: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and some YC-backed startups. I like coming up with the idea, I like running the team, and I really like seeing people share what we made.</p>
+      <div id="jobs"></div>
+    </div>
+    <aside class="side">
+      <div class="blk"><h3>Core skills</h3><div class="chips"><span>Organic creative strategy</span><span>Content production</span><span>Content systems and workflows</span><span>Copywriting</span><span>Visual and art direction</span><span>AI-assisted research</span><span>AI-assisted production</span></div></div>
+      <div class="blk"><h3>Tools</h3><div class="chips"><span>Notion</span><span>Affinity</span><span>Higgsfield</span><span>ElevenLabs</span><span>Figma</span><span>Manus</span></div></div>
+      <div class="blk"><h3>Selected clients</h3><ul><li>Steven Bartlett</li><li>Andrew Ross Sorkin</li><li>Dr Arthur Brooks</li><li>Maple.inc</li><li>Kitsh</li><li>Ryan Bartlett, True Classic</li></ul></div>
+      <div class="blk" id="beyond"><h3>Beyond work</h3><p style="margin:0">I write poetry, watch video essays about random things, take pretty good photos, and buy more notebooks than I will ever use.</p></div>
+      <div class="blk"><p class="quote" style="margin:0">I learned everything I know by doing real work and teaching myself, over 5+ years of trying things. I learn fast.</p></div>
+    </aside>
+  </div>
+</div></section>
+<section class="band case"><div class="wrap next"><span class="role">Next file</span><a href="maple.html">Maple.inc</a></div></section>
+</main>
+<section class="band end" id="contact"><div class="wrap">
+  <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
+  <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
+</div></section>
+<footer><span>Bhanu Pratap, 2026</span><a href="index.html">Back to the desk</a></footer>
+<script>
+{const $=s=>document.querySelector(s);const JOBS=[
+ ["Lead creative strategist","Metro Media House, remote","Apr 2025 to Aug 2026",["Helped build how the agency finds new clients and delivers its work.","Led the content for Steven Bartlett (DOAC), Andrew Ross Sorkin and Dr Arthur Brooks.","Led a team of 30+ people who made videos and posts.","Set up systems and AI tools that made production more than 90% cheaper."]],
+ ["Copywriter and creative strategist","WeTriumph, remote","May to Aug 2024",["Planned content and Meta ads for brands that sell online.","Wrote website copy, product descriptions and ads for Meta and Google.","Ran campaigns from the first idea to the finished edit.","Used the numbers to see what worked, then made more of it."]],
+ ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Designed brand looks for local businesses: logos, colours and style guides.","Worked with founders so the design matched what they were selling."]],
+ ["Freelance content writer","Independent, remote","2020 to 2022",["Wrote scripts for small and mid-sized YouTube creators that grew their subscribers.","Wrote articles on tech, entertainment and self-improvement that got 20% more shares.","Clients kept coming back because I could write in their voice."]]
+];
+if($("#jobs"))$("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+}
+</script>
+<script>
+{const D=document;const vids=[...D.querySelectorAll(".frame video")];
+const io=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&en.intersectionRatio>.55)v.play().catch(()=>{});else v.pause()}),{threshold:[0,.55,1]});vids.forEach(v=>io.observe(v));
+D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{const v=f.querySelector("video");const on=v.muted;vids.forEach(o=>{o.muted=true;o.parentNode.classList.remove("live");o.nextElementSibling.textContent="Tap for sound"});if(on){v.muted=false;v.play().catch(()=>{});f.classList.add("live");f.querySelector(".snd").textContent="Sound on"}}));
+const t=D.querySelector(".tabs"),sen=D.createElement("div");t.before(sen);new IntersectionObserver(([en])=>t.classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0)).observe(sen);}
+</script>
+</body></html>

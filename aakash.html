@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aakash Bhalla, Bhanu Pratap</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="tabs ptabs" style="margin-top:0"><a href="index.html" class="home">The desk</a><a href="maple.html">Maple.inc</a><a href="aakash.html" class="on">Aakash Bhalla</a><a href="bartlett.html">Steven Bartlett</a><a href="brooks.html">Dr Arthur Brooks</a><a href="mmh.html">Metro Media House</a><a href="cv.html">CV</a><a href="#contact">Contact</a></nav>
+<header class="phero"><div class="wrap"><div class="pcard sheet"><p class="who">Organic growth. Strategy, scripts, everything</p><h1>Aakash Bhalla</h1><p class="intro">Aakash was a salesman who started an agency. Eight of his businesses failed before one worked. He had a lot to teach, but almost nobody was listening.</p></div><div class="pnote"><b>65K+</b><span>followers in 60 days, from 2,000</span></div></div></header>
+<main>
+<section class="band case sec"><div class="wrap"><h2>What I did</h2><ul class="did"><li class="sheet"><b>Built the strategy</b><span>What he stands for, who he is talking to, and why they should care.</span></li><li class="sheet"><b>Wrote the scripts</b><span>Every script, from the hook to the last line.</span></li><li class="sheet"><b>Planned the content</b><span>The formats, the topics and how often to post, so he never had to wonder what to make next.</span></li><li class="sheet"><b>Turned views into leads</b><span>The content was built to bring in clients, not just likes. It added a six-figure stream to his business.</span></li><li class="sheet"><b>Everything in between</b><span>If it went on his page in those 60 days, I had a hand in it.</span></li></ul><p class="aside">Before: posting in the dark and hoping for miracles. After: he knew exactly what his brand stood for.</p></div></section>
+<section class="band case sec"><div class="wrap"><h2>What happened</h2><div class="figs q"><div class="fig hi"><b>65K+</b><span>followers, up from 2,000</span></div><div class="fig"><b>7M+</b><span>organic impressions</span></div><div class="fig"><b>60</b><span>days. Not a year.</span></div><div class="fig"><b>6 figures</b><span>in sales that came from content</span></div></div></div></section>
+<section class="band case sec"><div class="wrap"><h2>Before and after</h2><div class="pair"><div><div class="shot"><img src="media/aakash_before.jpg" alt="Instagram insights before: 377 accounts reached" loading="lazy"></div><p class="lbl">Day one: 377 accounts reached</p></div><div><div class="shot"><img src="media/aakash_after.jpg" alt="Instagram insights after 60 days: 1,967,160 accounts reached" loading="lazy"></div><p class="lbl">Day 60: 1.97M reached</p></div><div class="reel" style="width:auto"><div class="frame" data-v="aakash_reel"><video muted loop playsinline preload="none" poster="media/aakash_reel.jpg" src="media/aakash_reel.mp4"></video><span class="snd">Tap for sound</span></div><p class="lbl">One of the reels</p></div></div></div></section>
+
+<section class="band case"><div class="wrap next"><span class="role">Next file</span><a href="bartlett.html">Steven Bartlett</a></div></section>
+</main>
+<section class="band end" id="contact"><div class="wrap">
+  <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
+  <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
+</div></section>
+<footer><span>Bhanu Pratap, 2026</span><a href="index.html">Back to the desk</a></footer>
+<script>
+{const D=document;const vids=[...D.querySelectorAll(".frame video")];
+const io=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&en.intersectionRatio>.55)v.play().catch(()=>{});else v.pause()}),{threshold:[0,.55,1]});vids.forEach(v=>io.observe(v));
+D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{const v=f.querySelector("video");const on=v.muted;vids.forEach(o=>{o.muted=true;o.parentNode.classList.remove("live");o.nextElementSibling.textContent="Tap for sound"});if(on){v.muted=false;v.play().catch(()=>{});f.classList.add("live");f.querySelector(".snd").textContent="Sound on"}}));
+const t=D.querySelector(".tabs"),sen=D.createElement("div");t.before(sen);new IntersectionObserver(([en])=>t.classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0)).observe(sen);}
+</script>
+</body></html>

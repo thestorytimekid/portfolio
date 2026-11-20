@@ -9,303 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-/* VOICE  occasion: a writer-director's personal site, confident and warm
-   IDEA   a writer's desk on a cobalt cutting mat; every client is an object you can pick up
-   PICTURE the desk itself, full bleed: receipt, Polaroids, a bound script, a sticky note, the CV
-   COLOUR cobalt mat, white paper, ink, one post-it yellow for what matters
-   TYPE   Schibsted Grotesk for print, Caveat for the handwriting on the desk
-   LAYOUT desk fills the first screen, folder tabs join it to the case files below; phone gets its own desk */
-:root{--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");--grainL:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color-scheme:light dark;--mat:light-dark(#b9c255,#6c732b);--cob:light-dark(#2343cf,#3d5bf0);--sh:28,32,6;--bg:light-dark(#ffffff,#0c1022);--ink:light-dark(#10142a,#eef0fb);--mute:light-dark(#555b74,#a6acc6);--line:light-dark(#e3e5ee,#232a48);--soft:light-dark(#f3f4f8,#141a33);--yel:#ffd23f;--paper:light-dark(#fcfcfa,#dfe1e8);--acc:light-dark(#2343cf,#ffd23f);--grid:light-dark(rgba(35,67,207,.07),rgba(255,255,255,.04));--pink:#ff8a8a}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:52px}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Schibsted Grotesk",system-ui,sans-serif;overflow-x:clip}
-img,video{max-width:100%;display:block}
-a{color:inherit}
-.hand{font-family:"Nanum Pen Script","Bradley Hand",cursive;line-height:.95}
-.desk{position:relative;overflow:hidden;background-color:var(--mat);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px),radial-gradient(110% 90% at 18% 8%,rgba(255,255,255,.2),transparent 62%);background-size:200px 200px,120px 120px,120px 120px,24px 24px,24px 24px,100% 100%;background-position:-1px -1px}
-.desk::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 110% at 20% 10%,transparent 50%,rgba(30,34,4,.42))}
-.ruler{position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,transparent 1px 24px),repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 1px,transparent 1px 6px);background-size:auto 16px,auto 7px;background-repeat:repeat-x;z-index:1;opacity:.7}
-.score{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28) 20%,rgba(255,255,255,.18) 80%,transparent);box-shadow:0 1px 0 rgba(0,0,40,.25)}
-.board{position:relative;transform-origin:0 0}
-.obj{position:absolute;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;outline:none}
-.obj:focus-visible{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px #fff)}
-.obj.lift{cursor:grabbing}
-.obj img{pointer-events:none;-webkit-user-drag:none}
-@property --lift{syntax:"<number>";inherits:true;initial-value:1}
-.obj{--h:1;--lift:1;transform:translate(calc(var(--mx,0)*var(--h)*14px),calc(var(--my,0)*var(--h)*10px)) rotate(var(--r)) scale(var(--sc,1));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .2s}
-.obj.lift{--lift:2.2;--sc:1.035;transition:none}
-.sheet{background-color:var(--paper);background-image:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,0) 42%,rgba(40,40,20,.06)),var(--noise);color:#10142a;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 2px 2px rgba(0,0,20,.38),calc(var(--h)*var(--lift)*5px) calc(var(--h)*var(--lift)*9px) calc(var(--h)*var(--lift)*10px) -2px rgba(var(--sh),.34),calc(var(--h)*var(--lift)*12px) calc(var(--h)*var(--lift)*22px) calc(var(--h)*var(--lift)*30px) -8px rgba(var(--sh),.4)}
-.card{--h:1.1;width:480px;padding:40px 42px 34px;border-radius:8px}
-.card h1{margin:0 0 12px;font-size:68px;line-height:1;letter-spacing:-.035em;font-weight:800}
-.card p{margin:0;font-size:19px;line-height:1.35;color:#3b4058}
-.card .mail{margin-top:22px;display:flex;justify-content:space-between;align-items:end;gap:12px;font-size:15px;color:#10142a}
-.card .tip{position:absolute;top:22px;right:26px;font-size:27px;color:#2343cf;line-height:1;transform:rotate(-5deg)}
-.receipt{--h:.5;width:214px;padding:20px 18px 34px;font-size:13px;line-height:1.5;border-radius:0;-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;filter:drop-shadow(0 10px 14px rgba(4,10,60,.4))}
-.receipt b{display:block;font-size:20px;letter-spacing:-.02em}
-.receipt .r{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
-.receipt hr{border:0;border-top:1px dashed #9aa0b4;margin:10px 0}
-.receipt .tot{font-weight:800;font-size:16px}
-.pol{width:236px;padding:12px 12px 0}
-.pol .ph{aspect-ratio:1;overflow:hidden;background:#222}
-.pol .ph video,.pol .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:saturate(1.05) contrast(1.04)}
-.pol{--h:.9}
-.pol .cap{height:58px;display:flex;align-items:center;justify-content:center;font-size:31px;white-space:nowrap;line-height:1;color:#1d2240;text-align:center;padding:0 4px}
-.stack{--h:1.4;width:250px;height:316px}
-.stack .pol{position:absolute;left:0;top:0}
-.clip{position:absolute;left:50%;top:-14px;width:64px;height:30px;margin-left:-32px;background:linear-gradient(#2b2f3a,#0d0f14);border-radius:4px 4px 2px 2px;z-index:5;box-shadow:0 3px 5px rgba(0,0,0,.4)}
-.clip::before,.clip::after{content:"";position:absolute;top:-16px;width:3px;height:22px;border:3px solid #c9ccd6;border-bottom:0;border-radius:8px 8px 0 0;left:14px;width:36px;box-sizing:border-box}
-.clip::after{display:none}
-.script{--h:1.3;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 1px 0 #e6e7ec,2px 2px 0 #d9dbe2,3px 3px 0 #e6e7ec,4px 4px 0 #cfd2da,10px 18px 18px -4px rgba(3,10,60,.35),18px 30px 38px -8px rgba(3,10,60,.35)!important;width:300px;height:396px;padding:58px 30px 30px 44px;display:flex;flex-direction:column}
-.script .brad{position:absolute;left:16px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4d58a,#a5782a 70%);box-shadow:0 1px 1px rgba(0,0,0,.4)}
-.script h3{margin:42px 0 6px;font-size:26px;line-height:1.05;letter-spacing:-.02em;text-align:center}
-.script .by{text-align:center;font-size:14px;color:#3b4058}
-.script .foot{margin-top:auto;font-size:12px;color:#555b74;text-align:right;line-height:1.4}
-.sticky{--h:.4;width:210px;height:200px;padding:20px 18px;background:linear-gradient(170deg,#ffe27a,#ffd23f 60%,#f5c52a);color:#1d2240;font-size:32px;line-height:.98;box-shadow:0 1px 1px rgba(0,0,0,.2),0 18px 22px -10px rgba(4,10,60,.55);border-radius:2px 2px 18px 2px}
-.sticky small{display:block;margin-top:12px;font-size:25px;line-height:1.05;color:#4a3d00}
-.cv{--h:.6;width:262px;height:340px;padding:40px 26px 22px}
-.cv b{font-size:17px;letter-spacing:-.01em}
-.cv .ln{height:6px;background:#c4c8d3;border-radius:3px;margin:9px 0}
-.cv .ln.s{width:60%}.cv .ln.m{width:82%}
-.cv .h{height:7px;width:38%;background:#2343cf;opacity:.75;border-radius:3px;margin:18px 0 10px}
-.pclip{position:absolute;top:-22px;right:40px;width:22px;height:62px;border:3px solid #b8bcc9;border-radius:11px;z-index:3}
-.pclip::after{content:"";position:absolute;left:3px;top:8px;width:10px;height:40px;border:3px solid #b8bcc9;border-radius:6px}
-.tag{position:absolute;top:96px;left:-20px;background:var(--yel);color:#1d2240;font-size:27px;padding:2px 14px;transform:rotate(-4deg);box-shadow:0 3px 6px rgba(0,0,0,.25)}
-.book{width:250px;height:330px;border-radius:6px 12px 12px 6px;background:linear-gradient(90deg,#0d0e12,#1b1d24 14%,#22252e 60%,#2a2d37);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),1px 1px 1px rgba(0,0,0,.4),14px 24px 22px -6px rgba(2,6,40,.5),26px 44px 50px -10px rgba(2,6,40,.45);color:#fff}
-.book::before{content:"";position:absolute;top:0;bottom:0;right:28px;width:9px;background:#0a0a0d;box-shadow:inset 1px 0 0 rgba(255,255,255,.08)}
-.book::after{content:"";position:absolute;right:-5px;top:6px;bottom:6px;width:6px;border-radius:0 3px 3px 0;background:repeating-linear-gradient(#f1f2f5 0 1px,#d4d6de 1px 2px)}
-.book .lab{position:absolute;left:34px;top:70px;width:150px;padding:12px 14px;background:var(--paper);color:#1d2240;font-size:31px;line-height:1;border-radius:2px}
-.stk{--h:.18;filter:drop-shadow(1px 2px 1px rgba(var(--sh),.35)) drop-shadow(3px 6px 6px rgba(var(--sh),.25))}
-.stk svg{display:block}
-.ring{position:absolute;border-radius:50%;pointer-events:none;border:7px solid rgba(92,58,20,.16);box-shadow:inset 0 0 0 2px rgba(92,58,20,.08),0 0 0 3px rgba(92,58,20,.05);filter:blur(.6px)}
-.desk{isolation:isolate}
-.board.pre .obj{opacity:0}
-.light{position:absolute;inset:0;pointer-events:none;z-index:4000;background:radial-gradient(85% 75% at 8% 0%,rgba(255,247,222,.5),transparent 65%),radial-gradient(75% 65% at 100% 100%,rgba(20,24,0,.38),transparent 72%);mix-blend-mode:soft-light}
-.obj:hover{--sc:1.012}
-.sheet:hover{--lift:1.35}
-.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 0 rgba(0,0,0,.07),inset 2px 0 0 rgba(255,255,255,.5)}
-.card::before{content:"";position:absolute;top:-13px;left:34px;width:118px;height:28px;background:repeating-linear-gradient(90deg,rgba(185,194,85,.75) 0 7px,rgba(205,212,120,.75) 7px 14px);transform:rotate(-3deg);mix-blend-mode:multiply;clip-path:polygon(0 0,4% 14%,0 28%,4% 42%,0 56%,4% 70%,0 84%,4% 100%,96% 100%,100% 86%,96% 72%,100% 58%,96% 44%,100% 30%,96% 16%,100% 0)}
-.pol .ph{position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
-.pol .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(128deg,rgba(255,255,255,.3),rgba(255,255,255,0) 30%,rgba(255,255,255,0) 66%,rgba(255,255,255,.12));box-shadow:inset 0 2px 9px rgba(0,0,0,.4)}
-.receipt{background-image:linear-gradient(180deg,transparent 47.6%,rgba(0,0,0,.07) 48%,rgba(255,255,255,.8) 48.5%,transparent 49.5%),linear-gradient(90deg,rgba(0,0,0,.03),transparent 20%,transparent 80%,rgba(0,0,0,.04)),var(--noise)!important}
-.book{outline:1px dashed rgba(255,255,255,.13);outline-offset:-12px;background-image:var(--grainL),linear-gradient(90deg,#0d0e12,#1b1d24 14%,#22252e 60%,#2a2d37)!important}
-.sticky{background-image:var(--noise),linear-gradient(170deg,#ffe27a,#ffd23f 60%,#f5c52a)!important}
-.sticky::after{content:"";position:absolute;right:0;bottom:0;width:44px;height:44px;border-radius:0 0 18px 0;background:linear-gradient(135deg,transparent 48%,rgba(110,80,0,.22) 50%,#ffe9a0 53%,#fff4c8);box-shadow:-2px -2px 5px rgba(0,0,0,.08)}
-.tape{opacity:.85;mix-blend-mode:multiply;clip-path:polygon(0 0,4% 14%,0 28%,4% 42%,0 56%,4% 70%,0 84%,4% 100%,96% 100%,100% 86%,96% 72%,100% 58%,96% 44%,100% 30%,96% 16%,100% 0)}
-.stk{filter:drop-shadow(0 1px 0 rgba(0,0,0,.22)) drop-shadow(2px 4px 3px rgba(var(--sh),.3)) drop-shadow(5px 10px 10px rgba(var(--sh),.18))!important}
-.mug{--h:1.7;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff,#eceef2 45%,#c9ccd5 78%,#b4b8c2);box-shadow:inset -8px -10px 16px rgba(0,0,0,.16),inset 4px 5px 8px rgba(255,255,255,.9),14px 24px 26px -6px rgba(var(--sh),.45),26px 44px 50px -12px rgba(var(--sh),.35)}
-.mug b{position:absolute;inset:20px;border-radius:50%;background:radial-gradient(circle at 58% 64%,#24130a,#3d2312 55%,#5c3a20 78%,#8a6040 90%,#b08a62 96%);box-shadow:inset 0 8px 14px rgba(0,0,0,.6),0 0 0 3px #e7e8ed}
-.mug b::after{content:"";position:absolute;left:24%;top:20%;width:30%;height:14%;border-radius:50%;background:rgba(255,255,255,.22);filter:blur(4px);transform:rotate(-30deg)}
-.mug i{position:absolute;right:-38px;top:72px;width:84px;height:76px;border:17px solid #dfe1e7;border-radius:50%;clip-path:inset(0 0 0 52%);box-shadow:inset -3px -3px 4px rgba(0,0,0,.12)}
-.pencil{width:300px;height:20px;border-radius:3px;background:linear-gradient(#ffe066,#ffd23f 40%,#e3b21b);box-shadow:0 8px 10px -4px rgba(2,6,40,.55)}
-.pencil::before{content:"";position:absolute;right:-34px;top:0;border-left:34px solid #e9c69a;border-top:10px solid transparent;border-bottom:10px solid transparent}
-.pencil::after{content:"";position:absolute;right:-34px;top:7px;border-left:11px solid #2a2a2a;border-top:3px solid transparent;border-bottom:3px solid transparent;margin-right:0}
-.pencil i{position:absolute;left:-30px;top:0;width:30px;height:20px;background:var(--pink);border-radius:4px 0 0 4px;box-shadow:inset -6px 0 0 #c9ccd6}
-.tape{width:150px;height:32px;background:repeating-linear-gradient(45deg,rgba(255,138,138,.85) 0 10px,rgba(255,176,176,.85) 10px 20px);opacity:.95;box-shadow:0 2px 3px rgba(0,0,0,.2)}
-.pc{width:24px;height:70px;border:3px solid #dfe2ea;border-radius:12px;box-shadow:0 3px 4px rgba(0,0,0,.25)}
-.pc::after{content:"";position:absolute;left:3px;top:9px;width:12px;height:44px;border:3px solid #dfe2ea;border-radius:7px}
-.tabs.stuck{background:var(--bg);box-shadow:0 1px 0 var(--line)}
-.tabs.stuck a{box-shadow:none}
-.tabs{position:sticky;top:0;z-index:20;display:flex;gap:4px;padding:0 max(4vw,12px);margin-top:-46px;overflow-x:auto;scrollbar-width:none}
-.tabs a{flex:none;display:block;padding:12px 20px 14px;border-radius:12px 12px 0 0;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;box-shadow:0 -3px 8px rgba(4,10,50,.18);transition:transform .15s}
-.tabs a:hover,.tabs a:focus-visible{transform:translateY(-4px);outline:none}
-.tabs a.on{background:var(--yel);color:#1d2240}
-.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:none}
-.nav.on{display:block}
-.nav div{display:flex;gap:22px;align-items:center;padding:14px max(5vw,16px);overflow-x:auto;scrollbar-width:none;font-size:15px}
-.nav b{flex:none;font-weight:800;letter-spacing:-.02em}
-.nav a{flex:none;text-decoration:none;color:var(--mute)}
-.nav a:hover{color:var(--ink)}
-main,.paper{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
-.band{padding:clamp(48px,6vw,96px) max(5vw,16px)}
-.wrap{max-width:1240px;margin:0 auto}
-.case{border-top:1px solid var(--line);scroll-margin-top:52px}
-.case:first-of-type{border-top:0}
-.head{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;margin-bottom:28px}
-h2{margin:0;font-size:clamp(34px,4.6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:800;text-wrap:balance}
-.role{color:var(--mute);font-size:16px}
-.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:start}
-.copy p{margin:0 0 14px;max-width:62ch}
-.copy .lede{font-size:21px;line-height:1.4;letter-spacing:-.01em}
-.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:18px 24px;margin:26px 0 8px}
-.figs.q{grid-template-columns:repeat(2,minmax(0,1fr))}
-.fig b{display:block;font-size:clamp(34px,4vw,48px);line-height:1;letter-spacing:-.035em;font-weight:800;white-space:nowrap}
-.fig span{display:block;margin-top:6px;font-size:14px;color:var(--mute);line-height:1.3}
-.fig.hi b{color:var(--acc)}
-.railw{position:relative}
-.railw::after{content:"";position:absolute;top:0;right:0;bottom:40px;width:64px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--bg));opacity:var(--more,1);transition:opacity .2s}
-.hint{margin:4px 2px 0;font-size:14px;color:var(--mute)}
-.rail{display:flex;gap:16px;overflow-x:auto;padding:4px 2px 18px;scroll-snap-type:x mandatory;scrollbar-width:thin}
-.reel{flex:none;width:clamp(176px,15vw,206px);scroll-snap-align:start}
-.frame{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#05070f;box-shadow:0 1px 2px rgba(0,0,0,.2),0 14px 30px -12px rgba(4,10,60,.45);cursor:pointer}
-.frame video,.frame img{width:100%;height:100%;object-fit:cover}
-.frame.r45 img{object-fit:contain;position:relative}
-.frame .blur{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.8)}
-.frame .snd{position:absolute;left:10px;bottom:10px;padding:5px 10px 6px;border-radius:99px;background:rgba(10,14,30,.66);color:#fff;font-size:13px;backdrop-filter:blur(6px);pointer-events:none}
-.frame.live .snd{background:var(--yel);color:#1d2240}
-.reel p{margin:10px 2px 2px;font-size:14px;line-height:1.35}
-.reel small{display:flex;justify-content:space-between;gap:8px;margin:4px 2px 0;font-size:13px;color:var(--mute)}
-.reel small a{text-decoration:none;color:var(--mute)}
-.reel small a:hover{color:var(--ink)}
-.bars{margin:22px 0 6px;display:grid;gap:10px}
-.bar{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4em;gap:12px;align-items:center;font-size:15px}
-.bar i{display:block;height:30px;border-radius:4px;background:var(--cob)}
-.bar.last i{background:var(--yel)}
-.bar em{font-style:normal;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
-.ads{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:var(--soft);text-decoration:none;font-size:15px;font-weight:500}
-.btn:hover{border-color:var(--ink)}
-.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.62fr);gap:14px;align-items:start}
-.shot{border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.2),0 12px 26px -12px rgba(4,10,60,.45);background:#000}
-.shot img{width:100%}
-.lbl{font-size:14px;color:var(--mute);margin:8px 2px 0}
-.tickets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:26px}
-.receipts{margin-top:clamp(40px,5vw,64px);padding-top:clamp(32px,4vw,48px);border-top:1px dashed var(--line)}
-.rhead h3{margin:0;font-size:clamp(26px,3vw,36px);line-height:1.1;letter-spacing:-.025em}
-.rhead p{margin:8px 0 26px;color:var(--mute);max-width:62ch}
-.praise{--h:.6;position:relative;max-width:760px;margin:6px 0 34px;padding:30px 34px 26px;transform:rotate(-1deg)}
-.praise::before{content:"";position:absolute;top:-14px;left:44px;width:120px;height:28px;background:repeating-linear-gradient(45deg,rgba(255,210,63,.9) 0 10px,rgba(255,226,122,.9) 10px 20px);transform:rotate(-4deg)}
-.praise blockquote{margin:0;font-size:clamp(24px,2.8vw,34px);line-height:1.15;letter-spacing:-.02em;font-weight:700}
-.praise figcaption{margin-top:14px;font-size:15px;color:#555b74}
-.tkc{display:grid;gap:10px;align-content:start}
-.slip{border-radius:6px;background:#fff;box-shadow:0 0 0 1px var(--line),0 8px 16px -10px rgba(3,10,60,.5)}
-.tk{position:relative;padding:20px 18px 18px;border-radius:8px;background:var(--cob);color:#fff;box-shadow:0 12px 22px -12px rgba(3,10,60,.6)}
-.tk::before{content:"";position:absolute;left:14px;right:14px;top:58%;border-top:2px dashed rgba(255,255,255,.35)}
-.tk b{display:block;font-size:clamp(28px,3vw,40px);letter-spacing:-.035em;line-height:1;font-weight:800}
-.tk span{display:block;font-size:14px;opacity:.9;margin-top:6px;line-height:1.35}
-.tk span+span{margin-top:24px}
-
-.cvgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,72px)}
-.job{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:22px 0;border-top:1px solid var(--line)}
-.job h3{margin:0;font-size:20px;letter-spacing:-.015em}
-.job .when{color:var(--mute);font-size:15px;white-space:nowrap}
-.job .at{grid-column:1/-1;color:var(--mute);font-size:15px}
-.job ul{grid-column:1/-1;margin:10px 0 0;padding-left:18px}
-.job li{margin:4px 0}
-.side h3{margin:0 0 10px;font-size:15px;color:var(--mute);font-weight:500}
-.side .blk{padding:20px 0;border-top:1px solid var(--line)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{padding:6px 12px;border-radius:99px;background:var(--soft);border:1px solid var(--line);font-size:14px}
-.side ul{list-style:none;margin:0;padding:0}
-.side li{padding:3px 0}
-.quote{font-size:21px;line-height:1.35;letter-spacing:-.01em}
-.end{background:var(--mat);color:light-dark(#171a05,#f3f5e4);position:relative;overflow:hidden}
-.end .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
-.end h2{font-size:clamp(40px,6vw,76px)}
-.end p{margin:16px 0 0;max-width:46ch;opacity:.9}
-.end .note{color:#1d2240;justify-self:end;width:min(100%,380px);background:var(--yel);padding:26px 24px;transform:rotate(-2deg);box-shadow:0 18px 26px -12px rgba(0,0,0,.5);font-size:44px;line-height:1.05}
-.end .note a{display:block;margin-top:12px;font:700 18px/1.3 "Schibsted Grotesk",sans-serif;overflow-wrap:anywhere;text-decoration:none}
-.end .note span{display:block;margin-top:10px;font:400 14px/1.4 "Schibsted Grotesk",sans-serif;color:#4a3d00}
-footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-@media (max-width:900px){.grid,.cvgrid{grid-template-columns:minmax(0,1fr)}.end .wrap{grid-template-columns:minmax(0,1fr)}.tickets{grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}}
-@media (max-width:600px){body{font-size:16px}.copy .lede{font-size:19px}.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pair .shot:last-child{grid-column:1/-1;max-width:220px}.tabs{margin-top:-42px}.tabs a{padding:10px 14px 12px;font-size:14px}.bar{grid-template-columns:6.2em minmax(0,1fr) 3.4em}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
   <div class="ruler"></div><i class="score" style="left:8%;top:12%;width:340px;transform:rotate(-11deg)"></i><i class="score" style="left:62%;top:86%;width:260px;transform:rotate(4deg)"></i><i class="score" style="left:36%;top:4%;width:180px;transform:rotate(27deg)"></i>
   <div class="board pre" id="board"></div><div class="light"></div>
 </header>
-<nav class="tabs" aria-label="Case files">
-  <a href="#maple" class="on">Maple.inc</a><a href="#aakash">Aakash Bhalla</a><a href="#bartlett">Steven Bartlett</a><a href="#brooks">Dr Arthur Brooks</a><a href="#mmh">Metro Media House</a><a href="#cv">CV</a><a href="#contact">Contact</a>
-</nav>
+<nav class="tabs" aria-label="Case files"><a href="maple.html">Maple.inc</a><a href="aakash.html">Aakash Bhalla</a><a href="bartlett.html">Steven Bartlett</a><a href="brooks.html">Dr Arthur Brooks</a><a href="mmh.html">Metro Media House</a><a href="cv.html">CV</a><a href="#contact">Contact</a></nav>
 
-<main>
-<section class="band case" id="maple"><div class="wrap">
-  <div class="head"><h2>Maple.inc</h2><span class="role">Ads for an AI that answers the phone</span></div>
-  <div class="grid">
-    <div class="copy">
-      <p class="lede">Maple makes an AI that answers the phone for restaurants. Busy kitchens miss a lot of calls. Maple picks them up.</p>
-      <p>Other companies in this space all made the same kind of ad: a picture and a list of features. We tried something else. We used real calls between Maple's AI and real customers, and made them look like normal posts. People skip ads. Almost nobody skips listening in on someone else's phone call.</p>
-      <div class="ads"><a class="btn" href="https://www.facebook.com/ads/library/?id=4195112840710312" target="_blank" rel="noopener">Ad one, in Meta's Ad Library</a><a class="btn" href="https://www.facebook.com/ads/library/?id=25153189381040039" target="_blank" rel="noopener">Ad two</a><a class="btn" href="https://www.facebook.com/ads/library/?id=1645467936582705" target="_blank" rel="noopener">Ad three</a></div>
-    </div>
-    <div>
-      <div class="figs" style="margin-top:0"><div class="fig hi"><b>$63</b><span>to win one customer, by month three</span></div><div class="fig"><b>79%</b><span>cheaper than the $300 we started at</span></div></div>
-      <div class="bars" id="cac"></div>
-      <p class="lbl">What it cost to win one customer.</p>
-    </div>
-  </div>
-</div></section>
-
-<section class="band case" id="aakash"><div class="wrap">
-  <div class="head"><h2>Aakash Bhalla</h2><span class="role">Growing his Instagram from almost nothing</span></div>
-  <div class="grid">
-    <div class="copy">
-      <p class="lede">Aakash was a salesman who started an agency. Eight of his businesses failed before one worked. He had a lot to teach, but almost nobody was listening.</p>
-      <p>He had no plan, posted whenever he could, and got no leads. I helped him decide what he stands for, what to post and how often. In 60 days, his posts were bringing in leads on their own.</p>
-      <div class="figs q"><div class="fig hi"><b>65K+</b><span>followers, up from 2,000</span></div><div class="fig"><b>7M+</b><span>organic impressions</span></div><div class="fig"><b>60</b><span>days. Not a year.</span></div><div class="fig"><b>6 figures</b><span>in sales that came from content</span></div></div>
-    </div>
-    <div class="pair">
-      <div><div class="shot"><img src="media/aakash_before.jpg" alt="Instagram insights before: 377 accounts reached" loading="lazy"></div><p class="lbl">Day one: 377 accounts reached</p></div>
-      <div><div class="shot"><img src="media/aakash_after.jpg" alt="Instagram insights after 60 days: 1,967,160 accounts reached, 4,040,149 impressions" loading="lazy"></div><p class="lbl">Day 60: 1.97M reached</p></div>
-      <div class="reel" style="width:auto"><div class="frame" data-v="aakash_reel"></div><p class="lbl">One of the reels</p></div>
-    </div>
-  </div>
-</div></section>
-
-<section class="band case" id="bartlett"><div class="wrap">
-  <div class="head"><h2>Steven Bartlett</h2><span class="role">The Diary of a CEO. I picked the clips and directed the edits</span></div>
-  <div class="grid">
-    <div class="copy">
-      <p class="lede">Steven's episodes are hours long. My job was to find the best 40 seconds and turn them into clips you can't stop watching.</p>
-      <p>For each clip, I chose where it starts, how fast it moves, what the captions say and where it ends. At the end of every episode, the last guest leaves a question for the next one. Mine would be: "Can I post this bit?"</p>
-      <div class="figs q"><div class="fig hi"><b>14.6M</b><span>plays on the six clips here</span></div><div class="fig"><b>582K</b><span>likes on the same six</span></div><div class="fig"><b>5.1M</b><span>plays on the biggest one</span></div><div class="fig"><b>8.2M</b><span>views on five more, <a href="#receipts">with receipts</a></span></div></div>
-    </div>
-    <div class="railw"><div class="rail" data-g="bartlett"></div><p class="hint">Scroll sideways for all six. Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
-  </div>
-  <div class="receipts" id="receipts">
-    <div class="rhead"><h3>Five more clips, with proof: 8.2M views</h3><p>Steven is on Dragons' Den, so we brought numbers. These screenshots came straight from his team.</p></div>
-    <figure class="praise sheet"><blockquote>Well done on some of the recent content guys, can really feel the momentum on IG!!!!!</blockquote><figcaption>Zara Jarvis, our point of contact for Steven Bartlett's Instagram, sending over these analytics</figcaption></figure>
-    <div class="tickets" id="tickets"></div>
-  </div>
-</div></section>
-
-<section class="band case" id="brooks"><div class="wrap">
-  <div class="head"><h2>Dr Arthur Brooks</h2><span class="role">Harvard professor who teaches happiness. I directed the edits</span></div>
-  <div class="grid">
-    <div class="copy">
-      <p class="lede">Arthur Brooks teaches people how to be happier. His ideas are big. Instagram clips are short.</p>
-      <p>My job was to make each clip short without losing what he meant. I chose what stays, where the pauses go and how the words look on screen. Fun fact: before Harvard, he played the French horn for a living.</p>
-      <div class="figs q"><div class="fig hi"><b>559K</b><span>plays on three of these four (Instagram hides one count)</span></div><div class="fig"><b>208K</b><span>plays on the biggest one</span></div><div class="fig"><b>56K</b><span>likes across all four</span></div><div class="fig"><b>37K</b><span>likes on a single clip</span></div></div>
-    </div>
-    <div class="railw"><div class="rail" data-g="brooks"></div><p class="hint">Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
-  </div>
-</div></section>
-
-<section class="band case" id="mmh"><div class="wrap">
-  <div class="head"><h2>Metro Media House</h2><span class="role">Lead creative strategist, Apr 2025 to Aug 2026</span></div>
-  <div class="grid">
-    <div class="copy">
-      <p class="lede">Metro Media House is the agency that made the clips above, plus work for Andrew Ross Sorkin from the New York Times' DealBook. I helped it find new clients, ran the team that made the work, and wrote and directed its own posts.</p>
-      <p>I led a team of 30+ people. I also set up simple systems and AI tools that made our work more than 90% cheaper to make. And yes, I made a post about fixing brainrot. I may have had a little brainrot while making it.</p>
-      <div class="figs q"><div class="fig hi"><b>293K</b><span>plays on the three reels here</span></div><div class="fig"><b>2,059</b><span>people commented on two posts to get our reading list</span></div><div class="fig"><b>29K</b><span>likes across all seven pieces</span></div><div class="fig"><b>30+</b><span>people in the production team I led</span></div></div>
-    </div>
-    <div class="railw"><div class="rail" data-g="mmh"></div><p class="hint">Scroll sideways for all seven. Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
-  </div>
-</div></section>
-
-
-<section class="band case" id="cv"><div class="wrap">
-  <div class="head"><h2>CV</h2><span class="role">Writer and director first</span></div>
-  <div class="cvgrid">
-    <div>
-      <p class="copy lede" style="margin:0 0 26px;max-width:60ch">I've spent 3+ years making content for people you know: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and some YC-backed startups. I like coming up with the idea, I like running the team, and I really like seeing people share what we made.</p>
-      <div id="jobs"></div>
-    </div>
-    <aside class="side">
-      <div class="blk"><h3>Core skills</h3><div class="chips"><span>Organic creative strategy</span><span>Content production</span><span>Content systems and workflows</span><span>Copywriting</span><span>Visual and art direction</span><span>AI-assisted research</span><span>AI-assisted production</span></div></div>
-      <div class="blk"><h3>Tools</h3><div class="chips"><span>Notion</span><span>Affinity</span><span>Higgsfield</span><span>ElevenLabs</span><span>Figma</span><span>Manus</span></div></div>
-      <div class="blk"><h3>Selected clients</h3><ul><li>Steven Bartlett</li><li>Andrew Ross Sorkin</li><li>Dr Arthur Brooks</li><li>Maple.inc</li><li>Kitsh</li><li>Ryan Bartlett, True Classic</li></ul></div>
-      <div class="blk" id="beyond"><h3>Beyond work</h3><p style="margin:0">I write poetry, watch video essays about random things, take pretty good photos, and buy more notebooks than I will ever use.</p></div>
-      <div class="blk"><p class="quote" style="margin:0">I learned everything I know by doing real work and teaching myself, over 5+ years of trying things. I learn fast.</p></div>
-    </aside>
-  </div>
-</div></section>
-</main>
+<main><section class="band case" id="files"><div class="wrap"><div class="head"><h2>Pick a file</h2><span class="role">Each one opens a page on what I did and how it went</span></div><div class="files"><a class="file sheet" href="maple.html"><span class="t">Maple.inc</span><span class="r">Wrote and directed their ads</span><span class="n">$63</span><span class="l">to win a customer, down from $300</span><span class="go">open the file</span></a><a class="file sheet" href="aakash.html"><span class="t">Aakash Bhalla</span><span class="r">Strategy, scripts, everything</span><span class="n">65K+</span><span class="l">followers in 60 days, from 2,000</span><span class="go">open the file</span></a><a class="file sheet" href="bartlett.html"><span class="t">Steven Bartlett</span><span class="r">Ran the DOAC clips pipeline</span><span class="n">14.6M</span><span class="l">plays on six clips</span><span class="go">open the file</span></a><a class="file sheet" href="brooks.html"><span class="t">Dr Arthur Brooks</span><span class="r">Clips, edits and art direction</span><span class="n">559K</span><span class="l">plays on three clips</span><span class="go">open the file</span></a><a class="file sheet" href="mmh.html"><span class="t">Metro Media House</span><span class="r">Lead creative strategist, 2025 to 2026</span><span class="n">30+</span><span class="l">people in the team I led</span><span class="go">open the file</span></a><a class="file sheet" href="cv.html"><span class="t">CV</span><span class="r">Every job, skill and tool</span><span class="n">5+</span><span class="l">years of real work</span><span class="go">open the file</span></a></div></div></section></main>
 
 <section class="band end" id="contact"><div class="wrap">
   <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
@@ -418,14 +131,15 @@ desk.addEventListener("pointermove",ev=>{if(RM||dragging||ev.pointerType!="mouse
 desk.addEventListener("pointerleave",()=>{board.style.setProperty("--mx",0);board.style.setProperty("--my",0)});
 const lives=[...board.querySelectorAll("video.live")];
 const io2=new IntersectionObserver(([en])=>lives.forEach(v=>{if(en.isIntersecting&&!RM)v.play().catch(()=>{});else v.pause()}),{threshold:.15});io2.observe(desk);
-function open(sel){const t=$(sel);if(t)t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+const PAGES={"#maple":"maple.html","#aakash":"aakash.html","#bartlett":"bartlett.html","#receipts":"bartlett.html#receipts","#brooks":"brooks.html","#mmh":"mmh.html","#cv":"cv.html","#beyond":"cv.html#beyond"};
+function open(sel){if(PAGES[sel]&&!$(sel)){location.href=PAGES[sel];return}const t=$(sel);if(t)t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
 
 
 const sen=D.createElement("div");$(".tabs").before(sen);const io0=new IntersectionObserver(([en])=>$(".tabs").classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0));io0.observe(sen);
 const tabA=[...D.querySelectorAll(".tabs a")];const io1=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)tabA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+en.target.id))}),{rootMargin:"-45% 0px -50% 0px"});D.querySelectorAll("main section[id],#contact").forEach(x=>io1.observe(x));
 /* Maple bars */
 const CAC=[["Before",300],["Then",98],["Month three",63]];
-$("#cac").innerHTML=CAC.map(([l,v],i)=>`<div class="bar${i==2?" last":""}"><span>${l}</span><i style="width:${v/3}%"></i><em>$${v}</em></div>`).join("");
+if($("#cac"))$("#cac").innerHTML=CAC.map(([l,v],i)=>`<div class="bar${i==2?" last":""}"><span>${l}</span><i style="width:${v/3}%"></i><em>$${v}</em></div>`).join("");
 
 /* reels */
 const frame=m=>m.kind=="image"?`<div class="frame r45"><span class="blur" style="background-image:url(${m.src})"></span><img src="${m.src}" alt="${esc(m.cap)}" loading="lazy"></div>`:`<div class="frame" data-v="${m.id}"></div>`;
@@ -439,7 +153,7 @@ D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{
 D.querySelectorAll(".rail").forEach(r=>{const w=r.parentNode;const f=()=>w.style.setProperty("--more",r.scrollLeft+r.clientWidth>=r.scrollWidth-4?0:1);r.addEventListener("scroll",f,{passive:true});f()});
 /* tickets */
 const TK=[[1121175,"44K","12K"],[2243486,"110K","36K"],[1405493,"57K","14K"],[742733,"28K","6.2K"],[2719331,"95K","33K"]];
-$("#tickets").innerHTML=TK.map(([v,l,s],i)=>`<div class="tkc"><div class="tk"><b>${v>=1e6?(v/1e6).toFixed(2)+"M":Math.round(v/1e3)+"K"}</b><span>views</span><span>${l} likes, ${s} saves</span></div><img class="slip" src="media/stat${i+1}.jpg" alt="Instagram analytics: ${v.toLocaleString("en-GB")} views" loading="lazy"></div>`).join("");
+if($("#tickets"))$("#tickets").innerHTML=TK.map(([v,l,s],i)=>`<div class="tkc"><div class="tk"><b>${v>=1e6?(v/1e6).toFixed(2)+"M":Math.round(v/1e3)+"K"}</b><span>views</span><span>${l} likes, ${s} saves</span></div><img class="slip" src="media/stat${i+1}.jpg" alt="Instagram analytics: ${v.toLocaleString("en-GB")} views" loading="lazy"></div>`).join("");
 
 /* jobs */
 const JOBS=[
@@ -448,7 +162,7 @@ const JOBS=[
  ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Designed brand looks for local businesses: logos, colours and style guides.","Worked with founders so the design matched what they were selling."]],
  ["Freelance content writer","Independent, remote","2020 to 2022",["Wrote scripts for small and mid-sized YouTube creators that grew their subscribers.","Wrote articles on tech, entertainment and self-improvement that got 20% more shares.","Clients kept coming back because I could write in their voice."]]
 ];
-$("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+if($("#jobs"))$("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
 }
 </script>
 </body>
