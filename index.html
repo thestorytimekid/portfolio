@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bhanu Pratap, Portfolio</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -80,10 +82,7 @@ a{color:inherit}
 .ring{position:absolute;border-radius:50%;pointer-events:none;border:7px solid rgba(92,58,20,.16);box-shadow:inset 0 0 0 2px rgba(92,58,20,.08),0 0 0 3px rgba(92,58,20,.05);filter:blur(.6px)}
 .desk{isolation:isolate}
 .board.pre .obj{opacity:0}
-.light{position:absolute;inset:0;pointer-events:none;z-index:4000;background:radial-gradient(80% 70% at 10% 0%,rgba(255,247,222,.45),transparent 62%),radial-gradient(70% 60% at 100% 100%,rgba(20,24,0,.35),transparent 70%);mix-blend-mode:soft-light}
-.blinds{position:absolute;inset:-25% -15%;pointer-events:none;z-index:4001;background:repeating-linear-gradient(-24deg,transparent 0 78px,rgba(16,20,0,.085) 78px 126px);-webkit-mask:radial-gradient(60% 70% at 72% 32%,#000 15%,transparent 72%);mask:radial-gradient(60% 70% at 72% 32%,#000 15%,transparent 72%);mix-blend-mode:multiply;animation:blinds 36s ease-in-out infinite alternate}
-@keyframes blinds{to{transform:translate(80px,30px)}}
-@media (max-width:700px){.blinds{display:none}}
+.light{position:absolute;inset:0;pointer-events:none;z-index:4000;background:radial-gradient(85% 75% at 8% 0%,rgba(255,247,222,.5),transparent 65%),radial-gradient(75% 65% at 100% 100%,rgba(20,24,0,.38),transparent 72%);mix-blend-mode:soft-light}
 .obj:hover{--sc:1.012}
 .sheet:hover{--lift:1.35}
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 0 rgba(0,0,0,.07),inset 2px 0 0 rgba(255,255,255,.5)}
@@ -209,7 +208,7 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 <body>
 <header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
   <div class="ruler"></div><i class="score" style="left:8%;top:12%;width:340px;transform:rotate(-11deg)"></i><i class="score" style="left:62%;top:86%;width:260px;transform:rotate(4deg)"></i><i class="score" style="left:36%;top:4%;width:180px;transform:rotate(27deg)"></i>
-  <div class="board pre" id="board"></div><div class="blinds"></div><div class="light"></div>
+  <div class="board pre" id="board"></div><div class="light"></div>
 </header>
 <nav class="tabs" aria-label="Case files">
   <a href="#maple" class="on">Maple.inc</a><a href="#aakash">Aakash Bhalla</a><a href="#bartlett">Steven Bartlett</a><a href="#brooks">Dr Arthur Brooks</a><a href="#mmh">Metro Media House</a><a href="#cv">CV</a><a href="#contact">Contact</a>
