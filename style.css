@@ -226,5 +226,18 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 .file .n{margin-top:10px;font-size:44px;font-weight:800;letter-spacing:-.035em;line-height:1;color:#2343cf}
 .file .l{font-size:14px;color:#555b74}
 .file .go{margin-top:12px;font-family:"Nanum Pen Script",cursive;font-size:26px;color:#2343cf}
+.hl{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
+.hl h2{margin:0 0 6px}
+.hl .who{margin:0 0 18px;color:var(--mute)}
+.hl ul{margin:0 0 6px;padding:0;list-style:none;display:grid;gap:10px}
+.hl li{position:relative;padding-left:30px;font-size:17px;line-height:1.45}
+.hl li::before{content:"";position:absolute;left:2px;top:.35em;width:16px;height:16px;border-radius:4px;background:var(--yel);box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)}
+.hl .vids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hl .vids .reel{width:auto}
+.hl .figs{margin:22px 0 22px}
+.deeper{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:99px;background:var(--cob);color:#fff;text-decoration:none;font-weight:700}
+.deeper:hover{filter:brightness(1.1)}
+.hl.flip .txt{order:2}
+@media (max-width:900px){.hl{grid-template-columns:minmax(0,1fr)}.hl.flip .txt{order:0}}
 @media (min-width:901px){.sec .figs.q{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:900px){.phero .wrap,.split{grid-template-columns:minmax(0,1fr)}.pnote{justify-self:start}}
