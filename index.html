@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bhanu Pratap, Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE  occasion: a writer-director's personal site, confident and warm
+   IDEA   a writer's desk on a cobalt cutting mat; every client is an object you can pick up
+   PICTURE the desk itself, full bleed: receipt, Polaroids, a bound script, a sticky note, the CV
+   COLOUR cobalt mat, white paper, ink, one post-it yellow for what matters
+   TYPE   Schibsted Grotesk for print, Caveat for the handwriting on the desk
+   LAYOUT desk fills the first screen, folder tabs join it to the case files below; phone gets its own desk */
+:root{color-scheme:light dark;--mat:light-dark(#b9c255,#6c732b);--cob:light-dark(#2343cf,#3d5bf0);--sh:28,32,6;--bg:light-dark(#ffffff,#0c1022);--ink:light-dark(#10142a,#eef0fb);--mute:light-dark(#555b74,#a6acc6);--line:light-dark(#e3e5ee,#232a48);--soft:light-dark(#f3f4f8,#141a33);--yel:#ffd23f;--paper:light-dark(#fcfcfa,#dfe1e8);--acc:light-dark(#2343cf,#ffd23f);--grid:light-dark(rgba(35,67,207,.07),rgba(255,255,255,.04));--pink:#ff8a8a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:52px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Schibsted Grotesk",system-ui,sans-serif;overflow-x:clip}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.hand{font-family:"Nanum Pen Script","Bradley Hand",cursive;line-height:.95}
+.desk{position:relative;overflow:hidden;background-color:var(--mat);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.42) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px),radial-gradient(110% 90% at 18% 8%,rgba(255,255,255,.2),transparent 62%);background-size:200px 200px,120px 120px,120px 120px,24px 24px,24px 24px,100% 100%;background-position:-1px -1px}
+.desk::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(130% 110% at 20% 10%,transparent 50%,rgba(30,34,4,.42))}
+.ruler{position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,transparent 1px 24px),repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 1px,transparent 1px 6px);background-size:auto 16px,auto 7px;background-repeat:repeat-x;z-index:1;opacity:.7}
+.score{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28) 20%,rgba(255,255,255,.18) 80%,transparent);box-shadow:0 1px 0 rgba(0,0,40,.25)}
+.board{position:relative;transform-origin:0 0}
+.obj{position:absolute;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;outline:none}
+.obj:focus-visible{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px #fff)}
+.obj.lift{cursor:grabbing}
+.obj img{pointer-events:none;-webkit-user-drag:none}
+@property --lift{syntax:"<number>";inherits:true;initial-value:1}
+.obj{--h:1;--lift:1;transform:translate(calc(var(--mx,0)*var(--h)*14px),calc(var(--my,0)*var(--h)*10px)) rotate(var(--r)) scale(var(--sc,1));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .2s}
+.obj.lift{--lift:2.2;--sc:1.035;transition:none}
+.sheet{background-color:var(--paper);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:#10142a;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 2px 2px rgba(0,0,20,.38),calc(var(--h)*var(--lift)*5px) calc(var(--h)*var(--lift)*9px) calc(var(--h)*var(--lift)*10px) -2px rgba(var(--sh),.34),calc(var(--h)*var(--lift)*12px) calc(var(--h)*var(--lift)*22px) calc(var(--h)*var(--lift)*30px) -8px rgba(var(--sh),.4)}
+.card{--h:1.1;width:480px;padding:40px 42px 34px;border-radius:8px}
+.card h1{margin:0 0 12px;font-size:68px;line-height:1;letter-spacing:-.035em;font-weight:800}
+.card p{margin:0;font-size:21px;line-height:1.35;color:#3b4058}
+.card .mail{margin-top:22px;display:flex;justify-content:space-between;align-items:end;gap:12px;font-size:15px;color:#10142a}
+.card .tip{position:absolute;top:22px;right:26px;font-size:27px;color:#2343cf;line-height:1;transform:rotate(-5deg)}
+.receipt{--h:.5;width:214px;padding:20px 18px 34px;font-size:13px;line-height:1.5;border-radius:0;-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) bottom/14px 9px repeat-x;filter:drop-shadow(0 10px 14px rgba(4,10,60,.4))}
+.receipt b{display:block;font-size:20px;letter-spacing:-.02em}
+.receipt .r{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.receipt hr{border:0;border-top:1px dashed #9aa0b4;margin:10px 0}
+.receipt .tot{font-weight:800;font-size:16px}
+.pol{width:236px;padding:12px 12px 0}
+.pol .ph{aspect-ratio:1;overflow:hidden;background:#222}
+.pol .ph video,.pol .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:saturate(1.05) contrast(1.04)}
+.pol{--h:.9}
+.pol .cap{height:58px;display:flex;align-items:center;justify-content:center;font-size:31px;white-space:nowrap;line-height:1;color:#1d2240;text-align:center;padding:0 4px}
+.stack{--h:1.4;width:250px;height:316px}
+.stack .pol{position:absolute;left:0;top:0}
+.clip{position:absolute;left:50%;top:-14px;width:64px;height:30px;margin-left:-32px;background:linear-gradient(#2b2f3a,#0d0f14);border-radius:4px 4px 2px 2px;z-index:5;box-shadow:0 3px 5px rgba(0,0,0,.4)}
+.clip::before,.clip::after{content:"";position:absolute;top:-16px;width:3px;height:22px;border:3px solid #c9ccd6;border-bottom:0;border-radius:8px 8px 0 0;left:14px;width:36px;box-sizing:border-box}
+.clip::after{display:none}
+.script{--h:1.3;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 1px 0 #e6e7ec,2px 2px 0 #d9dbe2,3px 3px 0 #e6e7ec,4px 4px 0 #cfd2da,10px 18px 18px -4px rgba(3,10,60,.35),18px 30px 38px -8px rgba(3,10,60,.35)!important;width:300px;height:396px;padding:58px 30px 30px 44px;display:flex;flex-direction:column}
+.script .brad{position:absolute;left:16px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4d58a,#a5782a 70%);box-shadow:0 1px 1px rgba(0,0,0,.4)}
+.script h3{margin:42px 0 6px;font-size:26px;line-height:1.05;letter-spacing:-.02em;text-align:center}
+.script .by{text-align:center;font-size:14px;color:#3b4058}
+.script .foot{margin-top:auto;font-size:12px;color:#555b74;text-align:right;line-height:1.4}
+.sticky{--h:.4;width:210px;height:200px;padding:20px 18px;background:linear-gradient(170deg,#ffe27a,#ffd23f 60%,#f5c52a);color:#1d2240;font-size:32px;line-height:.98;box-shadow:0 1px 1px rgba(0,0,0,.2),0 18px 22px -10px rgba(4,10,60,.55);border-radius:2px 2px 18px 2px}
+.sticky small{display:block;margin-top:12px;font-size:25px;line-height:1.05;color:#4a3d00}
+.cv{--h:.6;width:262px;height:340px;padding:40px 26px 22px}
+.cv b{font-size:17px;letter-spacing:-.01em}
+.cv .ln{height:6px;background:#c4c8d3;border-radius:3px;margin:9px 0}
+.cv .ln.s{width:60%}.cv .ln.m{width:82%}
+.cv .h{height:7px;width:38%;background:#2343cf;opacity:.75;border-radius:3px;margin:18px 0 10px}
+.pclip{position:absolute;top:-22px;right:40px;width:22px;height:62px;border:3px solid #b8bcc9;border-radius:11px;z-index:3}
+.pclip::after{content:"";position:absolute;left:3px;top:8px;width:10px;height:40px;border:3px solid #b8bcc9;border-radius:6px}
+.tag{position:absolute;top:96px;left:-20px;background:var(--yel);color:#1d2240;font-size:27px;padding:2px 14px;transform:rotate(-4deg);box-shadow:0 3px 6px rgba(0,0,0,.25)}
+.book{width:250px;height:330px;border-radius:6px 12px 12px 6px;background:linear-gradient(90deg,#0d0e12,#1b1d24 14%,#22252e 60%,#2a2d37);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),1px 1px 1px rgba(0,0,0,.4),14px 24px 22px -6px rgba(2,6,40,.5),26px 44px 50px -10px rgba(2,6,40,.45);color:#fff}
+.book::before{content:"";position:absolute;top:0;bottom:0;right:28px;width:9px;background:#0a0a0d;box-shadow:inset 1px 0 0 rgba(255,255,255,.08)}
+.book::after{content:"";position:absolute;right:-5px;top:6px;bottom:6px;width:6px;border-radius:0 3px 3px 0;background:repeating-linear-gradient(#f1f2f5 0 1px,#d4d6de 1px 2px)}
+.book .lab{position:absolute;left:34px;top:70px;width:150px;padding:12px 14px;background:var(--paper);color:#1d2240;font-size:31px;line-height:1;border-radius:2px}
+.stk{--h:.18;filter:drop-shadow(1px 2px 1px rgba(var(--sh),.35)) drop-shadow(3px 6px 6px rgba(var(--sh),.25))}
+.stk svg{display:block}
+.ring{position:absolute;border-radius:50%;pointer-events:none;border:7px solid rgba(92,58,20,.16);box-shadow:inset 0 0 0 2px rgba(92,58,20,.08),0 0 0 3px rgba(92,58,20,.05);filter:blur(.6px)}
+.pencil{width:300px;height:20px;border-radius:3px;background:linear-gradient(#ffe066,#ffd23f 40%,#e3b21b);box-shadow:0 8px 10px -4px rgba(2,6,40,.55)}
+.pencil::before{content:"";position:absolute;right:-34px;top:0;border-left:34px solid #e9c69a;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.pencil::after{content:"";position:absolute;right:-34px;top:7px;border-left:11px solid #2a2a2a;border-top:3px solid transparent;border-bottom:3px solid transparent;margin-right:0}
+.pencil i{position:absolute;left:-30px;top:0;width:30px;height:20px;background:var(--pink);border-radius:4px 0 0 4px;box-shadow:inset -6px 0 0 #c9ccd6}
+.tape{width:150px;height:32px;background:repeating-linear-gradient(45deg,rgba(255,138,138,.85) 0 10px,rgba(255,176,176,.85) 10px 20px);opacity:.95;box-shadow:0 2px 3px rgba(0,0,0,.2)}
+.pc{width:24px;height:70px;border:3px solid #dfe2ea;border-radius:12px;box-shadow:0 3px 4px rgba(0,0,0,.25)}
+.pc::after{content:"";position:absolute;left:3px;top:9px;width:12px;height:44px;border:3px solid #dfe2ea;border-radius:7px}
+.tabs.stuck{background:var(--bg);box-shadow:0 1px 0 var(--line)}
+.tabs.stuck a{box-shadow:none}
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:4px;padding:0 max(4vw,12px);margin-top:-46px;overflow-x:auto;scrollbar-width:none}
+.tabs a{flex:none;display:block;padding:12px 20px 14px;border-radius:12px 12px 0 0;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;box-shadow:0 -3px 8px rgba(4,10,50,.18);transition:transform .15s}
+.tabs a:hover,.tabs a:focus-visible{transform:translateY(-4px);outline:none}
+.tabs a.on{background:var(--yel);color:#1d2240}
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:none}
+.nav.on{display:block}
+.nav div{display:flex;gap:22px;align-items:center;padding:14px max(5vw,16px);overflow-x:auto;scrollbar-width:none;font-size:15px}
+.nav b{flex:none;font-weight:800;letter-spacing:-.02em}
+.nav a{flex:none;text-decoration:none;color:var(--mute)}
+.nav a:hover{color:var(--ink)}
+main,.paper{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.band{padding:clamp(48px,6vw,96px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.case{border-top:1px solid var(--line);scroll-margin-top:52px}
+.case:first-of-type{border-top:0}
+.head{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;margin-bottom:28px}
+h2{margin:0;font-size:clamp(34px,4.6vw,52px);line-height:1.04;letter-spacing:-.03em;font-weight:800;text-wrap:balance}
+.role{color:var(--mute);font-size:16px}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:start}
+.copy p{margin:0 0 14px;max-width:62ch}
+.copy .lede{font-size:21px;line-height:1.4;letter-spacing:-.01em}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5em,1fr));gap:18px 24px;margin:26px 0 8px}
+.figs.q{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fig b{display:block;font-size:clamp(34px,4vw,48px);line-height:1;letter-spacing:-.035em;font-weight:800;white-space:nowrap}
+.fig span{display:block;margin-top:6px;font-size:14px;color:var(--mute);line-height:1.3}
+.fig.hi b{color:var(--acc)}
+.railw{position:relative}
+.railw::after{content:"";position:absolute;top:0;right:0;bottom:40px;width:64px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--bg));opacity:var(--more,1);transition:opacity .2s}
+.hint{margin:4px 2px 0;font-size:14px;color:var(--mute)}
+.rail{display:flex;gap:16px;overflow-x:auto;padding:4px 2px 18px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.reel{flex:none;width:clamp(200px,19vw,236px);scroll-snap-align:start}
+.frame{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#05070f;box-shadow:0 1px 2px rgba(0,0,0,.2),0 14px 30px -12px rgba(4,10,60,.45);cursor:pointer}
+.frame video,.frame img{width:100%;height:100%;object-fit:cover}
+.frame.r45 img{object-fit:contain;position:relative}
+.frame .blur{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.8)}
+.frame .snd{position:absolute;left:10px;bottom:10px;padding:5px 10px 6px;border-radius:99px;background:rgba(10,14,30,.66);color:#fff;font-size:13px;backdrop-filter:blur(6px);pointer-events:none}
+.frame.live .snd{background:var(--yel);color:#1d2240}
+.reel p{margin:10px 2px 2px;font-size:14px;line-height:1.35}
+.reel small{display:flex;justify-content:space-between;gap:8px;margin:4px 2px 0;font-size:13px;color:var(--mute)}
+.reel small a{text-decoration:none;color:var(--mute)}
+.reel small a:hover{color:var(--ink)}
+.bars{margin:22px 0 6px;display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4em;gap:12px;align-items:center;font-size:15px}
+.bar i{display:block;height:30px;border-radius:4px;background:var(--cob)}
+.bar.last i{background:var(--yel)}
+.bar em{font-style:normal;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.ads{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:99px;border:1px solid var(--line);background:var(--soft);text-decoration:none;font-size:15px;font-weight:500}
+.btn:hover{border-color:var(--ink)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.62fr);gap:14px;align-items:start}
+.shot{border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.2),0 12px 26px -12px rgba(4,10,60,.45);background:#000}
+.shot img{width:100%}
+.lbl{font-size:14px;color:var(--mute);margin:8px 2px 0}
+.tickets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:26px}
+.praise{--h:.6;position:relative;max-width:760px;margin:6px 0 34px;padding:30px 34px 26px;transform:rotate(-1deg)}
+.praise::before{content:"";position:absolute;top:-14px;left:44px;width:120px;height:28px;background:repeating-linear-gradient(45deg,rgba(255,210,63,.9) 0 10px,rgba(255,226,122,.9) 10px 20px);transform:rotate(-4deg)}
+.praise blockquote{margin:0;font-size:clamp(24px,2.8vw,34px);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+.praise figcaption{margin-top:14px;font-size:15px;color:#555b74}
+.tkc{display:grid;gap:10px;align-content:start}
+.slip{border-radius:6px;background:#fff;box-shadow:0 0 0 1px var(--line),0 8px 16px -10px rgba(3,10,60,.5)}
+.tk{position:relative;padding:20px 18px 18px;border-radius:8px;background:var(--cob);color:#fff;box-shadow:0 12px 22px -12px rgba(3,10,60,.6)}
+.tk::before{content:"";position:absolute;left:14px;right:14px;top:58%;border-top:2px dashed rgba(255,255,255,.35)}
+.tk b{display:block;font-size:clamp(28px,3vw,40px);letter-spacing:-.035em;line-height:1;font-weight:800}
+.tk span{display:block;font-size:14px;opacity:.9;margin-top:6px;line-height:1.35}
+.tk span+span{margin-top:24px}
+
+.cvgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,72px)}
+.job{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:22px 0;border-top:1px solid var(--line)}
+.job h3{margin:0;font-size:20px;letter-spacing:-.015em}
+.job .when{color:var(--mute);font-size:15px;white-space:nowrap}
+.job .at{grid-column:1/-1;color:var(--mute);font-size:15px}
+.job ul{grid-column:1/-1;margin:10px 0 0;padding-left:18px}
+.job li{margin:4px 0}
+.side h3{margin:0 0 10px;font-size:15px;color:var(--mute);font-weight:500}
+.side .blk{padding:20px 0;border-top:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:6px 12px;border-radius:99px;background:var(--soft);border:1px solid var(--line);font-size:14px}
+.side ul{list-style:none;margin:0;padding:0}
+.side li{padding:3px 0}
+.quote{font-size:21px;line-height:1.35;letter-spacing:-.01em}
+.end{background:var(--mat);color:light-dark(#171a05,#f3f5e4);position:relative;overflow:hidden}
+.end .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
+.end h2{font-size:clamp(40px,6vw,76px)}
+.end p{margin:16px 0 0;max-width:46ch;opacity:.9}
+.end .note{color:#1d2240;justify-self:end;width:min(100%,380px);background:var(--yel);padding:26px 24px;transform:rotate(-2deg);box-shadow:0 18px 26px -12px rgba(0,0,0,.5);font-size:44px;line-height:1.05}
+.end .note a{display:block;margin-top:12px;font:700 18px/1.3 "Schibsted Grotesk",sans-serif;overflow-wrap:anywhere;text-decoration:none}
+.end .note span{display:block;margin-top:10px;font:400 14px/1.4 "Schibsted Grotesk",sans-serif;color:#4a3d00}
+footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:900px){.grid,.cvgrid{grid-template-columns:minmax(0,1fr)}.end .wrap{grid-template-columns:minmax(0,1fr)}.tickets{grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}}
+@media (max-width:600px){body{font-size:16px}.copy .lede{font-size:19px}.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pair .shot:last-child{grid-column:1/-1;max-width:220px}.tabs{margin-top:-42px}.tabs a{padding:10px 14px 12px;font-size:14px}.bar{grid-template-columns:6.2em minmax(0,1fr) 3.4em}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@keyframes land{0%{opacity:0;--lift:6;transform:translate(0,-120px) rotate(calc(var(--r) - 12deg)) scale(1.28)}55%{opacity:1;--lift:1.4;transform:translate(0,6px) rotate(calc(var(--r) + 1.5deg)) scale(.97)}78%{--lift:.9;transform:translate(0,-2px) rotate(calc(var(--r) - .5deg)) scale(1.01)}100%{--lift:1;transform:translate(0,0) rotate(var(--r)) scale(1)}}
+@keyframes slap{0%{opacity:0;transform:rotate(calc(var(--r) + 20deg)) scale(1.9)}60%{opacity:1;transform:rotate(calc(var(--r) - 3deg)) scale(.92)}100%{transform:rotate(var(--r)) scale(1)}}
+.boot .obj{animation:land .85s cubic-bezier(.3,.7,.2,1) both;animation-delay:var(--d)}
+.boot .obj.stk{animation:slap .45s cubic-bezier(.3,.8,.3,1.2) both;animation-delay:var(--d)}
+</style>
+</head>
+<body>
+<header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
+  <div class="ruler"></div><i class="score" style="left:8%;top:12%;width:340px;transform:rotate(-11deg)"></i><i class="score" style="left:62%;top:86%;width:260px;transform:rotate(4deg)"></i><i class="score" style="left:36%;top:4%;width:180px;transform:rotate(27deg)"></i>
+  <div class="board" id="board"></div>
+</header>
+<nav class="tabs" aria-label="Case files">
+  <a href="#maple" class="on">Maple.inc</a><a href="#aakash">Aakash Bhalla</a><a href="#bartlett">Steven Bartlett</a><a href="#brooks">Dr Arthur Brooks</a><a href="#mmh">Metro Media House</a><a href="#numbers">DOAC numbers</a><a href="#cv">CV</a><a href="#contact">Contact</a>
+</nav>
+
+<main>
+<section class="band case" id="maple"><div class="wrap">
+  <div class="head"><h2>Maple.inc</h2><span class="role">Ads that sound like a real phone call</span></div>
+  <div class="grid">
+    <div class="copy">
+      <p class="lede">Maple makes AI voice agents that answer the phone for restaurants, because the person who'd normally answer is carrying four plates and a grudge.</p>
+      <p>Every competitor ran the same ad: a picture, a list of features, a one-liner. So we let people hear the thing instead. We took real calls between Maple's agent and real customers and made them look like any other post in your feed. People skip ads. Nobody skips eavesdropping.</p>
+      <div class="ads"><a class="btn" href="https://www.facebook.com/ads/library/?id=4195112840710312" target="_blank" rel="noopener">Ad one, in Meta's Ad Library</a><a class="btn" href="https://www.facebook.com/ads/library/?id=25153189381040039" target="_blank" rel="noopener">Ad two</a><a class="btn" href="https://www.facebook.com/ads/library/?id=1645467936582705" target="_blank" rel="noopener">Ad three</a></div>
+    </div>
+    <div>
+      <div class="figs" style="margin-top:0"><div class="fig hi"><b>$63</b><span>to win one customer, by month three</span></div><div class="fig"><b>79%</b><span>cheaper than the $300 we started at</span></div></div>
+      <div class="bars" id="cac"></div>
+      <p class="lbl">What it cost to win one customer.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="band case" id="aakash"><div class="wrap">
+  <div class="head"><h2>Aakash Bhalla</h2><span class="role">Organic growth, strategy, scripts and direction</span></div>
+  <div class="grid">
+    <div class="copy">
+      <p class="lede">Salesman turned agency founder. Eight businesses that failed and one that worked. Most people would take the hint. Aakash took notes.</p>
+      <p>He had a lot worth saying and nobody hearing it: no plan, no rhythm, no leads, and hours a week spent staring at a blank caption. We worked out what he stands for, what he'd post and how often. Sixty days later his content was bringing in leads on its own.</p>
+      <div class="figs q"><div class="fig hi"><b>65K+</b><span>followers, up from 2,000</span></div><div class="fig"><b>7M+</b><span>organic impressions</span></div><div class="fig"><b>60</b><span>days. Not a year, not a quarter.</span></div><div class="fig"><b>6 figures</b><span>in sales that came from content</span></div></div>
+    </div>
+    <div class="pair">
+      <div><div class="shot"><img src="media/aakash_before.jpg" alt="Instagram insights before: 377 accounts reached" loading="lazy"></div><p class="lbl">Day one: 377 accounts reached</p></div>
+      <div><div class="shot"><img src="media/aakash_after.jpg" alt="Instagram insights after 60 days: 1,967,160 accounts reached, 4,040,149 impressions" loading="lazy"></div><p class="lbl">Day 60: 1.97M reached</p></div>
+      <div class="reel" style="width:auto"><div class="frame" data-v="aakash_reel"></div><p class="lbl">One of the reels</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band case" id="bartlett"><div class="wrap">
+  <div class="head"><h2>Steven Bartlett</h2><span class="role">The Diary of a CEO. Picking the clips and directing the edit</span></div>
+  <div class="grid">
+    <div class="copy">
+      <p class="lede">Every DOAC episode ends with a question left by the last guest. If I got to leave one, it would be: which forty seconds of this can I post?</p>
+      <p>The episodes run for hours, and Steven gets people to say things they've never said out loud. I found the moments a stranger won't scroll past, then directed the cut: the pace, the captions, and exactly where it stops. The hard part is leaving things out when it's all good.</p>
+      <div class="figs"><div class="fig hi"><b>583K</b><span>likes across five of these six clips</span></div><div class="fig"><b>8.2M</b><span>views on five more, <a href="#numbers">with receipts</a></span></div></div>
+    </div>
+    <div class="railw"><div class="rail" data-g="bartlett"></div><p class="hint">Scroll sideways for all six. Tap any reel for sound.</p></div>
+  </div>
+</div></section>
+
+<section class="band case" id="brooks"><div class="wrap">
+  <div class="head"><h2>Dr Arthur Brooks</h2><span class="role">Harvard's happiness professor. Editing direction</span></div>
+  <div class="grid">
+    <div class="copy">
+      <p class="lede">Before Harvard, Arthur Brooks played French horn professionally. The man knows how to hold a note. My job was knowing when to cut it.</p>
+      <p>I decided what stays, where the pauses go and how the words sit on screen, so a minute of him still sounds like him and not like a fortune cookie.</p>
+      <div class="figs"><div class="fig hi"><b>37K</b><span>likes on one clip</span></div><div class="fig"><b>56K</b><span>likes across these four</span></div></div>
+    </div>
+    <div class="railw"><div class="rail" data-g="brooks"></div><p class="hint">Tap any reel for sound.</p></div>
+  </div>
+</div></section>
+
+<section class="band case" id="mmh"><div class="wrap">
+  <div class="head"><h2>Metro Media House</h2><span class="role">Lead creative strategist and operator, 2025 to now</span></div>
+  <div class="grid">
+    <div class="copy">
+      <p class="lede">The agency behind the clips above. I helped it find clients, helped it get the work out the door, and I write and direct its own channel. Yes, including the carousel about reversing brainrot. I made it with some brainrot.</p>
+      <p>I lead a production team of 30+ people. I also set up how we work, the guides and the AI tools, and that cut the cost of making things by more than 90%.</p>
+      <div class="figs"><div class="fig hi"><b>30+</b><span>people in the production team</span></div><div class="fig"><b>90%+</b><span>cheaper to make the same work</span></div></div>
+    </div>
+    <div class="railw"><div class="rail" data-g="mmh"></div><p class="hint">Scroll sideways for all seven. Tap any reel for sound.</p></div>
+  </div>
+</div></section>
+
+<section class="band case" id="numbers"><div class="wrap">
+  <div class="head"><h2>Five DOAC reels, 8.2M views</h2><span class="role">Steven sits on Dragons' Den, so we came with numbers. Screenshots straight from his team</span></div>
+  <figure class="praise sheet"><blockquote>Well done on some of the recent content guys, can really feel the momentum on IG!!!!!</blockquote><figcaption>Zara Jarvis, our point of contact for Steven Bartlett's Instagram, sending over these analytics</figcaption></figure>
+  <div class="tickets" id="tickets"></div>
+</div></section>
+
+<section class="band case" id="cv"><div class="wrap">
+  <div class="head"><h2>CV</h2><span class="role">Writer and director first. Strategist when someone asks nicely</span></div>
+  <div class="cvgrid">
+    <div>
+      <p class="copy lede" style="margin:0 0 26px;max-width:60ch">I've spent 3+ years making content for people you've heard of: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and a few YC-backed startups. I like the thinking, I like running the team, and I really like the bit where an idea becomes something people send to their friends.</p>
+      <div id="jobs"></div>
+    </div>
+    <aside class="side">
+      <div class="blk"><h3>Core skills</h3><div class="chips"><span>Organic creative strategy</span><span>Content production</span><span>Content systems and workflows</span><span>Copywriting</span><span>Visual and art direction</span><span>AI-assisted research</span><span>AI-assisted production</span></div></div>
+      <div class="blk"><h3>Tools</h3><div class="chips"><span>Notion</span><span>Affinity</span><span>Higgsfield</span><span>ElevenLabs</span><span>Figma</span><span>Manus</span></div></div>
+      <div class="blk"><h3>Selected clients</h3><ul><li>Steven Bartlett</li><li>Andrew Ross Sorkin</li><li>Dr Arthur Brooks</li><li>Maple.inc</li><li>Kitsh</li><li>Ryan Bartlett, True Classic</li></ul></div>
+      <div class="blk" id="beyond"><h3>Beyond work</h3><p style="margin:0">I write poetry, watch video essays about things I will never need to know, take fairly good pictures, and own more notebooks than I will ever fill.</p></div>
+      <div class="blk"><p class="quote" style="margin:0">I built every skill I have through real work, teaching myself, and 5+ years of hits and trials. I learn fast. Very fast.</p></div>
+    </aside>
+  </div>
+</div></section>
+</main>
+
+<section class="band end" id="contact"><div class="wrap">
+  <div><h2>Got a story nobody's hearing yet?</h2><p>Tell me about it. I'm curious about pretty much everything, so worst case, we have a good chat.</p></div>
+  <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
+</div></section>
+<footer><span>Bhanu Pratap, 2026</span><a href="#top">Back to the desk</a></footer>
+
+<script>
+{
+const MEDIA={"bartlett": [{"g": "bartlett", "kind": "video", "id": "bartlett_DWoAgfdAJRp", "src": "media/bartlett_DWoAgfdAJRp.jpg", "url": "https://www.instagram.com/reel/DWoAgfdAJRp/", "cap": "Nice people say what you want to hear. Kind people say what you need to hear.", "stat": "194K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DVsNATlgHrg", "src": "media/bartlett_DVsNATlgHrg.jpg", "url": "https://www.instagram.com/reel/DVsNATlgHrg/", "cap": "Your limiting beliefs about what's possible for you are not facts.", "stat": "144K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DWjQXYTDCxY", "src": "media/bartlett_DWjQXYTDCxY.jpg", "url": "https://www.instagram.com/reel/DWjQXYTDCxY/", "cap": "I asked the world's most fearless climber if he finds it awkward to talk about emotions.", "stat": "120K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DVgBHwxDPiD", "src": "media/bartlett_DVgBHwxDPiD.jpg", "url": "https://www.instagram.com/reel/DVgBHwxDPiD/", "cap": "What makes us fall in love is not the person that's perfect.", "stat": "111K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DV6nOcCgOA9", "src": "media/bartlett_DV6nOcCgOA9.jpg", "url": "https://www.instagram.com/reel/DV6nOcCgOA9/", "cap": "The greatest commitments you can make are the ones you make to yourself.", "stat": "14K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DWZRf0FjFKo", "src": "media/bartlett_DWZRf0FjFKo.jpg", "url": "https://www.instagram.com/reel/DWZRf0FjFKo/", "cap": "Your biggest breakthroughs will often come from the most petty detail.", "stat": "Likes hidden", "r45": false}], "brooks": [{"g": "brooks", "kind": "video", "id": "brooks_DUgML6lCWBo", "src": "media/brooks_DUgML6lCWBo.jpg", "url": "https://www.instagram.com/reel/DUgML6lCWBo/", "cap": "Your kids won't become what you tell them to be. They become what they watch you be.", "stat": "37K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DQprSK3DQd7", "src": "media/brooks_DQprSK3DQd7.jpg", "url": "https://www.instagram.com/reel/DQprSK3DQd7/", "cap": "Those who truly live with gratitude find meaning even in the difficult parts of life.", "stat": "7.5K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DQFosxqjyr3", "src": "media/brooks_DQFosxqjyr3.jpg", "url": "https://www.instagram.com/reel/DQFosxqjyr3/", "cap": "Strivers often believe they have to earn love through achievement.", "stat": "6.5K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DToP8E4CTmu", "src": "media/brooks_DToP8E4CTmu.jpg", "url": "https://www.instagram.com/reel/DToP8E4CTmu/", "cap": "If something brings you pleasure and could become addictive, notice whether you do it alone.", "stat": "4.7K likes", "r45": false}], "mmh": [{"g": "mmh", "kind": "video", "id": "mmh_DOvSTHYiFup", "src": "media/mmh_DOvSTHYiFup.jpg", "url": "https://www.instagram.com/reel/DOvSTHYiFup/", "cap": "When your product becomes part of the flex, you've already won.", "stat": "9.9K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DSpg--liDsz", "src": "media/mmh_DSpg--liDsz.jpg", "url": "https://www.instagram.com/p/DSpg--liDsz/", "cap": "Five pieces of media that'll reverse your brainrot, part two.", "stat": "6.7K likes, 904 comments", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DO1GOtSDOZD", "src": "media/mmh_DO1GOtSDOZD.jpg", "url": "https://www.instagram.com/reel/DO1GOtSDOZD/", "cap": "Originality is overrated. Borrowed fame builds faster.", "stat": "4.4K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DSXZhrLgXBa", "src": "media/mmh_DSXZhrLgXBa.jpg", "url": "https://www.instagram.com/p/DSXZhrLgXBa/", "cap": "Focus isn't a talent. It's a skill you rebuild.", "stat": "4K likes, 1.2K comments", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DUTFN28CDDt", "src": "media/mmh_DUTFN28CDDt.jpg", "url": "https://www.instagram.com/reel/DUTFN28CDDt/", "cap": "One announcement. Zero marketing. Forty years of legacy.", "stat": "1.7K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DUqAn2HiBhE", "src": "media/mmh_DUqAn2HiBhE.jpg", "url": "https://www.instagram.com/p/DUqAn2HiBhE/", "cap": "Cool isn't a look. It's a behaviour people repeat before anyone names it.", "stat": "1.3K likes", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DUdMp_8jQ7h", "src": "media/mmh_DUdMp_8jQ7h.jpg", "url": "https://www.instagram.com/p/DUdMp_8jQ7h/", "cap": "Stop looking for new ideas. Mix things that don't belong together.", "stat": "1.1K likes", "r45": true}], "posters": {"bartlett_DWZRf0FjFKo": "media/bartlett_DWZRf0FjFKo.jpg", "bartlett_DWoAgfdAJRp": "media/bartlett_DWoAgfdAJRp.jpg", "bartlett_DVsNATlgHrg": "media/bartlett_DVsNATlgHrg.jpg", "brooks_DToP8E4CTmu": "media/brooks_DToP8E4CTmu.jpg", "brooks_DQprSK3DQd7": "media/brooks_DQprSK3DQd7.jpg", "mmh_DUqAn2HiBhE": "media/mmh_DUqAn2HiBhE.jpg", "mmh_DUTFN28CDDt": "media/mmh_DUTFN28CDDt.jpg", "mmh_DO1GOtSDOZD": "media/mmh_DO1GOtSDOZD.jpg", "brooks_DQFosxqjyr3": "media/brooks_DQFosxqjyr3.jpg", "bartlett_DVgBHwxDPiD": "media/bartlett_DVgBHwxDPiD.jpg", "stat3": "media/stat3.jpg", "stat2": "media/stat2.jpg", "brooks_DUgML6lCWBo": "media/brooks_DUgML6lCWBo.jpg", "aakash_after": "media/aakash_after.jpg", "bartlett_DWjQXYTDCxY": "media/bartlett_DWjQXYTDCxY.jpg", "mmh_DUdMp_8jQ7h": "media/mmh_DUdMp_8jQ7h.jpg", "mmh_DSpg--liDsz": "media/mmh_DSpg--liDsz.jpg", "stat1": "media/stat1.jpg", "stat5": "media/stat5.jpg", "aakash_before": "media/aakash_before.jpg", "stat4": "media/stat4.jpg", "mmh_DSXZhrLgXBa": "media/mmh_DSXZhrLgXBa.jpg", "aakash_reel": "media/aakash_reel.jpg", "bartlett_DV6nOcCgOA9": "media/bartlett_DV6nOcCgOA9.jpg", "mmh_DOvSTHYiFup": "media/mmh_DOvSTHYiFup.jpg"}};
+const D=document,$=s=>D.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const P=id=>MEDIA.posters[id]||"";
+const LIVE=id=>`<video class="live" muted loop playsinline preload="metadata" poster="${P(id)}" src="media/${id}.mp4"></video>`;
+
+/* desk objects: wide board 1440x860, narrow board 600x1040; [x,y,rot] */
+const OBJ=[
+ {k:"card",go:"#cv",w:[60,250,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>A curious creative. I make the stuff your thumb stops scrolling for.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
+ {k:"receipt",go:"#maple",w:[560,70,4],n:[40,340,-4],html:`<b>Maple.inc</b>Meta ads, 3 months<hr><div class="r"><span>Cost per customer</span><span></span></div><div class="r"><span>Before</span><span>$300.00</span></div><div class="r"><span>Then</span><span>$98.00</span></div><div class="r"><span>Month three</span><span>$63.00</span></div><hr><div class="r tot"><span>Saved</span><span>$237.00</span></div><div class="r"><span>Down</span><span>79%</span></div><hr><div style="text-align:center">Thank you, come again</div>`},
+ {k:"stack",go:"#bartlett",w:[850,58,4],n:[300,520,4],html:()=>[2,1,0].map((i,j)=>`<div class="sheet pol" style="transform:rotate(${[-7,5,0][j]}deg) translate(${[-6,8,0][j]}px,${[6,-2,0][j]}px)"><div class="ph">${j==2?LIVE(MEDIA.bartlett[i].id):`<img src="${P(MEDIA.bartlett[i].id)}" alt="">`}</div><div class="cap hand">${j==2?"DOAC clips":""}</div></div>`).join("")+`<div class="clip"></div>`},
+ {k:"pol",go:"#aakash",w:[830,450,-6],n:[30,710,-5],html:()=>`<div class="ph">${LIVE("aakash_reel")}</div><div class="cap hand">Aakash: 2k to 65k</div>`},
+ {k:"pol b2",go:"#brooks",w:[1140,110,7],n:[330,890,6],html:()=>`<div class="ph"><img src="${P(MEDIA.brooks[1].id)}" alt=""></div><div class="cap hand">Dr Arthur Brooks</div>`},
+ {k:"script",go:"#mmh",w:[505,445,-3],n:[30,1060,-3],html:`<span class="brad" style="top:44px"></span><span class="brad" style="top:50%"></span><span class="brad" style="bottom:44px"></span><h3>Metro Media House</h3><div class="by">written and directed by<br>Bhanu Pratap</div><div class="foot">Lead creative strategist<br>2025 to now</div>`},
+ {k:"sticky",go:"#numbers",w:[1090,395,-4],n:[372,300,5],html:`8.2M views on five DOAC reels<small>receipts inside</small>`},
+ {k:"cv",go:"#cv",w:[1150,590,6],n:[322,1230,5],html:`<span class="pclip"></span><b>Bhanu Pratap</b><div class="ln m"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln s"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln"></div><div class="ln s"></div><span class="tag hand">CV 2026</span>`},
+ {k:"book",go:"#beyond",w:[96,610,-9],n:[50,1440,-8],html:`<div class="lab hand">Poems and other things</div>`},
+ {k:"stk",w:[46,40,-12],n:[468,40,10],html:`<svg width="122" height="96" viewBox="0 0 122 96"><rect x="4" y="14" width="114" height="78" rx="16" fill="#fff"/><rect x="11" y="22" width="100" height="63" rx="11" fill="#2343cf"/><rect x="36" y="8" width="34" height="18" rx="5" fill="#fff"/><rect x="40" y="12" width="26" height="12" rx="3" fill="#2343cf"/><circle cx="61" cy="54" r="24" fill="#fff"/><circle cx="61" cy="54" r="19" fill="#10142a"/><circle cx="61" cy="54" r="11" fill="#33405f"/><circle cx="55" cy="48" r="4" fill="#fff" opacity=".8"/><rect x="88" y="30" width="14" height="9" rx="2" fill="#ffd23f"/></svg>`},
+ {k:"stk",w:[350,14,6],n:[372,1478,-8],html:`<svg width="176" height="64" viewBox="0 0 176 64"><rect x="2" y="2" width="172" height="60" rx="30" fill="#fff"/><rect x="8" y="8" width="160" height="48" rx="24" fill="#ff8a8a"/><circle cx="34" cy="32" r="16" fill="#fff"/><path d="M29 23l13 9-13 9z" fill="#ff5c5c"/><text x="58" y="29" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">just one more</text><text x="58" y="45" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">video essay</text></svg>`},
+ {k:"stk",w:[790,380,-8],n:[268,330,-10],html:`<svg width="78" height="76" viewBox="0 0 78 76"><path d="M39 4l9.9 20.6 22.6 3-16.5 15.7 4.1 22.4L39 54.9 18.9 65.7 23 43.3 6.5 27.6l22.6-3z" fill="#ffd23f" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/><path d="M39 16l6 12.6 13.7 1.8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>`},
+ {k:"stk",w:[842,770,5],n:[86,1660,6],html:`<svg width="188" height="76" viewBox="0 0 188 76"><path d="M8 4h172a6 6 0 0 0 6 6v18a10 10 0 0 0 0 20v18a6 6 0 0 0-6 6H8a6 6 0 0 0-6-6V48a10 10 0 0 0 0-20V10a6 6 0 0 0 6-6z" fill="#fff"/><path d="M14 11h160v14a15 15 0 0 0 0 26v14H14V51a15 15 0 0 0 0-26z" fill="#10142a"/><line x1="138" y1="16" x2="138" y2="60" stroke="#fff" stroke-dasharray="3 4" opacity=".5"/><text x="30" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="17" fill="#ffd23f">Admit one</text><text x="30" y="54" font-family="Schibsted Grotesk,sans-serif" font-size="11" fill="#fff">Row A, front row</text><text x="147" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#fff">No.</text><text x="149" y="52" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#ffd23f">1</text></svg>`},
+ {k:"stk",w:[340,640,9],n:[360,1610,7],html:`<svg width="176" height="96" viewBox="0 0 176 96"><rect x="3" y="3" width="170" height="90" rx="12" fill="#fff"/><rect x="10" y="10" width="156" height="76" rx="7" fill="#fff" stroke="#ff5c5c" stroke-width="2.5"/><text x="88" y="40" text-anchor="middle" font-family="Nanum Pen Script,cursive" font-size="24" fill="#10142a">roses are red,</text><text x="88" y="66" text-anchor="middle" font-family="Nanum Pen Script,cursive" font-size="24" fill="#10142a">deadlines are too</text></svg>`},
+ {k:"stk",w:[1102,14,-7],n:[30,1040,12],html:`<svg width="104" height="92" viewBox="0 0 104 92"><path d="M10 34h84v48a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M8 18l80-14 4 22-80 14z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M14 38h76v42H14z" fill="#10142a"/><path d="M12 20l74-13 3 16-74 13z" fill="#10142a"/><path d="M22 18l10 13M40 15l10 13M58 12l10 13M76 9l9 12" stroke="#fff" stroke-width="6"/><text x="52" y="66" text-anchor="middle" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#fff">Take 1</text></svg>`},
+ {k:"pencil",w:[200,170,14],n:[250,1740,-8],html:`<i></i>`},
+ {k:"tape",w:[1300,96,40],n:[470,884,32],html:``},
+ {k:"pc",w:[760,520,32],n:[262,690,25],html:``}
+];
+const NB=[600,1800],WB=[1440,900];
+const board=$("#board"),desk=$(".desk");
+let narrow=null,scale=1,z=10;
+
+board.innerHTML=OBJ.map((o,i)=>{const sheet=["card","receipt","pol","pol b2","script","cv"].includes(o.k)?"sheet ":"";const h=typeof o.html=="function"?o.html():o.html;return `<div class="obj ${sheet}${o.k}" data-i="${i}" ${o.go?`tabindex="0" role="link" aria-label="Open ${esc(o.go.slice(1))}"`:`aria-hidden="true"`} style="--d:${o.k=="stk"?1250+i*70:i*85}ms">${h}</div>`}).join("");
+board.insertAdjacentHTML("afterbegin",`<span class="ring" id="ring"></span>`);
+const els=[...board.querySelectorAll(".obj")];
+
+function layout(){
+  const W=desk.clientWidth;const n=W<700;
+  const B=n?NB:WB;scale=n?Math.min(W/B[0],1.05):Math.max(.48,Math.min(W/B[0],innerHeight/B[1],1.12));
+  if(n!==narrow){narrow=n;const rg=$("#ring");Object.assign(rg.style,n?{left:"360px",top:"760px",width:"170px",height:"170px"}:{left:"690px",top:"330px",width:"180px",height:"180px"});els.forEach((e,i)=>{const p=n?OBJ[i].n:OBJ[i].w;place(e,p[0],p[1],p[2])})}
+  board.style.width=B[0]+"px";board.style.height=B[1]+"px";
+  const off=Math.max(0,(W-B[0]*scale)/2);
+  board.style.transform=`translate(${off}px,0) scale(${scale})`;
+  desk.style.height=Math.round(B[1]*scale)+"px";
+}
+function place(e,x,y,r){e.style.left=x+"px";e.style.top=y+"px";e.style.setProperty("--r",r+"deg")}
+const ro=new ResizeObserver(layout);ro.observe(desk);addEventListener("resize",layout);layout();
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){board.classList.add("boot");setTimeout(()=>board.classList.remove("boot"),2600)}
+
+els.forEach((e,i)=>{
+  let sx,sy,ox,oy,moved=false,down=false;
+  e.addEventListener("pointerdown",ev=>{down=true;moved=false;sx=ev.clientX;sy=ev.clientY;ox=parseFloat(e.style.left);oy=parseFloat(e.style.top);e.setPointerCapture(ev.pointerId);e.style.zIndex=++z});
+  e.addEventListener("pointermove",ev=>{if(!down)return;const dx=(ev.clientX-sx)/scale,dy=(ev.clientY-sy)/scale;if(!moved&&Math.hypot(dx,dy)<6/scale)return;moved=true;dragging=true;e.classList.add("lift");e.style.left=ox+dx+"px";e.style.top=oy+dy+"px"});
+  const up=()=>{if(!down)return;down=false;dragging=false;e.classList.remove("lift");if(!moved&&OBJ[i].go)open(OBJ[i].go)};
+  e.addEventListener("pointerup",up);e.addEventListener("pointercancel",()=>{down=false;e.classList.remove("lift")});
+  e.addEventListener("keydown",ev=>{if((ev.key=="Enter"||ev.key==" ")&&OBJ[i].go){ev.preventDefault();open(OBJ[i].go)}});
+});
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let dragging=false;
+desk.addEventListener("pointermove",ev=>{if(RM||dragging||ev.pointerType!="mouse")return;const r=desk.getBoundingClientRect();board.style.setProperty("--mx",((ev.clientX-r.left)/r.width*2-1).toFixed(3));board.style.setProperty("--my",((ev.clientY-r.top)/r.height*2-1).toFixed(3))});
+desk.addEventListener("pointerleave",()=>{board.style.setProperty("--mx",0);board.style.setProperty("--my",0)});
+const lives=[...board.querySelectorAll("video.live")];
+const io2=new IntersectionObserver(([en])=>lives.forEach(v=>{if(en.isIntersecting&&!RM)v.play().catch(()=>{});else v.pause()}),{threshold:.15});io2.observe(desk);
+function open(sel){const t=$(sel);if(t)t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+
+
+const sen=D.createElement("div");$(".tabs").before(sen);const io0=new IntersectionObserver(([en])=>$(".tabs").classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0));io0.observe(sen);
+const tabA=[...D.querySelectorAll(".tabs a")];const io1=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)tabA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+en.target.id))}),{rootMargin:"-45% 0px -50% 0px"});D.querySelectorAll("main section[id],#contact").forEach(x=>io1.observe(x));
+/* Maple bars */
+const CAC=[["Before",300],["Then",98],["Month three",63]];
+$("#cac").innerHTML=CAC.map(([l,v],i)=>`<div class="bar${i==2?" last":""}"><span>${l}</span><i style="width:${v/3}%"></i><em>$${v}</em></div>`).join("");
+
+/* reels */
+const frame=m=>m.kind=="image"?`<div class="frame r45"><span class="blur" style="background-image:url(${m.src})"></span><img src="${m.src}" alt="${esc(m.cap)}" loading="lazy"></div>`:`<div class="frame" data-v="${m.id}"></div>`;
+D.querySelectorAll(".rail").forEach(r=>{r.innerHTML=MEDIA[r.dataset.g].map(m=>`<div class="reel">${frame(m)}<p>${esc(m.cap)}</p><small><span>${esc(m.stat||"")}</span><a href="${m.url}" target="_blank" rel="noopener">Instagram</a></small></div>`).join("")});
+D.querySelectorAll(".frame[data-v]").forEach(f=>{const id=f.dataset.v;f.innerHTML=`<video muted loop playsinline preload="none" poster="${P(id)}" src="media/${id}.mp4"></video><span class="snd">Tap for sound</span>`});
+const vids=[...D.querySelectorAll(".frame video")];
+const io=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&en.intersectionRatio>.55){v.play().catch(()=>{})}else{v.pause()}}),{threshold:[0,.55,1]});
+vids.forEach(v=>io.observe(v));
+D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{const v=f.querySelector("video");const on=v.muted;vids.forEach(o=>{o.muted=true;o.parentNode.classList.remove("live");o.nextElementSibling.textContent="Tap for sound"});if(on){v.muted=false;v.play().catch(()=>{});f.classList.add("live");f.querySelector(".snd").textContent="Sound on"}}));
+
+D.querySelectorAll(".rail").forEach(r=>{const w=r.parentNode;const f=()=>w.style.setProperty("--more",r.scrollLeft+r.clientWidth>=r.scrollWidth-4?0:1);r.addEventListener("scroll",f,{passive:true});f()});
+/* tickets */
+const TK=[[1121175,"44K","12K"],[2243486,"110K","36K"],[1405493,"57K","14K"],[742733,"28K","6.2K"],[2719331,"95K","33K"]];
+$("#tickets").innerHTML=TK.map(([v,l,s],i)=>`<div class="tkc"><div class="tk"><b>${v>=1e6?(v/1e6).toFixed(2)+"M":Math.round(v/1e3)+"K"}</b><span>views</span><span>${l} likes, ${s} saves</span></div><img class="slip" src="media/stat${i+1}.jpg" alt="Instagram analytics: ${v.toLocaleString("en-GB")} views" loading="lazy"></div>`).join("");
+
+/* jobs */
+const JOBS=[
+ ["Lead creative strategist and operator","Metro Media House, remote","Apr 2025 to now",["Co-built the agency's lead generation and the way it delivers work.","Led content strategy and production for Steven Bartlett (DOAC), Andrew Ross Sorkin and Dr Arthur Brooks.","Lead a production team of 30+ creatives across formats.","Built workflows, production guidelines and AI-assisted processes that cut production overhead by 90%+."]],
+ ["Copywriter and creative strategist","WeTriumph, remote","May to Aug 2024",["Quarterly strategies, multi-platform content plans and Meta ads for D2C brands.","Website copy, product descriptions and ad campaigns for Meta and Google.","Campaigns end to end, from concept to post-production.","Market research, and content iterated on performance data."]],
+ ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Brand identities for local businesses: design systems and visual guidelines.","Worked directly with founders and designers to match the look to the positioning."]],
+ ["Freelance content writer","Independent, remote","2020 to 2022",["Scripts for small and mid-sized YouTube creators, with hooks that grew subscribers and engagement.","Articles in tech, entertainment and personal development, with a 20% lift in organic shares for key clients.","Kept clients coming back by adapting to each brand's voice."]]
+];
+$("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+}
+</script>
+</body>
+</html>
