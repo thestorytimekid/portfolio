@@ -14,7 +14,7 @@
    COLOUR cobalt mat, white paper, ink, one post-it yellow for what matters
    TYPE   Schibsted Grotesk for print, Caveat for the handwriting on the desk
    LAYOUT desk fills the first screen, folder tabs join it to the case files below; phone gets its own desk */
-:root{color-scheme:light dark;--mat:light-dark(#b9c255,#6c732b);--cob:light-dark(#2343cf,#3d5bf0);--sh:28,32,6;--bg:light-dark(#ffffff,#0c1022);--ink:light-dark(#10142a,#eef0fb);--mute:light-dark(#555b74,#a6acc6);--line:light-dark(#e3e5ee,#232a48);--soft:light-dark(#f3f4f8,#141a33);--yel:#ffd23f;--paper:light-dark(#fcfcfa,#dfe1e8);--acc:light-dark(#2343cf,#ffd23f);--grid:light-dark(rgba(35,67,207,.07),rgba(255,255,255,.04));--pink:#ff8a8a}
+:root{--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");--grainL:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color-scheme:light dark;--mat:light-dark(#b9c255,#6c732b);--cob:light-dark(#2343cf,#3d5bf0);--sh:28,32,6;--bg:light-dark(#ffffff,#0c1022);--ink:light-dark(#10142a,#eef0fb);--mute:light-dark(#555b74,#a6acc6);--line:light-dark(#e3e5ee,#232a48);--soft:light-dark(#f3f4f8,#141a33);--yel:#ffd23f;--paper:light-dark(#fcfcfa,#dfe1e8);--acc:light-dark(#2343cf,#ffd23f);--grid:light-dark(rgba(35,67,207,.07),rgba(255,255,255,.04));--pink:#ff8a8a}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
@@ -35,7 +35,7 @@ a{color:inherit}
 @property --lift{syntax:"<number>";inherits:true;initial-value:1}
 .obj{--h:1;--lift:1;transform:translate(calc(var(--mx,0)*var(--h)*14px),calc(var(--my,0)*var(--h)*10px)) rotate(var(--r)) scale(var(--sc,1));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .2s}
 .obj.lift{--lift:2.2;--sc:1.035;transition:none}
-.sheet{background-color:var(--paper);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:#10142a;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 2px 2px rgba(0,0,20,.38),calc(var(--h)*var(--lift)*5px) calc(var(--h)*var(--lift)*9px) calc(var(--h)*var(--lift)*10px) -2px rgba(var(--sh),.34),calc(var(--h)*var(--lift)*12px) calc(var(--h)*var(--lift)*22px) calc(var(--h)*var(--lift)*30px) -8px rgba(var(--sh),.4)}
+.sheet{background-color:var(--paper);background-image:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,0) 42%,rgba(40,40,20,.06)),var(--noise);color:#10142a;border-radius:3px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),1px 2px 2px rgba(0,0,20,.38),calc(var(--h)*var(--lift)*5px) calc(var(--h)*var(--lift)*9px) calc(var(--h)*var(--lift)*10px) -2px rgba(var(--sh),.34),calc(var(--h)*var(--lift)*12px) calc(var(--h)*var(--lift)*22px) calc(var(--h)*var(--lift)*30px) -8px rgba(var(--sh),.4)}
 .card{--h:1.1;width:480px;padding:40px 42px 34px;border-radius:8px}
 .card h1{margin:0 0 12px;font-size:68px;line-height:1;letter-spacing:-.035em;font-weight:800}
 .card p{margin:0;font-size:21px;line-height:1.35;color:#3b4058}
@@ -78,6 +78,28 @@ a{color:inherit}
 .stk{--h:.18;filter:drop-shadow(1px 2px 1px rgba(var(--sh),.35)) drop-shadow(3px 6px 6px rgba(var(--sh),.25))}
 .stk svg{display:block}
 .ring{position:absolute;border-radius:50%;pointer-events:none;border:7px solid rgba(92,58,20,.16);box-shadow:inset 0 0 0 2px rgba(92,58,20,.08),0 0 0 3px rgba(92,58,20,.05);filter:blur(.6px)}
+.desk{isolation:isolate}
+.board.pre .obj{opacity:0}
+.light{position:absolute;inset:0;pointer-events:none;z-index:4000;background:radial-gradient(80% 70% at 10% 0%,rgba(255,247,222,.45),transparent 62%),radial-gradient(70% 60% at 100% 100%,rgba(20,24,0,.35),transparent 70%);mix-blend-mode:soft-light}
+.blinds{position:absolute;inset:-25% -15%;pointer-events:none;z-index:4001;background:repeating-linear-gradient(-24deg,transparent 0 78px,rgba(16,20,0,.085) 78px 126px);-webkit-mask:radial-gradient(60% 70% at 72% 32%,#000 15%,transparent 72%);mask:radial-gradient(60% 70% at 72% 32%,#000 15%,transparent 72%);mix-blend-mode:multiply;animation:blinds 36s ease-in-out infinite alternate}
+@keyframes blinds{to{transform:translate(80px,30px)}}
+@media (max-width:700px){.blinds{display:none}}
+.obj:hover{--sc:1.012}
+.sheet:hover{--lift:1.35}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 0 rgba(0,0,0,.07),inset 2px 0 0 rgba(255,255,255,.5)}
+.card::before{content:"";position:absolute;top:-13px;left:34px;width:118px;height:28px;background:repeating-linear-gradient(90deg,rgba(185,194,85,.75) 0 7px,rgba(205,212,120,.75) 7px 14px);transform:rotate(-3deg);mix-blend-mode:multiply;clip-path:polygon(0 0,4% 14%,0 28%,4% 42%,0 56%,4% 70%,0 84%,4% 100%,96% 100%,100% 86%,96% 72%,100% 58%,96% 44%,100% 30%,96% 16%,100% 0)}
+.pol .ph{position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.pol .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(128deg,rgba(255,255,255,.3),rgba(255,255,255,0) 30%,rgba(255,255,255,0) 66%,rgba(255,255,255,.12));box-shadow:inset 0 2px 9px rgba(0,0,0,.4)}
+.receipt{background-image:linear-gradient(180deg,transparent 47.6%,rgba(0,0,0,.07) 48%,rgba(255,255,255,.8) 48.5%,transparent 49.5%),linear-gradient(90deg,rgba(0,0,0,.03),transparent 20%,transparent 80%,rgba(0,0,0,.04)),var(--noise)!important}
+.book{outline:1px dashed rgba(255,255,255,.13);outline-offset:-12px;background-image:var(--grainL),linear-gradient(90deg,#0d0e12,#1b1d24 14%,#22252e 60%,#2a2d37)!important}
+.sticky{background-image:var(--noise),linear-gradient(170deg,#ffe27a,#ffd23f 60%,#f5c52a)!important}
+.sticky::after{content:"";position:absolute;right:0;bottom:0;width:44px;height:44px;border-radius:0 0 18px 0;background:linear-gradient(135deg,transparent 48%,rgba(110,80,0,.22) 50%,#ffe9a0 53%,#fff4c8);box-shadow:-2px -2px 5px rgba(0,0,0,.08)}
+.tape{opacity:.85;mix-blend-mode:multiply;clip-path:polygon(0 0,4% 14%,0 28%,4% 42%,0 56%,4% 70%,0 84%,4% 100%,96% 100%,100% 86%,96% 72%,100% 58%,96% 44%,100% 30%,96% 16%,100% 0)}
+.stk{filter:drop-shadow(0 1px 0 rgba(0,0,0,.22)) drop-shadow(2px 4px 3px rgba(var(--sh),.3)) drop-shadow(5px 10px 10px rgba(var(--sh),.18))!important}
+.mug{--h:1.7;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff,#eceef2 45%,#c9ccd5 78%,#b4b8c2);box-shadow:inset -8px -10px 16px rgba(0,0,0,.16),inset 4px 5px 8px rgba(255,255,255,.9),14px 24px 26px -6px rgba(var(--sh),.45),26px 44px 50px -12px rgba(var(--sh),.35)}
+.mug b{position:absolute;inset:20px;border-radius:50%;background:radial-gradient(circle at 58% 64%,#24130a,#3d2312 55%,#5c3a20 78%,#8a6040 90%,#b08a62 96%);box-shadow:inset 0 8px 14px rgba(0,0,0,.6),0 0 0 3px #e7e8ed}
+.mug b::after{content:"";position:absolute;left:24%;top:20%;width:30%;height:14%;border-radius:50%;background:rgba(255,255,255,.22);filter:blur(4px);transform:rotate(-30deg)}
+.mug i{position:absolute;right:-38px;top:72px;width:84px;height:76px;border:17px solid #dfe1e7;border-radius:50%;clip-path:inset(0 0 0 52%);box-shadow:inset -3px -3px 4px rgba(0,0,0,.12)}
 .pencil{width:300px;height:20px;border-radius:3px;background:linear-gradient(#ffe066,#ffd23f 40%,#e3b21b);box-shadow:0 8px 10px -4px rgba(2,6,40,.55)}
 .pencil::before{content:"";position:absolute;right:-34px;top:0;border-left:34px solid #e9c69a;border-top:10px solid transparent;border-bottom:10px solid transparent}
 .pencil::after{content:"";position:absolute;right:-34px;top:7px;border-left:11px solid #2a2a2a;border-top:3px solid transparent;border-bottom:3px solid transparent;margin-right:0}
@@ -117,7 +139,7 @@ h2{margin:0;font-size:clamp(34px,4.6vw,52px);line-height:1.04;letter-spacing:-.0
 .railw::after{content:"";position:absolute;top:0;right:0;bottom:40px;width:64px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--bg));opacity:var(--more,1);transition:opacity .2s}
 .hint{margin:4px 2px 0;font-size:14px;color:var(--mute)}
 .rail{display:flex;gap:16px;overflow-x:auto;padding:4px 2px 18px;scroll-snap-type:x mandatory;scrollbar-width:thin}
-.reel{flex:none;width:clamp(200px,19vw,236px);scroll-snap-align:start}
+.reel{flex:none;width:clamp(176px,15vw,206px);scroll-snap-align:start}
 .frame{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#05070f;box-shadow:0 1px 2px rgba(0,0,0,.2),0 14px 30px -12px rgba(4,10,60,.45);cursor:pointer}
 .frame video,.frame img{width:100%;height:100%;object-fit:cover}
 .frame.r45 img{object-fit:contain;position:relative}
@@ -181,16 +203,13 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 @media (max-width:900px){.grid,.cvgrid{grid-template-columns:minmax(0,1fr)}.end .wrap{grid-template-columns:minmax(0,1fr)}.tickets{grid-template-columns:repeat(auto-fit,minmax(9em,1fr))}}
 @media (max-width:600px){body{font-size:16px}.copy .lede{font-size:19px}.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pair .shot:last-child{grid-column:1/-1;max-width:220px}.tabs{margin-top:-42px}.tabs a{padding:10px 14px 12px;font-size:14px}.bar{grid-template-columns:6.2em minmax(0,1fr) 3.4em}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@keyframes land{0%{opacity:0;--lift:6;transform:translate(0,-120px) rotate(calc(var(--r) - 12deg)) scale(1.28)}55%{opacity:1;--lift:1.4;transform:translate(0,6px) rotate(calc(var(--r) + 1.5deg)) scale(.97)}78%{--lift:.9;transform:translate(0,-2px) rotate(calc(var(--r) - .5deg)) scale(1.01)}100%{--lift:1;transform:translate(0,0) rotate(var(--r)) scale(1)}}
-@keyframes slap{0%{opacity:0;transform:rotate(calc(var(--r) + 20deg)) scale(1.9)}60%{opacity:1;transform:rotate(calc(var(--r) - 3deg)) scale(.92)}100%{transform:rotate(var(--r)) scale(1)}}
-.boot .obj{animation:land .85s cubic-bezier(.3,.7,.2,1) both;animation-delay:var(--d)}
-.boot .obj.stk{animation:slap .45s cubic-bezier(.3,.8,.3,1.2) both;animation-delay:var(--d)}
+
 </style>
 </head>
 <body>
 <header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
   <div class="ruler"></div><i class="score" style="left:8%;top:12%;width:340px;transform:rotate(-11deg)"></i><i class="score" style="left:62%;top:86%;width:260px;transform:rotate(4deg)"></i><i class="score" style="left:36%;top:4%;width:180px;transform:rotate(27deg)"></i>
-  <div class="board" id="board"></div>
+  <div class="board pre" id="board"></div><div class="blinds"></div><div class="light"></div>
 </header>
 <nav class="tabs" aria-label="Case files">
   <a href="#maple" class="on">Maple.inc</a><a href="#aakash">Aakash Bhalla</a><a href="#bartlett">Steven Bartlett</a><a href="#brooks">Dr Arthur Brooks</a><a href="#mmh">Metro Media House</a><a href="#cv">CV</a><a href="#contact">Contact</a>
@@ -198,11 +217,11 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 
 <main>
 <section class="band case" id="maple"><div class="wrap">
-  <div class="head"><h2>Maple.inc</h2><span class="role">Ads that sound like a real phone call</span></div>
+  <div class="head"><h2>Maple.inc</h2><span class="role">Ads for an AI that answers the phone</span></div>
   <div class="grid">
     <div class="copy">
-      <p class="lede">Maple makes AI voice agents that answer the phone for restaurants, because the person who'd normally answer is carrying four plates and a grudge.</p>
-      <p>Every competitor ran the same ad: a picture, a list of features, a one-liner. So we let people hear the thing instead. We took real calls between Maple's agent and real customers and made them look like any other post in your feed. People skip ads. Nobody skips eavesdropping.</p>
+      <p class="lede">Maple makes an AI that answers the phone for restaurants. Busy kitchens miss a lot of calls. Maple picks them up.</p>
+      <p>Other companies in this space all made the same kind of ad: a picture and a list of features. We tried something else. We used real calls between Maple's AI and real customers, and made them look like normal posts. People skip ads. Almost nobody skips listening in on someone else's phone call.</p>
       <div class="ads"><a class="btn" href="https://www.facebook.com/ads/library/?id=4195112840710312" target="_blank" rel="noopener">Ad one, in Meta's Ad Library</a><a class="btn" href="https://www.facebook.com/ads/library/?id=25153189381040039" target="_blank" rel="noopener">Ad two</a><a class="btn" href="https://www.facebook.com/ads/library/?id=1645467936582705" target="_blank" rel="noopener">Ad three</a></div>
     </div>
     <div>
@@ -214,12 +233,12 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 </div></section>
 
 <section class="band case" id="aakash"><div class="wrap">
-  <div class="head"><h2>Aakash Bhalla</h2><span class="role">Organic growth, strategy, scripts and direction</span></div>
+  <div class="head"><h2>Aakash Bhalla</h2><span class="role">Growing his Instagram from almost nothing</span></div>
   <div class="grid">
     <div class="copy">
-      <p class="lede">Salesman turned agency founder. Eight businesses that failed and one that worked. Most people would take the hint. Aakash took notes.</p>
-      <p>He had a lot worth saying and nobody hearing it: no plan, no rhythm, no leads, and hours a week spent staring at a blank caption. We worked out what he stands for, what he'd post and how often. Sixty days later his content was bringing in leads on its own.</p>
-      <div class="figs q"><div class="fig hi"><b>65K+</b><span>followers, up from 2,000</span></div><div class="fig"><b>7M+</b><span>organic impressions</span></div><div class="fig"><b>60</b><span>days. Not a year, not a quarter.</span></div><div class="fig"><b>6 figures</b><span>in sales that came from content</span></div></div>
+      <p class="lede">Aakash was a salesman who started an agency. Eight of his businesses failed before one worked. He had a lot to teach, but almost nobody was listening.</p>
+      <p>He had no plan, posted whenever he could, and got no leads. I helped him decide what he stands for, what to post and how often. In 60 days, his posts were bringing in leads on their own.</p>
+      <div class="figs q"><div class="fig hi"><b>65K+</b><span>followers, up from 2,000</span></div><div class="fig"><b>7M+</b><span>organic impressions</span></div><div class="fig"><b>60</b><span>days. Not a year.</span></div><div class="fig"><b>6 figures</b><span>in sales that came from content</span></div></div>
     </div>
     <div class="pair">
       <div><div class="shot"><img src="media/aakash_before.jpg" alt="Instagram insights before: 377 accounts reached" loading="lazy"></div><p class="lbl">Day one: 377 accounts reached</p></div>
@@ -230,41 +249,41 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 </div></section>
 
 <section class="band case" id="bartlett"><div class="wrap">
-  <div class="head"><h2>Steven Bartlett</h2><span class="role">The Diary of a CEO. Picking the clips and directing the edit</span></div>
+  <div class="head"><h2>Steven Bartlett</h2><span class="role">The Diary of a CEO. I picked the clips and directed the edits</span></div>
   <div class="grid">
     <div class="copy">
-      <p class="lede">Every DOAC episode ends with a question left by the last guest. If I got to leave one, it would be: which forty seconds of this can I post?</p>
-      <p>The episodes run for hours, and Steven gets people to say things they've never said out loud. I found the moments a stranger won't scroll past, then directed the cut: the pace, the captions, and exactly where it stops. The hard part is leaving things out when it's all good.</p>
+      <p class="lede">Steven's episodes are hours long. My job was to find the best 40 seconds and turn them into clips you can't stop watching.</p>
+      <p>For each clip, I chose where it starts, how fast it moves, what the captions say and where it ends. At the end of every episode, the last guest leaves a question for the next one. Mine would be: "Can I post this bit?"</p>
       <div class="figs q"><div class="fig hi"><b>14.6M</b><span>plays on the six clips here</span></div><div class="fig"><b>582K</b><span>likes on the same six</span></div><div class="fig"><b>5.1M</b><span>plays on the biggest one</span></div><div class="fig"><b>8.2M</b><span>views on five more, <a href="#receipts">with receipts</a></span></div></div>
     </div>
     <div class="railw"><div class="rail" data-g="bartlett"></div><p class="hint">Scroll sideways for all six. Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
   </div>
   <div class="receipts" id="receipts">
-    <div class="rhead"><h3>Five more, with receipts: 8.2M views</h3><p>Steven sits on Dragons' Den, so we came with numbers. These are screenshots from his team's analytics.</p></div>
+    <div class="rhead"><h3>Five more clips, with proof: 8.2M views</h3><p>Steven is on Dragons' Den, so we brought numbers. These screenshots came straight from his team.</p></div>
     <figure class="praise sheet"><blockquote>Well done on some of the recent content guys, can really feel the momentum on IG!!!!!</blockquote><figcaption>Zara Jarvis, our point of contact for Steven Bartlett's Instagram, sending over these analytics</figcaption></figure>
     <div class="tickets" id="tickets"></div>
   </div>
 </div></section>
 
 <section class="band case" id="brooks"><div class="wrap">
-  <div class="head"><h2>Dr Arthur Brooks</h2><span class="role">Harvard's happiness professor. Editing direction</span></div>
+  <div class="head"><h2>Dr Arthur Brooks</h2><span class="role">Harvard professor who teaches happiness. I directed the edits</span></div>
   <div class="grid">
     <div class="copy">
-      <p class="lede">Before Harvard, Arthur Brooks played French horn professionally. The man knows how to hold a note. My job was knowing when to cut it.</p>
-      <p>I decided what stays, where the pauses go and how the words sit on screen, so a minute of him still sounds like him and not like a fortune cookie.</p>
-      <div class="figs"><div class="fig hi"><b>559K</b><span>plays on three of these four (Instagram hides the fourth's count)</span></div><div class="fig"><b>56K</b><span>likes across all four</span></div></div>
+      <p class="lede">Arthur Brooks teaches people how to be happier. His ideas are big. Instagram clips are short.</p>
+      <p>My job was to make each clip short without losing what he meant. I chose what stays, where the pauses go and how the words look on screen. Fun fact: before Harvard, he played the French horn for a living.</p>
+      <div class="figs q"><div class="fig hi"><b>559K</b><span>plays on three of these four (Instagram hides one count)</span></div><div class="fig"><b>208K</b><span>plays on the biggest one</span></div><div class="fig"><b>56K</b><span>likes across all four</span></div><div class="fig"><b>37K</b><span>likes on a single clip</span></div></div>
     </div>
     <div class="railw"><div class="rail" data-g="brooks"></div><p class="hint">Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
   </div>
 </div></section>
 
 <section class="band case" id="mmh"><div class="wrap">
-  <div class="head"><h2>Metro Media House</h2><span class="role">Lead creative strategist and operator, 2025 to now</span></div>
+  <div class="head"><h2>Metro Media House</h2><span class="role">Lead creative strategist, 2025 to now</span></div>
   <div class="grid">
     <div class="copy">
-      <p class="lede">The agency behind the clips above. I helped it find clients, helped it get the work out the door, and I write and direct its own channel. Yes, including the carousel about reversing brainrot. I made it with some brainrot.</p>
-      <p>I lead a production team of 30+ people. I also set up how we work, the guides and the AI tools, and that cut the cost of making things by more than 90%.</p>
-      <div class="figs q"><div class="fig hi"><b>293K</b><span>plays on the three reels here</span></div><div class="fig"><b>2,059</b><span>people commented a keyword on two carousels to get the links</span></div><div class="fig"><b>29K</b><span>likes across all seven pieces</span></div><div class="fig"><b>30+</b><span>people in the production team I lead</span></div></div>
+      <p class="lede">Metro Media House is the agency that made the clips above. I help it find new clients, I run the team that makes the work, and I write and direct its own posts.</p>
+      <p>I lead a team of 30+ people. I also set up simple systems and AI tools that made our work more than 90% cheaper to make. And yes, I made a post about fixing brainrot. I may have had a little brainrot while making it.</p>
+      <div class="figs q"><div class="fig hi"><b>293K</b><span>plays on the three reels here</span></div><div class="fig"><b>2,059</b><span>people commented on two posts to get our reading list</span></div><div class="fig"><b>29K</b><span>likes across all seven pieces</span></div><div class="fig"><b>30+</b><span>people in the production team I lead</span></div></div>
     </div>
     <div class="railw"><div class="rail" data-g="mmh"></div><p class="hint">Scroll sideways for all seven. Tap any reel for sound. Plays and likes as Instagram showed them on 20 Nov 2026.</p></div>
   </div>
@@ -272,25 +291,25 @@ footer{padding:22px max(5vw,16px);font-size:14px;color:var(--mute);display:flex;
 
 
 <section class="band case" id="cv"><div class="wrap">
-  <div class="head"><h2>CV</h2><span class="role">Writer and director first. Strategist when someone asks nicely</span></div>
+  <div class="head"><h2>CV</h2><span class="role">Writer and director first</span></div>
   <div class="cvgrid">
     <div>
-      <p class="copy lede" style="margin:0 0 26px;max-width:60ch">I've spent 3+ years making content for people you've heard of: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and a few YC-backed startups. I like the thinking, I like running the team, and I really like the bit where an idea becomes something people send to their friends.</p>
+      <p class="copy lede" style="margin:0 0 26px;max-width:60ch">I've spent 3+ years making content for people you know: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and some YC-backed startups. I like coming up with the idea, I like running the team, and I really like seeing people share what we made.</p>
       <div id="jobs"></div>
     </div>
     <aside class="side">
       <div class="blk"><h3>Core skills</h3><div class="chips"><span>Organic creative strategy</span><span>Content production</span><span>Content systems and workflows</span><span>Copywriting</span><span>Visual and art direction</span><span>AI-assisted research</span><span>AI-assisted production</span></div></div>
       <div class="blk"><h3>Tools</h3><div class="chips"><span>Notion</span><span>Affinity</span><span>Higgsfield</span><span>ElevenLabs</span><span>Figma</span><span>Manus</span></div></div>
       <div class="blk"><h3>Selected clients</h3><ul><li>Steven Bartlett</li><li>Andrew Ross Sorkin</li><li>Dr Arthur Brooks</li><li>Maple.inc</li><li>Kitsh</li><li>Ryan Bartlett, True Classic</li></ul></div>
-      <div class="blk" id="beyond"><h3>Beyond work</h3><p style="margin:0">I write poetry, watch video essays about things I will never need to know, take fairly good pictures, and own more notebooks than I will ever fill.</p></div>
-      <div class="blk"><p class="quote" style="margin:0">I built every skill I have through real work, teaching myself, and 5+ years of hits and trials. I learn fast. Very fast.</p></div>
+      <div class="blk" id="beyond"><h3>Beyond work</h3><p style="margin:0">I write poetry, watch video essays about random things, take pretty good photos, and buy more notebooks than I will ever use.</p></div>
+      <div class="blk"><p class="quote" style="margin:0">I learned everything I know by doing real work and teaching myself, over 5+ years of trying things. I learn fast.</p></div>
     </aside>
   </div>
 </div></section>
 </main>
 
 <section class="band end" id="contact"><div class="wrap">
-  <div><h2>Got a story nobody's hearing yet?</h2><p>Tell me about it. I'm curious about pretty much everything, so worst case, we have a good chat.</p></div>
+  <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
   <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
 </div></section>
 <footer><span>Bhanu Pratap, 2026</span><a href="#top">Back to the desk</a></footer>
@@ -305,16 +324,17 @@ const LIVE=id=>`<video class="live" muted loop playsinline preload="metadata" po
 
 /* desk objects: wide board 1440x860, narrow board 600x1040; [x,y,rot] */
 const OBJ=[
- {k:"card",go:"#cv",w:[60,250,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>A curious creative. I make the stuff your thumb stops scrolling for.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
+ {k:"mug",w:[-62,-70,0],n:[-700,0,0],html:`<b></b><i></i>`},
+ {k:"card",go:"#cv",w:[60,250,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>A curious creative. I make videos and posts people stop scrolling for.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
  {k:"receipt",go:"#maple",w:[560,70,4],n:[40,340,-4],html:`<b>Maple.inc</b>Meta ads, 3 months<hr><div class="r"><span>Cost per customer</span><span></span></div><div class="r"><span>Before</span><span>$300.00</span></div><div class="r"><span>Then</span><span>$98.00</span></div><div class="r"><span>Month three</span><span>$63.00</span></div><hr><div class="r tot"><span>Saved</span><span>$237.00</span></div><div class="r"><span>Down</span><span>79%</span></div><hr><div style="text-align:center">Thank you, come again</div>`},
  {k:"stack",go:"#bartlett",w:[850,58,4],n:[300,520,4],html:()=>[2,1,0].map((i,j)=>`<div class="sheet pol" style="transform:rotate(${[-7,5,0][j]}deg) translate(${[-6,8,0][j]}px,${[6,-2,0][j]}px)"><div class="ph">${j==2?LIVE(MEDIA.bartlett[i].id):`<img src="${P(MEDIA.bartlett[i].id)}" alt="">`}</div><div class="cap hand">${j==2?"DOAC clips":""}</div></div>`).join("")+`<div class="clip"></div>`},
  {k:"pol",go:"#aakash",w:[830,450,-6],n:[30,710,-5],html:()=>`<div class="ph">${LIVE("aakash_reel")}</div><div class="cap hand">Aakash: 2k to 65k</div>`},
  {k:"pol b2",go:"#brooks",w:[1140,110,7],n:[330,890,6],html:()=>`<div class="ph"><img src="${P(MEDIA.brooks[1].id)}" alt=""></div><div class="cap hand">Dr Arthur Brooks</div>`},
  {k:"script",go:"#mmh",w:[505,445,-3],n:[30,1060,-3],html:`<span class="brad" style="top:44px"></span><span class="brad" style="top:50%"></span><span class="brad" style="bottom:44px"></span><h3>Metro Media House</h3><div class="by">written and directed by<br>Bhanu Pratap</div><div class="foot">Lead creative strategist<br>2025 to now</div>`},
- {k:"sticky",go:"#receipts",w:[1090,395,-4],n:[372,300,5],html:`14.6M plays on six DOAC clips<small>receipts inside</small>`},
+ {k:"sticky",go:"#receipts",w:[1090,395,-4],n:[372,300,5],html:`14.6M plays on six DOAC clips<small>proof inside</small>`},
  {k:"cv",go:"#cv",w:[1150,590,6],n:[322,1230,5],html:`<span class="pclip"></span><b>Bhanu Pratap</b><div class="ln m"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln s"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln"></div><div class="ln s"></div><span class="tag hand">CV 2026</span>`},
  {k:"book",go:"#beyond",w:[96,610,-9],n:[50,1440,-8],html:`<div class="lab hand">Poems and other things</div>`},
- {k:"stk",w:[46,40,-12],n:[468,40,10],html:`<svg width="122" height="96" viewBox="0 0 122 96"><rect x="4" y="14" width="114" height="78" rx="16" fill="#fff"/><rect x="11" y="22" width="100" height="63" rx="11" fill="#2343cf"/><rect x="36" y="8" width="34" height="18" rx="5" fill="#fff"/><rect x="40" y="12" width="26" height="12" rx="3" fill="#2343cf"/><circle cx="61" cy="54" r="24" fill="#fff"/><circle cx="61" cy="54" r="19" fill="#10142a"/><circle cx="61" cy="54" r="11" fill="#33405f"/><circle cx="55" cy="48" r="4" fill="#fff" opacity=".8"/><rect x="88" y="30" width="14" height="9" rx="2" fill="#ffd23f"/></svg>`},
+ {k:"stk",w:[214,40,-12],n:[468,40,10],html:`<svg width="122" height="96" viewBox="0 0 122 96"><rect x="4" y="14" width="114" height="78" rx="16" fill="#fff"/><rect x="11" y="22" width="100" height="63" rx="11" fill="#2343cf"/><rect x="36" y="8" width="34" height="18" rx="5" fill="#fff"/><rect x="40" y="12" width="26" height="12" rx="3" fill="#2343cf"/><circle cx="61" cy="54" r="24" fill="#fff"/><circle cx="61" cy="54" r="19" fill="#10142a"/><circle cx="61" cy="54" r="11" fill="#33405f"/><circle cx="55" cy="48" r="4" fill="#fff" opacity=".8"/><rect x="88" y="30" width="14" height="9" rx="2" fill="#ffd23f"/></svg>`},
  {k:"stk",w:[350,14,6],n:[372,1478,-8],html:`<svg width="176" height="64" viewBox="0 0 176 64"><rect x="2" y="2" width="172" height="60" rx="30" fill="#fff"/><rect x="8" y="8" width="160" height="48" rx="24" fill="#ff8a8a"/><circle cx="34" cy="32" r="16" fill="#fff"/><path d="M29 23l13 9-13 9z" fill="#ff5c5c"/><text x="58" y="29" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">just one more</text><text x="58" y="45" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">video essay</text></svg>`},
  {k:"stk",w:[790,380,-8],n:[268,330,-10],html:`<svg width="78" height="76" viewBox="0 0 78 76"><path d="M39 4l9.9 20.6 22.6 3-16.5 15.7 4.1 22.4L39 54.9 18.9 65.7 23 43.3 6.5 27.6l22.6-3z" fill="#ffd23f" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/><path d="M39 16l6 12.6 13.7 1.8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>`},
  {k:"stk",w:[842,770,5],n:[86,1660,6],html:`<svg width="188" height="76" viewBox="0 0 188 76"><path d="M8 4h172a6 6 0 0 0 6 6v18a10 10 0 0 0 0 20v18a6 6 0 0 0-6 6H8a6 6 0 0 0-6-6V48a10 10 0 0 0 0-20V10a6 6 0 0 0 6-6z" fill="#fff"/><path d="M14 11h160v14a15 15 0 0 0 0 26v14H14V51a15 15 0 0 0 0-26z" fill="#10142a"/><line x1="138" y1="16" x2="138" y2="60" stroke="#fff" stroke-dasharray="3 4" opacity=".5"/><text x="30" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="17" fill="#ffd23f">Admit one</text><text x="30" y="54" font-family="Schibsted Grotesk,sans-serif" font-size="11" fill="#fff">Row A, front row</text><text x="147" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#fff">No.</text><text x="149" y="52" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#ffd23f">1</text></svg>`},
@@ -343,7 +363,47 @@ function layout(){
 }
 function place(e,x,y,r){e.style.left=x+"px";e.style.top=y+"px";e.style.setProperty("--r",r+"deg")}
 const ro=new ResizeObserver(layout);ro.observe(desk);addEventListener("resize",layout);layout();
-if(!matchMedia("(prefers-reduced-motion: reduce)").matches){board.classList.add("boot");setTimeout(()=>board.classList.remove("boot"),2600)}
+const RMQ=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function land(){
+  board.classList.remove("pre");if(RMQ)return;
+  const small=desk.clientWidth<700,KIND=k=>k=="stk"?"stk":/book|mug/.test(k)?"heavy":/pol|stack/.test(k)?"mid":/pencil|pc|tape/.test(k)?"small":"paper";
+  const PR={paper:{tf:.62,e:.1,sway:18,tilt:24,spin:16,skid:10,dy:-60},mid:{tf:.5,e:.22,sway:5,tilt:14,spin:11,skid:14,dy:-50},heavy:{tf:.44,e:.3,sway:0,tilt:7,spin:6,skid:7,dy:-40},small:{tf:.46,e:.38,sway:3,tilt:22,spin:46,skid:20,dy:-40},stk:{tf:.2,e:.04,sway:0,tilt:0,spin:22,skid:0,dy:0}};
+  const it=els.map((e,i)=>({e,k:OBJ[i].k})).filter(x=>parseFloat(x.e.style.left)>-400);
+  const order=it.filter(x=>x.k!="stk").concat(it.filter(x=>x.k=="stk"));
+  const done=[];let nOther=0;
+  order.forEach((x,n)=>{
+    const kind=KIND(x.k),P=PR[kind],e=x.e,R=parseFloat(e.style.getPropertyValue("--r"))||0,isSheet=e.classList.contains("sheet");
+    const rnd=a=>(Math.random()*2-1)*a,sg=()=>Math.random()<.5?-1:1;
+    const delay=kind=="stk"?1350+(n-nOther)*85:(nOther++,n*105);
+    const dx0=rnd(70),sw=sg(),sp=sg(),sk=sg(),tx=sg(),ty=sg(),phase=Math.random()*6;
+    const tf=P.tf,g=2/(tf*tf);const fr=[];let t=0,h=1,v=0,tc=null,bounces=0,end=null;const dt=1/60;
+    while(true){
+      if(tc===null){h=1-(t/tf)**2;if(t>=tf){h=0;tc=t;v=(2/tf)*P.e;}}
+      else if(end===null){v-=g*dt;h+=v*dt;if(h<=0){h=0;bounces++;v=-v*P.e;if(Math.abs(v)<.12||bounces>2){v=0;end=t}}}
+      const a=t-(tc??t);const after=tc!==null;
+      const wob=after?P.spin*.09*Math.exp(-a*7)*Math.sin(a*24):0;
+      const s=1+(kind=="stk"?.9:.38)*h;
+      const x=dx0*h+P.sway*Math.sin(t*7+phase)*h+(after?P.skid*sk*Math.exp(-a*9):P.skid*sk);
+      const y=P.dy*h;
+      const rot=R+P.spin*sp*Math.pow(h,.7)+wob;
+      const k={transform:`perspective(1400px) translate(${x.toFixed(2)}px,${y.toFixed(2)}px) rotateX(${(P.tilt*tx*h).toFixed(2)}deg) rotateY(${(P.tilt*.7*ty*h).toFixed(2)}deg) rotate(${rot.toFixed(2)}deg) scale(${s.toFixed(4)})`,opacity:Math.min(1,t/.08)};
+      if(isSheet)k["--lift"]=(1+8*h).toFixed(3);else if(!small)k.filter=`drop-shadow(${(4+34*h).toFixed(1)}px ${(8+54*h).toFixed(1)}px ${(5+40*h).toFixed(1)}px rgba(28,32,6,${(.3-.12*h).toFixed(3)}))`;
+      fr.push([t,k]);t+=dt;
+      if(end!==null&&t>end+.32)break;if(t>3)break;
+    }
+    const T=fr[fr.length-1][0];
+    const last={transform:`perspective(1400px) translate(0px,0px) rotateX(0deg) rotateY(0deg) rotate(${R}deg) scale(1)`,opacity:1};if(isSheet)last["--lift"]="1";
+    const kf=fr.map(([tt,k])=>Object.assign(k,{offset:tt/(T+dt)}));kf.push(Object.assign(last,{offset:1}));
+    e.animate(kf,{duration:(T+dt)*1000,delay,fill:"backwards",easing:"linear"});
+    const cx=e.offsetLeft+e.offsetWidth/2,cy=e.offsetTop+e.offsetHeight/2,hitAt=delay+tc*1000;
+    const force=kind=="heavy"?3.2:kind=="mid"?1.7:kind=="stk"?.6:1;
+    done.filter(d=>d.at<hitAt).forEach(d=>{const dx=d.cx-cx,dy=d.cy-cy,dist=Math.hypot(dx,dy);if(dist>420||dist<1)return;const f=force*(1-dist/420);d.e.animate([{translate:"0 0"},{translate:`${(dx/dist*f).toFixed(2)}px ${(dy/dist*f).toFixed(2)}px`},{translate:"0 0"}],{duration:300,delay:hitAt,easing:"cubic-bezier(.2,.8,.3,1)"})});
+    if(kind=="heavy")desk.animate([{translate:"0 0"},{translate:"0 1.6px"},{translate:"0 -.8px"},{translate:"0 0"}],{duration:240,delay:hitAt});
+    done.push({e,cx,cy,at:hitAt});
+  });
+}
+let landed=false;const go=()=>{if(landed)return;landed=true;requestAnimationFrame(land)};
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go);setTimeout(go,1600);
 
 els.forEach((e,i)=>{
   let sx,sy,ox,oy,moved=false,down=false;
@@ -384,10 +444,10 @@ $("#tickets").innerHTML=TK.map(([v,l,s],i)=>`<div class="tkc"><div class="tk"><b
 
 /* jobs */
 const JOBS=[
- ["Lead creative strategist and operator","Metro Media House, remote","Apr 2025 to now",["Co-built the agency's lead generation and the way it delivers work.","Led content strategy and production for Steven Bartlett (DOAC), Andrew Ross Sorkin and Dr Arthur Brooks.","Lead a production team of 30+ creatives across formats.","Built workflows, production guidelines and AI-assisted processes that cut production overhead by 90%+."]],
- ["Copywriter and creative strategist","WeTriumph, remote","May to Aug 2024",["Quarterly strategies, multi-platform content plans and Meta ads for D2C brands.","Website copy, product descriptions and ad campaigns for Meta and Google.","Campaigns end to end, from concept to post-production.","Market research, and content iterated on performance data."]],
- ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Brand identities for local businesses: design systems and visual guidelines.","Worked directly with founders and designers to match the look to the positioning."]],
- ["Freelance content writer","Independent, remote","2020 to 2022",["Scripts for small and mid-sized YouTube creators, with hooks that grew subscribers and engagement.","Articles in tech, entertainment and personal development, with a 20% lift in organic shares for key clients.","Kept clients coming back by adapting to each brand's voice."]]
+ ["Lead creative strategist","Metro Media House, remote","Apr 2025 to now",["Helped build how the agency finds new clients and delivers its work.","Led the content for Steven Bartlett (DOAC), Andrew Ross Sorkin and Dr Arthur Brooks.","Lead a team of 30+ people who make videos and posts.","Set up systems and AI tools that made production more than 90% cheaper."]],
+ ["Copywriter and creative strategist","WeTriumph, remote","May to Aug 2024",["Planned content and Meta ads for brands that sell online.","Wrote website copy, product descriptions and ads for Meta and Google.","Ran campaigns from the first idea to the finished edit.","Used the numbers to see what worked, then made more of it."]],
+ ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Designed brand looks for local businesses: logos, colours and style guides.","Worked with founders so the design matched what they were selling."]],
+ ["Freelance content writer","Independent, remote","2020 to 2022",["Wrote scripts for small and mid-sized YouTube creators that grew their subscribers.","Wrote articles on tech, entertainment and self-improvement that got 20% more shares.","Clients kept coming back because I could write in their voice."]]
 ];
 $("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
 }
