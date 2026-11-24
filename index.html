@@ -3,176 +3,541 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bhanu Pratap, Portfolio</title>
+<meta name="color-scheme" content="only light">
+<title>Bhanu Pratap, writer and director</title>
+<meta name="description" content="The work of Bhanu Pratap, written as a screenplay: clips for Steven Bartlett and Dr Arthur Brooks, ads for Maple, growth for Aakash Bhalla, and Metro Media House.">
+<meta property="og:title" content="The work of Bhanu Pratap">
+<meta property="og:description" content="Written and directed by Bhanu Pratap. Read it like a film.">
+<meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=19f80f72">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="data.js"></script>
+<script>
+window.STICKERS = {
+  books:      { side:"r", r: 5,  w:170, top:-10, note:"me, basically",       alt:"A cat on a tower of old books" },
+  typingcat:  { side:"r", r:-6,  w:190, top:10,  note:"finding the 40 seconds", alt:"The typing cat meme" },
+  chefcat:    { side:"r", r: 6,  w:180, top:-20, note:"every kitchen at 8pm", alt:"A cat in a chef's hat, house on fire behind" },
+  stonks:     { side:"r", r:-5,  w:180, top:0,   note:"2k to 65k",           alt:"The Stonks meme" },
+  smilecat:   { side:"l", r:-7,  w:150, top:20,  note:"happiness, professor", alt:"The smiling cat meme" },
+  horncat:    { side:"l", r:-8,  w:165, top:-20, note:"the horn years",      alt:"A crying cat inside a French horn" },
+  umactually: { side:"r", r:-6,  w:170, top:0,   note:"um, actually",        alt:"Cat in glasses, finger raised" },
+  phonecat:   { side:"l", r:-5,  w:175, top:10,  note:"write to me",         alt:"A cat holding a phone" }
+};
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module" src="cover3d.js"></script>
+<style>
+:root{--desk:#2a2724;--ink:#1d1b19;--pen:#c4352b;--hl:rgba(255,222,64,.75);--mono:"Courier Prime","Courier New",monospace;--hand:"Caveat",cursive}
+*{box-sizing:border-box;margin:0;padding:0}
+html{color-scheme:only light;--bg:#e6e0d4;--ink-h:#121110;background:var(--bg);transition:background-color .6s,color .6s;color:var(--ink);font:400 16.5px/1.25 var(--mono);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{padding:56px 20px 120px;background:var(--bg);transition:background-color .6s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 45%,rgba(120,100,70,.16) 100%)}
+a{color:inherit}
+
+/* the sheets */
+.page{position:relative;width:816px;max-width:100%;margin:0 auto;padding:96px 96px 72px 144px;background:transparent}
+.page+.page{border-top:1px dashed rgba(128,116,96,.35)}
+.page::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:0;border-left:1px solid rgba(196,53,43,.0)}
+.holes{position:absolute;left:30px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-evenly}
+.holes i{width:15px;height:15px;border-radius:50%;background:var(--desk);box-shadow:inset 0 2px 3px rgba(0,0,0,.6)}
+.hdr{position:absolute;top:48px;right:96px;left:144px;display:flex;justify-content:space-between;font-size:14px}
+.hdr .rev{display:none}
+
+/* screenplay elements */
+p,div{word-wrap:break-word}
+.slug{position:relative;font-weight:700;text-transform:uppercase;margin:32px 0 16px}
+.slug::before,.slug::after{content:attr(data-n);position:absolute;top:0;font-weight:700}
+.slug::before{left:-64px}.slug::after{right:-56px}
+.action{margin:0 0 16px}
+.char{margin:16px 0 0 211px;text-transform:uppercase}
+.paren{margin:0 0 0 154px;width:240px}
+.dia{margin:0 0 16px 96px;width:336px}
+.super{margin:16px 0;font-weight:700;text-transform:uppercase}
+.trans{margin:24px 0;text-align:right;text-transform:uppercase}
+.center{text-align:center}
+.hl{background:linear-gradient(100deg,transparent 0 1%,var(--hl) 2% 97%,transparent 99%);padding:0 3px;margin:0 -3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.circ{position:relative;white-space:nowrap}
+.circ::after{content:"";position:absolute;inset:-7px -12px;border:2px solid var(--pen);border-radius:50%;transform:rotate(-4deg);opacity:.85}
+.strike{text-decoration:line-through;text-decoration-color:var(--pen);text-decoration-thickness:2px}
+
+/* red-pen margin notes */
+.note{position:absolute;left:calc(100% + 28px);width:200px;font:700 23px/1.05 var(--hand);color:var(--pen);transform:rotate(-3deg)}
+.note::before{content:"";position:absolute;left:-26px;top:12px;width:22px;height:2px;background:currentColor;opacity:.7}
+.inline-note{font:700 22px/1.05 var(--hand);color:var(--pen);transform:rotate(-2deg);display:inline-block}
+
+/* inserts: the reels */
+.insert{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 20px}
+.insert.two{grid-template-columns:repeat(2,1fr)}
+.insert.wide{grid-template-columns:repeat(5,1fr);gap:8px}
+.shot{position:relative}
+.shot .f{position:relative;aspect-ratio:9/16;background:#111;overflow:hidden;cursor:pointer;outline:1px solid #111;outline-offset:3px}
+.shot .f.sq{aspect-ratio:4/5}
+.shot video,.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot .snd{position:absolute;left:6px;bottom:6px;padding:3px 5px;background:#fdfcf8;font-size:11px;text-transform:uppercase}
+.shot .f.on .snd{background:var(--pen);color:#fff}
+.shot p{font-size:13px;line-height:1.2;margin-top:10px}
+.shot small{display:block;font-size:12px;margin-top:4px;opacity:.7}
+.insert.wide img{position:static;height:auto;outline:1px solid #111}
+.insert.wide figcaption{font-size:12px;margin-top:6px}
+.tape{position:absolute;top:-10px;left:50%;width:56px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(240,232,200,.75);box-shadow:0 1px 2px rgba(0,0,0,.15);z-index:2}
+
+/* title page */
+.title{display:flex;flex-direction:column;justify-content:space-between;padding-top:280px}
+.title h1{font:700 16.5px/1.25 var(--mono);text-transform:uppercase;text-decoration:underline;text-align:center}
+.title .by{text-align:center;margin-top:48px;line-height:2}
+.title .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto}
+.title .stamp{position:absolute;right:110px;top:150px;transform:rotate(8deg);border:3px solid var(--pen);color:var(--pen);padding:6px 12px;font:700 18px/1 var(--mono);letter-spacing:.12em;opacity:.8}
+.title .hand1{position:absolute;left:150px;bottom:250px;font:700 30px/1 var(--hand);color:var(--pen);transform:rotate(-4deg)}
+
+/* the navigator */
+.nav{position:fixed;left:24px;top:56px;width:220px;color:var(--ink);font-size:13px;z-index:10}
+.nav h6{font:700 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8a8070;margin-bottom:14px}
+.nav a{display:grid;grid-template-columns:28px 1fr;gap:4px;padding:6px 8px;text-decoration:none;border-left:2px solid transparent;text-transform:uppercase;line-height:1.25}
+.nav a:hover{background:rgba(0,0,0,.04)}
+.nav a.on{border-color:var(--pen);color:#fff;background:rgba(255,255,255,.06)}
+.nav .mail{display:block;margin-top:22px;color:var(--pen);text-transform:none;border:0;padding:0 8px;font:700 21px/1.1 var(--hand)}
+
+/* cast page */
+.cast{display:grid;grid-template-columns:200px 1fr;gap:6px 24px;margin:16px 0 24px}
+.cast dt{text-transform:uppercase}
+.cast dd{margin:0}
+
+
+/* ===== THE COVER: the title page, lit by one bulb ===== */
+.cover{--lx:50%;--ly:30%;--on:1;position:relative;height:100vh;min-height:680px;margin:-56px -20px 0;overflow:hidden;isolation:isolate;color:var(--ink-h);
+  background:transparent;cursor:default;user-select:none}
+.cover .paper{position:absolute;inset:0;z-index:-3;background:
+  radial-gradient(circle at var(--lx) var(--ly), rgba(255,246,226,calc(var(--on)*1)) 0, rgba(255,248,236,calc(var(--on)*.8)) 20%, rgba(255,255,255,0) 58%),
+  transparent}
+.cover .paper::after{display:none;content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.lightsout{position:fixed;inset:0;z-index:15;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,rgba(18,16,14,.74),rgba(10,9,8,.9));opacity:var(--off,0)}
+.cover .vig{display:none}
+.cover .aside{position:absolute;top:36px;left:0;right:0;text-align:center;font:italic 400 19px/1 "Instrument Serif",serif;opacity:.85}
+.cover h1{position:absolute;left:clamp(90px,9vw,150px);top:clamp(80px,13vh,130px);font:400 clamp(70px,10.4vw,176px)/.84 "Instrument Serif",serif;letter-spacing:-.012em;text-transform:uppercase;z-index:2;-webkit-text-stroke:.013em var(--ink-h);paint-order:stroke fill}
+.cover .tblock{position:absolute;left:clamp(94px,9.3vw,156px);top:calc(clamp(80px,13vh,130px) + clamp(70px,10.4vw,176px)*2.6);font:400 16px/1.6 var(--mono);z-index:2}
+.cover .tblock b{display:block;margin-bottom:10px;font-weight:400;text-decoration:underline}
+.cover .foot{position:absolute;left:clamp(94px,9.3vw,156px);right:48px;bottom:36px;display:flex;justify-content:space-between;align-items:flex-end;font:400 14px/1.45 var(--mono);z-index:2}
+.cover .foot a{text-decoration:none;border-bottom:1px solid rgba(0,0,0,.3)}
+.cover .next{white-space:nowrap;display:flex;align-items:center;gap:14px;text-decoration:none;font:400 14px/1 var(--mono)}
+.cover .next i{display:block;width:70px;height:1px;background:currentColor;position:relative;transition:width .4s}
+.cover .next i::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid;border-right:1px solid;transform:rotate(45deg)}
+.cover .next:hover i{width:110px}
+.cover .stamp2{position:absolute;right:clamp(60px,8vw,150px);top:96px;transform:rotate(9deg);border:3px solid var(--pen);color:var(--pen);padding:6px 12px;font:700 17px/1 var(--mono);letter-spacing:.14em;opacity:.78;z-index:3;mix-blend-mode:multiply}
+/* punched holes + the two brass brads (real scripts: top and bottom hole, middle left empty) */
+.cover .hole{position:absolute;left:clamp(26px,3vw,46px);width:26px;height:26px;border-radius:50%;background:#2a2724;box-shadow:inset 0 3px 5px rgba(0,0,0,.7);z-index:1}
+.obj{position:absolute;z-index:4;pointer-events:none}
+.obj img{display:block;width:100%;height:auto;filter:drop-shadow(var(--sx,0px) var(--sy,8px) var(--sb,12px) rgba(30,20,10,var(--sa,.35)))}
+.obj .shine{position:absolute;inset:0;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;mix-blend-mode:screen;
+  background:radial-gradient(circle at var(--hx,50%) var(--hy,30%),rgba(255,244,220,calc(var(--on)*.95)) 0,rgba(255,236,200,calc(var(--on)*.35)) 9%,rgba(255,255,255,0) 26%)}
+.obj .warm{position:absolute;inset:0;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;mix-blend-mode:soft-light;
+  background:linear-gradient(var(--wa,180deg),rgba(255,170,80,calc(var(--on)*.55)),rgba(0,0,0,.25))}
+.brad{width:46px;left:clamp(16px,calc(3vw - 10px),36px)}
+.can{width:clamp(190px,18.5vw,300px);right:clamp(70px,9.5vw,180px);bottom:92px}
+.glasses{width:clamp(220px,19vw,320px);left:clamp(360px,36vw,560px);bottom:clamp(70px,13vh,130px);transform:rotate(-14deg)}
+.ring{position:absolute;z-index:1;width:clamp(170px,16vw,260px);aspect-ratio:1;border-radius:50%;right:clamp(32px,6vw,115px);bottom:50px;
+  border:5px solid rgba(110,90,60,.13);filter:blur(1.4px);transform:scaleY(.42) rotate(8deg);opacity:.9}
+/* the bulb: hangs from the top on its cord, swings, can be switched off */
+.bulb{top:0;left:var(--bx,60%);width:clamp(150px,12.5vw,210px);transform-origin:50% 0;z-index:7;pointer-events:auto;cursor:grab}
+.bulb .cord{position:absolute;left:50%;top:-100vh;height:100vh;width:5px;margin-left:-2.5px;background:linear-gradient(90deg,#111,#3a3a3a 45%,#111)}
+.bulb .glow{position:absolute;left:50%;top:66%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,196,110,calc(var(--on)*.55)) 0,rgba(255,170,70,calc(var(--on)*.18)) 25%,transparent 60%);mix-blend-mode:screen}
+.bulb img{filter:drop-shadow(0 10px 18px rgba(0,0,0,.25)) brightness(calc(.55 + var(--on)*.45)) saturate(calc(.3 + var(--on)*.7))}
+.pull{position:absolute;z-index:8;white-space:nowrap;font:700 24px/1 var(--hand);color:var(--pen);transform:rotate(-5deg);pointer-events:none;transition:opacity .4s}
+body.past .nav{opacity:1}
+.nav{transition:opacity .4s;opacity:0}
+@media (max-width:840px){
+  .cover{margin:-16px 0 40px;min-height:700px}
+  .cover .aside{font-size:14px;top:24px;left:52px;right:auto;width:52%;text-align:left;line-height:1.2}
+  .cover h1{left:50px;top:max(300px,37vh);font-size:14vw}
+  .cover .tblock{left:52px;top:calc(max(300px,37vh) + 14vw*2.62 + 14px);font-size:12.5px;line-height:1.55}
+  .cover .tblock b{margin-bottom:6px}
+  .cover .foot{left:50px;right:18px;bottom:18px;font-size:11px}
+  .cover .foot .rv2{display:none}
+  .cover .next i{width:36px}
+  .cover .hole{left:14px;width:18px;height:18px}.brad{width:34px;left:6px}
+  .can{width:27vw;right:6vw;bottom:58px}.ring{width:32vw;right:3vw;bottom:40px}
+  .glasses{width:40vw;left:16vw;bottom:84px}
+  .bulb{width:24vw}.bulb .glow{width:300px;height:300px;margin:-150px 0 0 -150px}
+  .pull{font-size:20px}
+}
+}
+
+/* ===== chrome + silver accents ===== */
+:root{--chrome:linear-gradient(180deg,#f7f8fa 0%,#c5c9cf 22%,#6c7179 48%,#e9ebef 52%,#9da2a9 75%,#f4f5f7 100%);
+      --chrome-ink:linear-gradient(180deg,#5d6269 0%,#2c2f34 45%,#9ca1a8 52%,#3b3f45 60%,#6e737a 100%)}
+.seal{position:absolute;right:clamp(60px,8vw,150px);top:84px;width:118px;height:118px;border-radius:50%;z-index:3;--ca:200deg;
+  background:radial-gradient(circle at 50% 50%,transparent 58%,rgba(0,0,0,.16) 59%,transparent 61%),
+    conic-gradient(from var(--ca),#fbfcfd,#a7abb2 12%,#eef0f3 22%,#6a6f77 34%,#f7f8f9 46%,#9ea3aa 58%,#ffffff 70%,#7b8088 84%,#fbfcfd);
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.9),inset 0 -3px 5px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.12),var(--seal-sh,4px 8px 14px rgba(40,30,20,.35));
+  transform:rotate(-8deg)}
+.seal svg{position:absolute;inset:0;width:100%;height:100%}
+.seal text{font:700 8.6px/1 var(--mono);letter-spacing:.16em;fill:rgba(30,32,36,.55)}
+.seal b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font:400 30px/.82 "Instrument Serif",serif;text-transform:uppercase;
+  color:rgba(36,38,42,.72);text-shadow:0 1px 0 rgba(255,255,255,.85),0 -1px 0 rgba(0,0,0,.25)}
+/* silver scene numbers */
+.slug::before,.slug::after{background:var(--chrome-ink);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:18px}
+/* chrome bezels on every insert */
+.shot .f{outline:0;border:4px solid transparent;border-radius:3px;
+  background:linear-gradient(#111,#111) padding-box,linear-gradient(135deg,#f6f7f9,#8b9097 28%,#ffffff 46%,#6a6f77 64%,#d8dbdf 82%,#9da2a9) border-box;
+  box-shadow:0 3px 8px rgba(0,0,0,.28),inset 0 0 0 1px rgba(0,0,0,.6)}
+.insert.wide img{outline:0;border:3px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#f6f7f9,#8b9097 30%,#fff 50%,#6a6f77 70%,#d8dbdf) border-box}
+/* chrome brads in each page's top and bottom hole */
+.holes i{position:relative}
+.holes i.b::after{content:"";position:absolute;inset:-5px;border-radius:50%;background:url(hero/brad_chrome.png) center/cover;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.45))}
+/* navigator: a silver bar for the scene you're in */
+.nav a.on{border-left-color:transparent;color:var(--ink-h);background:linear-gradient(90deg,rgba(0,0,0,.05),transparent);box-shadow:inset 2px 0 0 #8b9097}
+.nav a.on span:first-child{background:var(--chrome-ink);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+@media (max-width:840px){.seal{right:auto;left:52px;top:118px;width:86px;height:86px}.seal b{font-size:22px}.seal text{font-size:8.2px}}
+
+/* 3D layer: once three.js is running, the photo objects step aside (they stay as the fallback) */
+.cover canvas.three{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;opacity:0;transition:opacity .6s}
+.cover.is3d canvas.three{opacity:1}
+.cover.is3d .can,.cover.is3d .brad,.cover.is3d .ring{visibility:hidden}
+
+/* ===== the corner switch ===== */
+.switch{all:unset;position:fixed;top:18px;right:18px;z-index:40;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.switch .plate{position:relative;display:flex;align-items:center;justify-content:center;width:26px;height:42px;border-radius:5px;border:1.5px solid var(--ink-h);background:var(--bg)}
+.switch .screw{display:none}
+.switch .slot{position:relative;width:10px;height:24px;border-radius:3px;border:1.5px solid var(--ink-h)}
+.switch .lever{position:absolute;left:1.5px;right:1.5px;height:9px;border-radius:1.5px;background:var(--ink-h);top:1.5px;transition:top .18s ease}
+.switch[aria-pressed="false"] .lever{top:10.5px}
+.switch small{font:500 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-h)}
+.switch:focus-visible .plate{outline:2px solid var(--pen);outline-offset:3px}
+/* ===== the nightlight (only glows in dark mode) ===== */
+.nightlight{position:fixed;left:18px;bottom:16px;z-index:40;display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .8s,transform .8s}
+.nightlight .dome{width:46px;height:46px;border-radius:50% 50% 44% 44%;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#fdfaf0,#d8e2f4 60%,#a9b8d6);box-shadow:0 0 18px 6px rgba(190,210,255,.55),0 0 70px 24px rgba(160,185,255,.22)}
+.nightlight svg{width:24px;height:24px;fill:#f6d98a;filter:drop-shadow(0 0 4px rgba(255,220,140,.9))}
+.nightlight .plug{order:2;width:30px;height:10px;margin-top:-2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#9aa0a7,#eef0f2 45%,#8c9198)}
+.nightglow{position:fixed;inset:0;z-index:14;pointer-events:none;opacity:0;transition:opacity 1s;background:radial-gradient(circle at 40px calc(100% - 40px),rgba(170,195,255,.22),rgba(140,165,255,.07) 30%,transparent 55%);mix-blend-mode:screen}
+html.dark .nightlight{opacity:1;transform:none}
+html.dark .nightglow{opacity:1}
+/* ===== dark mode, through and through ===== */
+html.dark{--bg:#15130f;--ink:#e6dfd0;--ink-h:#f1ebdd;--pen:#ff806f;--hl:rgba(255,214,64,.85);color:var(--ink)}
+html.dark body::after{background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(0,0,0,.45) 100%)}
+html.dark body::before{mix-blend-mode:screen;opacity:.06}
+html.dark .hl{color:#141210}
+html.dark .slug::before,html.dark .slug::after,html.dark .nav a.on span:first-child{background:var(--chrome)}
+html.dark .nav h6{color:#8d8574}
+html.dark .nav a:hover{background:rgba(255,255,255,.05)}
+html.dark .nav a.on{background:linear-gradient(90deg,rgba(255,255,255,.07),transparent);box-shadow:inset 2px 0 0 #d9dce0}
+html.dark .cover .foot a{border-bottom-color:rgba(255,255,255,.3)}
+html.dark .shot small{opacity:.75}
+html.dark .cover .obj:not(.bulb) img{filter:brightness(.42) saturate(.8) drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+html.dark .ring{opacity:.25}
+html.dark .seal{filter:brightness(.55)}
+@media (max-width:840px){.switch{top:10px;right:10px}.nightlight{left:12px;bottom:12px}}
+
+/* ===== stickers: real photos, die-cut with a white border, stuck in the margins ===== */
+.stk{position:absolute;z-index:3;width:var(--w,150px);margin:0;transform:rotate(var(--r,0deg));transform-origin:50% 60%;
+  transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s;filter:drop-shadow(0 3px 2px rgba(0,0,0,.18)) drop-shadow(0 10px 14px rgba(40,30,20,.22))}
+.stk img{display:block;width:100%;height:auto}
+.stk::after{content:"";position:absolute;inset:0;pointer-events:none;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.35) 45%,transparent 60%);mix-blend-mode:screen}
+.stk:hover{transform:rotate(calc(var(--r,0deg)*-.4)) scale(1.08) translateY(-4px);filter:drop-shadow(0 6px 4px rgba(0,0,0,.18)) drop-shadow(0 22px 22px rgba(40,30,20,.28))}
+.stk figcaption{position:absolute;left:50%;bottom:-26px;transform:translateX(-50%) rotate(calc(var(--r,0deg)*-1));white-space:nowrap;font:700 19px/1 var(--hand);color:var(--pen)}
+.stk.l{left:-40px}.stk.r{right:-48px}
+html.dark .stk{filter:brightness(.85) drop-shadow(0 8px 14px rgba(0,0,0,.6))}
+@media (max-width:1240px){.stk{--w:130px!important}}
+@media (max-width:840px){.stk{position:relative;float:right;clear:right;left:auto!important;right:auto!important;top:auto!important;--w:96px;margin:4px -8px 30px 12px!important}.stk figcaption{font-size:15px;bottom:-18px}}
+@media (max-width:1380px){.note{position:static;display:block;width:auto;margin:-8px 0 14px 96px;color:var(--pen);transform:rotate(-1.5deg)}.note::before{display:none}}
+@media (max-width:1240px){.nav{display:none}}
+@media (max-width:840px){
+  html{font-size:14px}body{padding:16px 0 60px}
+  .page{padding:64px 22px 48px 40px}
+  .holes{left:12px}.holes i{width:10px;height:10px}
+  .hdr{left:40px;right:22px;top:28px}
+  .slug::before{left:-28px}.slug::after{display:none}
+  .char{margin-left:34%}.paren{margin-left:22%;width:auto}.dia{margin-left:12%;width:auto;margin-right:6%}
+  .note{margin-left:12%}
+  .insert{grid-template-columns:repeat(2,1fr)}.insert.wide{grid-template-columns:repeat(2,1fr)}
+  .title{padding-top:160px;min-height:80vh}.title .stamp{right:24px;top:90px}.title .hand1{left:40px;bottom:160px}
+  .cast{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<header class="desk" id="top" aria-label="Bhanu's desk. Drag things around, or open one.">
-  <div class="ruler"></div><i class="score" style="left:8%;top:12%;width:340px;transform:rotate(-11deg)"></i><i class="score" style="left:62%;top:86%;width:260px;transform:rotate(4deg)"></i><i class="score" style="left:36%;top:4%;width:180px;transform:rotate(27deg)"></i>
-  <div class="board pre" id="board"></div><div class="light"></div>
+
+<header class="cover" id="cover">
+  <div class="paper"></div>
+  <p class="aside">(an attempt to show my work as a screenplay...)</p>
+  <h1>The work of<br>Bhanu<br>Pratap.</h1>
+  <div class="tblock"><b>Written and directed by</b>Bhanu Pratap<br>Based on 3+ years of real work</div>
+  <div class="seal" id="seal"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sealc" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text><textPath href="#sealc" startOffset="0">THE WORK OF BHANU PRATAP &#183; FINAL DRAFT &#183; 2026 &#183;</textPath></text></svg><b>Green<br>lit</b></div>
+  <span class="hole" style="top:22%"></span><span class="hole" style="top:50%"></span><span class="hole" style="top:78%"></span>
+  <div class="obj brad" data-o style="top:calc(22% - 10px)"><img src="hero/brad_chrome.png" alt=""><i class="warm"></i><i class="shine"></i></div>
+  <div class="obj brad" data-o style="top:calc(78% - 10px)"><img src="hero/brad_chrome.png" alt=""><i class="warm"></i><i class="shine"></i></div>
+  <span class="ring"></span>
+  <div class="obj glasses" data-o><img src="hero/glasses_chrome.png" alt="Reading glasses"><i class="warm"></i><i class="shine"></i></div>
+  <div class="obj can" data-o><img src="hero/can.png" alt="A soda can that says FADE IN."><i class="warm"></i><i class="shine"></i></div>
+  <div class="obj bulb" id="bulb" title="Give it a swing"><span class="cord"></span><span class="glow"></span><img src="hero/bulb_chrome.png" alt="A hanging light bulb" draggable="false"></div>
+  <div class="vig"></div>
+  <div class="foot"><a href="mailto:contact.bhanu4012@gmail.com" id="coverMail">contact.bhanu4012@gmail.com</a><span class="rv2">Revised draft, 24 November 2026</span><a class="next" href="#opening">FADE IN: <i></i></a></div>
 </header>
-<nav class="tabs" aria-label="Case files"><a href="maple.html">Maple.inc</a><a href="aakash.html">Aakash Bhalla</a><a href="bartlett.html">Steven Bartlett</a><a href="brooks.html">Dr Arthur Brooks</a><a href="mmh.html">Metro Media House</a><a href="cv.html">CV</a><a href="#contact">Contact</a></nav>
-
-<main><section class="band case" id="hl-bartlett"><div class="wrap hl"><div class="txt"><h2>Steven Bartlett</h2><p class="who">The Diary of a CEO. I ran the clips pipeline</p><ul><li>Managed the production team that made the clips</li><li>Picked the moments and directed every edit</li><li>Art direction, so every clip looks and sounds like DOAC</li></ul><div class="figs"><div class="fig hi"><b>14.6M</b><span>plays on six clips</span></div><div class="fig"><b>8.2M</b><span>views on five more, with proof</span></div></div><a class="deeper" href="bartlett.html">Go deeper</a></div><div class="vids"><div class="reel"><div class="frame" data-v="bartlett_DWoAgfdAJRp"><video muted loop playsinline preload="none" poster="media/bartlett_DWoAgfdAJRp.jpg" src="media/bartlett_DWoAgfdAJRp.mp4"></video><span class="snd">Tap for sound</span></div><p>Nice people say what you want to hear. Kind people say what you need to hear.</p><small><span>5.1M plays, 194K likes</span><a href="https://www.instagram.com/reel/DWoAgfdAJRp/" target="_blank" rel="noopener">Instagram</a></small></div><div class="reel"><div class="frame" data-v="bartlett_DVgBHwxDPiD"><video muted loop playsinline preload="none" poster="media/bartlett_DVgBHwxDPiD.jpg" src="media/bartlett_DVgBHwxDPiD.mp4"></video><span class="snd">Tap for sound</span></div><p>What makes us fall in love is not the person that&#x27;s perfect.</p><small><span>3M plays, 111K likes</span><a href="https://www.instagram.com/reel/DVgBHwxDPiD/" target="_blank" rel="noopener">Instagram</a></small></div></div></div></section><section class="band case" id="hl-brooks"><div class="wrap hl flip"><div class="txt"><h2>Dr Arthur Brooks</h2><p class="who">Harvard professor who teaches happiness</p><ul><li>Worked with the clippers on his podcast clips</li><li>Chose the moments and the edit for each one</li><li>Art direction and the creative calls along the way</li></ul><div class="figs"><div class="fig hi"><b>559K</b><span>plays on three clips</span></div><div class="fig"><b>56K</b><span>likes across four</span></div></div><a class="deeper" href="brooks.html">Go deeper</a></div><div class="vids"><div class="reel"><div class="frame" data-v="brooks_DQprSK3DQd7"><video muted loop playsinline preload="none" poster="media/brooks_DQprSK3DQd7.jpg" src="media/brooks_DQprSK3DQd7.mp4"></video><span class="snd">Tap for sound</span></div><p>Those who truly live with gratitude find meaning even in the difficult parts of life.</p><small><span>208K plays, 7.5K likes</span><a href="https://www.instagram.com/reel/DQprSK3DQd7/" target="_blank" rel="noopener">Instagram</a></small></div><div class="reel"><div class="frame" data-v="brooks_DQFosxqjyr3"><video muted loop playsinline preload="none" poster="media/brooks_DQFosxqjyr3.jpg" src="media/brooks_DQFosxqjyr3.mp4"></video><span class="snd">Tap for sound</span></div><p>Strivers often believe they have to earn love through achievement.</p><small><span>200K plays, 6.5K likes</span><a href="https://www.instagram.com/reel/DQFosxqjyr3/" target="_blank" rel="noopener">Instagram</a></small></div></div></div></section><section class="band case" id="hl-mmh"><div class="wrap hl"><div class="txt"><h2>Metro Media House</h2><p class="who">Lead creative strategist and operator, 2025 to 2026</p><ul><li>Led a production team of 30+ creatives</li><li>Co-built how the agency finds clients and delivers work</li><li>AI-assisted production that cut overhead by 90%+</li><li>Wrote and directed the agency's own posts</li></ul><div class="figs"><div class="fig hi"><b>30+</b><span>people in the team I led</span></div><div class="fig"><b>90%+</b><span>less production overhead</span></div></div><a class="deeper" href="mmh.html">Go deeper</a></div><div class="vids"><div class="reel"><div class="frame" data-v="mmh_DOvSTHYiFup"><video muted loop playsinline preload="none" poster="media/mmh_DOvSTHYiFup.jpg" src="media/mmh_DOvSTHYiFup.mp4"></video><span class="snd">Tap for sound</span></div><p>When your product becomes part of the flex, you&#x27;ve already won.</p><small><span>192K plays, 9.9K likes</span><a href="https://www.instagram.com/reel/DOvSTHYiFup/" target="_blank" rel="noopener">Instagram</a></small></div><div class="reel"><div class="frame" data-v="mmh_DO1GOtSDOZD"><video muted loop playsinline preload="none" poster="media/mmh_DO1GOtSDOZD.jpg" src="media/mmh_DO1GOtSDOZD.mp4"></video><span class="snd">Tap for sound</span></div><p>Originality is overrated. Borrowed fame builds faster.</p><small><span>71.5K plays, 4.4K likes</span><a href="https://www.instagram.com/reel/DO1GOtSDOZD/" target="_blank" rel="noopener">Instagram</a></small></div></div></div></section><section class="band case" id="files"><div class="wrap"><div class="head"><h2>All the files</h2><span class="role">Each one opens a page on what I did and how it went</span></div><div class="files"><a class="file sheet" href="maple.html"><span class="t">Maple.inc</span><span class="r">Wrote and directed their ads</span><span class="n">$63</span><span class="l">to win a customer, down from $300</span><span class="go">open the file</span></a><a class="file sheet" href="aakash.html"><span class="t">Aakash Bhalla</span><span class="r">Strategy, scripts, everything</span><span class="n">65K+</span><span class="l">followers in 60 days, from 2,000</span><span class="go">open the file</span></a><a class="file sheet" href="bartlett.html"><span class="t">Steven Bartlett</span><span class="r">Ran the DOAC clips pipeline</span><span class="n">14.6M</span><span class="l">plays on six clips</span><span class="go">open the file</span></a><a class="file sheet" href="brooks.html"><span class="t">Dr Arthur Brooks</span><span class="r">Clips, edits and art direction</span><span class="n">559K</span><span class="l">plays on three clips</span><span class="go">open the file</span></a><a class="file sheet" href="mmh.html"><span class="t">Metro Media House</span><span class="r">Lead creative strategist, 2025 to 2026</span><span class="n">30+</span><span class="l">people in the team I led</span><span class="go">open the file</span></a><a class="file sheet" href="cv.html"><span class="t">CV</span><span class="r">Every job, skill and tool</span><span class="n">5+</span><span class="l">years of real work</span><span class="go">open the file</span></a></div></div></section></main>
-
-<section class="band end" id="contact"><div class="wrap">
-  <div><h2>Got a story nobody's heard yet?</h2><p>Tell me about it. I'm curious about almost everything, so at worst, we'll have a good chat.</p></div>
-  <div class="note hand">Write to me<a href="mailto:contact.bhanu4012@gmail.com">contact.bhanu4012@gmail.com</a></div>
-</div></section>
-<footer><span>Bhanu Pratap, 2026</span><a href="#top">Back to the desk</a></footer>
+<div class="lightsout"></div>
+<button class="switch" id="switch" aria-label="Light switch" aria-pressed="true"><span class="plate"><i class="screw"></i><span class="slot"><span class="lever"></span></span><i class="screw"></i></span><small>lights</small></button>
+<div class="nightlight" aria-hidden="true"><span class="plug"></span><span class="dome"><svg viewBox="0 0 40 40"><path d="M25 8a13 13 0 1 0 8 20A11 11 0 1 1 25 8z"/></svg></span></div>
+<div class="nightglow" aria-hidden="true"></div>
+<nav class="nav" id="nav"><h6>Scenes</h6></nav>
+<div id="script"></div>
 
 <script>
-{
-const MEDIA={"bartlett": [{"g": "bartlett", "kind": "video", "id": "bartlett_DWoAgfdAJRp", "src": "media/bartlett_DWoAgfdAJRp.jpg", "url": "https://www.instagram.com/reel/DWoAgfdAJRp/", "cap": "Nice people say what you want to hear. Kind people say what you need to hear.", "stat": "5.1M plays, 194K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DVsNATlgHrg", "src": "media/bartlett_DVsNATlgHrg.jpg", "url": "https://www.instagram.com/reel/DVsNATlgHrg/", "cap": "Your limiting beliefs about what's possible for you are not facts.", "stat": "2.7M plays, 144K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DWjQXYTDCxY", "src": "media/bartlett_DWjQXYTDCxY.jpg", "url": "https://www.instagram.com/reel/DWjQXYTDCxY/", "cap": "I asked the world's most fearless climber if he finds it awkward to talk about emotions.", "stat": "2.6M plays, 120K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DVgBHwxDPiD", "src": "media/bartlett_DVgBHwxDPiD.jpg", "url": "https://www.instagram.com/reel/DVgBHwxDPiD/", "cap": "What makes us fall in love is not the person that's perfect.", "stat": "3M plays, 111K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DV6nOcCgOA9", "src": "media/bartlett_DV6nOcCgOA9.jpg", "url": "https://www.instagram.com/reel/DV6nOcCgOA9/", "cap": "The greatest commitments you can make are the ones you make to yourself.", "stat": "346K plays, 14K likes", "r45": false}, {"g": "bartlett", "kind": "video", "id": "bartlett_DWZRf0FjFKo", "src": "media/bartlett_DWZRf0FjFKo.jpg", "url": "https://www.instagram.com/reel/DWZRf0FjFKo/", "cap": "Your biggest breakthroughs will often come from the most petty detail.", "stat": "806K plays, 399 comments", "r45": false}], "brooks": [{"g": "brooks", "kind": "video", "id": "brooks_DUgML6lCWBo", "src": "media/brooks_DUgML6lCWBo.jpg", "url": "https://www.instagram.com/reel/DUgML6lCWBo/", "cap": "Your kids won't become what you tell them to be. They become what they watch you be.", "stat": "37K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DQprSK3DQd7", "src": "media/brooks_DQprSK3DQd7.jpg", "url": "https://www.instagram.com/reel/DQprSK3DQd7/", "cap": "Those who truly live with gratitude find meaning even in the difficult parts of life.", "stat": "208K plays, 7.5K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DQFosxqjyr3", "src": "media/brooks_DQFosxqjyr3.jpg", "url": "https://www.instagram.com/reel/DQFosxqjyr3/", "cap": "Strivers often believe they have to earn love through achievement.", "stat": "200K plays, 6.5K likes", "r45": false}, {"g": "brooks", "kind": "video", "id": "brooks_DToP8E4CTmu", "src": "media/brooks_DToP8E4CTmu.jpg", "url": "https://www.instagram.com/reel/DToP8E4CTmu/", "cap": "If something brings you pleasure and could become addictive, notice whether you do it alone.", "stat": "151K plays, 4.7K likes", "r45": false}], "mmh": [{"g": "mmh", "kind": "video", "id": "mmh_DOvSTHYiFup", "src": "media/mmh_DOvSTHYiFup.jpg", "url": "https://www.instagram.com/reel/DOvSTHYiFup/", "cap": "When your product becomes part of the flex, you've already won.", "stat": "192K plays, 9.9K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DSpg--liDsz", "src": "media/mmh_DSpg--liDsz.jpg", "url": "https://www.instagram.com/p/DSpg--liDsz/", "cap": "Five pieces of media that'll reverse your brainrot, part two.", "stat": "6.7K likes, 904 comments", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DO1GOtSDOZD", "src": "media/mmh_DO1GOtSDOZD.jpg", "url": "https://www.instagram.com/reel/DO1GOtSDOZD/", "cap": "Originality is overrated. Borrowed fame builds faster.", "stat": "71.5K plays, 4.4K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DSXZhrLgXBa", "src": "media/mmh_DSXZhrLgXBa.jpg", "url": "https://www.instagram.com/p/DSXZhrLgXBa/", "cap": "Focus isn't a talent. It's a skill you rebuild.", "stat": "4K likes, 1.2K comments", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DUTFN28CDDt", "src": "media/mmh_DUTFN28CDDt.jpg", "url": "https://www.instagram.com/reel/DUTFN28CDDt/", "cap": "One announcement. Zero marketing. Forty years of legacy.", "stat": "29.5K plays, 1.7K likes", "r45": false}, {"g": "mmh", "kind": "image", "id": "mmh_DUqAn2HiBhE", "src": "media/mmh_DUqAn2HiBhE.jpg", "url": "https://www.instagram.com/p/DUqAn2HiBhE/", "cap": "Cool isn't a look. It's a behaviour people repeat before anyone names it.", "stat": "1.3K likes", "r45": true}, {"g": "mmh", "kind": "video", "id": "mmh_DUdMp_8jQ7h", "src": "media/mmh_DUdMp_8jQ7h.jpg", "url": "https://www.instagram.com/p/DUdMp_8jQ7h/", "cap": "Stop looking for new ideas. Mix things that don't belong together.", "stat": "1.1K likes", "r45": true}], "posters": {"bartlett_DWZRf0FjFKo": "media/bartlett_DWZRf0FjFKo.jpg", "bartlett_DWoAgfdAJRp": "media/bartlett_DWoAgfdAJRp.jpg", "bartlett_DVsNATlgHrg": "media/bartlett_DVsNATlgHrg.jpg", "brooks_DToP8E4CTmu": "media/brooks_DToP8E4CTmu.jpg", "brooks_DQprSK3DQd7": "media/brooks_DQprSK3DQd7.jpg", "mmh_DUqAn2HiBhE": "media/mmh_DUqAn2HiBhE.jpg", "mmh_DUTFN28CDDt": "media/mmh_DUTFN28CDDt.jpg", "mmh_DO1GOtSDOZD": "media/mmh_DO1GOtSDOZD.jpg", "brooks_DQFosxqjyr3": "media/brooks_DQFosxqjyr3.jpg", "bartlett_DVgBHwxDPiD": "media/bartlett_DVgBHwxDPiD.jpg", "stat3": "media/stat3.jpg", "stat2": "media/stat2.jpg", "brooks_DUgML6lCWBo": "media/brooks_DUgML6lCWBo.jpg", "aakash_after": "media/aakash_after.jpg", "bartlett_DWjQXYTDCxY": "media/bartlett_DWjQXYTDCxY.jpg", "mmh_DUdMp_8jQ7h": "media/mmh_DUdMp_8jQ7h.jpg", "mmh_DSpg--liDsz": "media/mmh_DSpg--liDsz.jpg", "stat1": "media/stat1.jpg", "stat5": "media/stat5.jpg", "aakash_before": "media/aakash_before.jpg", "stat4": "media/stat4.jpg", "mmh_DSXZhrLgXBa": "media/mmh_DSXZhrLgXBa.jpg", "aakash_reel": "media/aakash_reel.jpg", "bartlett_DV6nOcCgOA9": "media/bartlett_DV6nOcCgOA9.jpg", "mmh_DOvSTHYiFup": "media/mmh_DOvSTHYiFup.jpg"}};
-const D=document,$=s=>D.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const P=id=>MEDIA.posters[id]||"";
-const LIVE=id=>`<video class="live" muted loop playsinline preload="metadata" poster="${P(id)}" src="media/${id}.mp4"></video>`;
+const S = window.SITE, W = Object.fromEntries(S.work.map(w=>[w.id,w]));
+const M = id => `media/${id}`;
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const REV = [["White","#fdfcf8"],["Blue","#eef2fa"],["Pink","#fbeef0"],["Yellow","#fbf6da"],["Green","#edf5e9"],["Goldenrod","#f6ead0"],["Buff","#f5efe3"],["Salmon","#fbe9e2"]];
 
-/* desk objects: wide board 1440x860, narrow board 600x1040; [x,y,rot] */
-const OBJ=[
- {k:"mug",w:[-62,-70,0],n:[-700,0,0],html:`<b></b><i></i>`},
- {k:"card",go:"#cv",w:[60,214,-2],n:[30,40,-2],html:`<h1>Bhanu Pratap</h1><p>I like stories, spend most of my time reading, watching films, dissecting scenes, and I hope I spend the rest of my life reading, watching, and telling stories.</p><div class="mail"><span>contact.bhanu4012@gmail.com</span></div><span class="hand tip">pick one up</span>`},
- {k:"receipt",go:"#maple",w:[560,70,4],n:[40,392,-4],html:`<b>Maple.inc</b>Meta ads, 3 months<hr><div class="r"><span>Cost per customer</span><span></span></div><div class="r"><span>Before</span><span>$300.00</span></div><div class="r"><span>Then</span><span>$98.00</span></div><div class="r"><span>Month three</span><span>$63.00</span></div><hr><div class="r tot"><span>Saved</span><span>$237.00</span></div><div class="r"><span>Down</span><span>79%</span></div><hr><div style="text-align:center">Thank you, come again</div>`},
- {k:"stack",go:"#bartlett",w:[850,58,4],n:[300,566,4],html:()=>[2,1,0].map((i,j)=>`<div class="sheet pol" style="transform:rotate(${[-7,5,0][j]}deg) translate(${[-6,8,0][j]}px,${[6,-2,0][j]}px)"><div class="ph">${j==2?LIVE(MEDIA.bartlett[i].id):`<img src="${P(MEDIA.bartlett[i].id)}" alt="">`}</div><div class="cap hand">${j==2?"DOAC clips":""}</div></div>`).join("")+`<div class="clip"></div>`},
- {k:"pol",go:"#aakash",w:[830,450,-6],n:[30,710,-5],html:()=>`<div class="ph">${LIVE("aakash_reel")}</div><div class="cap hand">Aakash: 2k to 65k</div>`},
- {k:"pol b2",go:"#brooks",w:[1140,110,7],n:[330,890,6],html:()=>`<div class="ph"><img src="${P(MEDIA.brooks[1].id)}" alt=""></div><div class="cap hand">Dr Arthur Brooks</div>`},
- {k:"script",go:"#mmh",w:[505,445,-3],n:[30,1060,-3],html:`<span class="brad" style="top:44px"></span><span class="brad" style="top:50%"></span><span class="brad" style="bottom:44px"></span><h3>Metro Media House</h3><div class="by">written and directed by<br>Bhanu Pratap</div><div class="foot">Lead creative strategist<br>2025 to 2026</div>`},
- {k:"sticky",go:"#receipts",w:[1090,395,-4],n:[372,352,5],html:`14.6M plays on six DOAC clips<small>proof inside</small>`},
- {k:"cv",go:"#cv",w:[1150,590,6],n:[322,1230,5],html:`<span class="pclip"></span><b>Bhanu Pratap</b><div class="ln m"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln s"></div><div class="h"></div><div class="ln"></div><div class="ln m"></div><div class="ln"></div><div class="ln s"></div><span class="tag hand">CV 2026</span>`},
- {k:"book",go:"#beyond",w:[96,636,-9],n:[50,1440,-8],html:`<div class="lab hand">Poems and other things</div>`},
- {k:"stk",w:[214,40,-12],n:[468,40,10],html:`<svg width="122" height="96" viewBox="0 0 122 96"><rect x="4" y="14" width="114" height="78" rx="16" fill="#fff"/><rect x="11" y="22" width="100" height="63" rx="11" fill="#2343cf"/><rect x="36" y="8" width="34" height="18" rx="5" fill="#fff"/><rect x="40" y="12" width="26" height="12" rx="3" fill="#2343cf"/><circle cx="61" cy="54" r="24" fill="#fff"/><circle cx="61" cy="54" r="19" fill="#10142a"/><circle cx="61" cy="54" r="11" fill="#33405f"/><circle cx="55" cy="48" r="4" fill="#fff" opacity=".8"/><rect x="88" y="30" width="14" height="9" rx="2" fill="#ffd23f"/></svg>`},
- {k:"stk",w:[350,14,6],n:[372,1478,-8],html:`<svg width="176" height="64" viewBox="0 0 176 64"><rect x="2" y="2" width="172" height="60" rx="30" fill="#fff"/><rect x="8" y="8" width="160" height="48" rx="24" fill="#ff8a8a"/><circle cx="34" cy="32" r="16" fill="#fff"/><path d="M29 23l13 9-13 9z" fill="#ff5c5c"/><text x="58" y="29" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">just one more</text><text x="58" y="45" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#3a0f14">video essay</text></svg>`},
- {k:"stk",w:[790,380,-8],n:[268,384,-10],html:`<svg width="78" height="76" viewBox="0 0 78 76"><path d="M39 4l9.9 20.6 22.6 3-16.5 15.7 4.1 22.4L39 54.9 18.9 65.7 23 43.3 6.5 27.6l22.6-3z" fill="#ffd23f" stroke="#fff" stroke-width="7" stroke-linejoin="round" paint-order="stroke"/><path d="M39 16l6 12.6 13.7 1.8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></svg>`},
- {k:"stk",w:[842,770,5],n:[86,1660,6],html:`<svg width="188" height="76" viewBox="0 0 188 76"><path d="M8 4h172a6 6 0 0 0 6 6v18a10 10 0 0 0 0 20v18a6 6 0 0 0-6 6H8a6 6 0 0 0-6-6V48a10 10 0 0 0 0-20V10a6 6 0 0 0 6-6z" fill="#fff"/><path d="M14 11h160v14a15 15 0 0 0 0 26v14H14V51a15 15 0 0 0 0-26z" fill="#10142a"/><line x1="138" y1="16" x2="138" y2="60" stroke="#fff" stroke-dasharray="3 4" opacity=".5"/><text x="30" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="17" fill="#ffd23f">Admit one</text><text x="30" y="54" font-family="Schibsted Grotesk,sans-serif" font-size="11" fill="#fff">Row A, front row</text><text x="147" y="36" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#fff">No.</text><text x="149" y="52" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#ffd23f">1</text></svg>`},
- {k:"stk",w:[340,640,9],n:[360,1610,7],html:`<svg width="176" height="96" viewBox="0 0 176 96"><rect x="3" y="3" width="170" height="90" rx="12" fill="#fff"/><rect x="10" y="10" width="156" height="76" rx="7" fill="#fff" stroke="#ff5c5c" stroke-width="2.5"/><text x="88" y="40" text-anchor="middle" font-family="Nanum Pen Script,cursive" font-size="24" fill="#10142a">roses are red,</text><text x="88" y="66" text-anchor="middle" font-family="Nanum Pen Script,cursive" font-size="24" fill="#10142a">deadlines are too</text></svg>`},
- {k:"stk",w:[1102,14,-7],n:[30,1040,12],html:`<svg width="104" height="92" viewBox="0 0 104 92"><path d="M10 34h84v48a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M8 18l80-14 4 22-80 14z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M14 38h76v42H14z" fill="#10142a"/><path d="M12 20l74-13 3 16-74 13z" fill="#10142a"/><path d="M22 18l10 13M40 15l10 13M58 12l10 13M76 9l9 12" stroke="#fff" stroke-width="6"/><text x="52" y="66" text-anchor="middle" font-family="Schibsted Grotesk,sans-serif" font-weight="800" font-size="13" fill="#fff">Take 1</text></svg>`},
- {k:"pencil",w:[200,170,14],n:[250,1740,-8],html:`<i></i>`},
- {k:"tape",w:[1300,96,40],n:[470,884,32],html:``},
- {k:"pc",w:[760,520,32],n:[262,690,25],html:``}
-];
-const NB=[600,1870],WB=[1440,900];
-const board=$("#board"),desk=$(".desk");
-let narrow=null,scale=1,z=10;
+/* little builders, one per screenplay element */
+const slug = (n,t,id) => `<div class="slug" data-n="${n}" ${id?`id="${id}"`:""}>${esc(t)}</div>`;
+const act  = t => `<p class="action">${t}</p>`;
+const ch   = (n,ext) => `<div class="char">${esc(n)}${ext?` (${ext})`:""}</div>`;
+const par  = t => `<div class="paren">(${t})</div>`;
+const dia  = t => `<p class="dia">${t}</p>`;
+const sup  = t => `<p class="super">SUPER: ${t}</p>`;
+const tr   = t => `<p class="trans">${t}</p>`;
+const note = t => `<span class="note">${t}</span>`;
+const reel = r => `<figure class="shot"><div class="f" data-v><video data-src="${M(r.id)}.mp4" poster="${M(r.id)}.jpg" muted loop playsinline preload="none"></video><span class="snd">Tap for sound</span></div><p>${esc(r.cap)}</p>${r.num?`<small>${r.num}${r.ig?` &middot; <a href="${r.ig}" target="_blank" rel="noopener">IG</a>`:""}</small>`:""}</figure>`;
+const post = r => `<figure class="shot"><span class="tape"></span><div class="f sq"><img src="${M(r.id)}.jpg" alt="${esc(r.cap)}" loading="lazy"></div><p>${esc(r.cap)}</p><small>${r.num} &middot; <a href="${r.ig}" target="_blank" rel="noopener">IG</a></small></figure>`;
+const did = w => w.did.map(d=>`<u>${esc(d[0])}.</u> ${esc(d[1])}`).join(`</p><p class="dia" style="margin-top:-6px">`);
+const STK = window.STICKERS || {};
+const stk = (id) => { const k = STK[id]; if (!k) return ""; return `<figure class="stk ${k.side||"r"}" style="--r:${k.r||0}deg;--w:${k.w||150}px;margin-top:${k.top||0}px;--m:url(stickers/${id}.png)"><img src="stickers/${id}.png" alt="${k.alt||""}" loading="lazy">${k.note?`<figcaption>${k.note}</figcaption>`:""}</figure>`; };
+const sheet = (i, body, cls="") => `<section class="page ${cls}">
+  ${i?`<div class="hdr"><span class="rev">${REV[i%REV.length][0]} rev. 24.11.26</span><span>${i+1}.</span></div>`:""}${body}</section>`;
 
-board.innerHTML=OBJ.map((o,i)=>{const sheet=["card","receipt","pol","pol b2","script","cv"].includes(o.k)?"sheet ":"";const h=typeof o.html=="function"?o.html():o.html;return `<div class="obj ${sheet}${o.k}" data-i="${i}" ${o.go?`tabindex="0" role="link" aria-label="Open ${esc(o.go.slice(1))}"`:`aria-hidden="true"`} style="--d:${o.k=="stk"?1250+i*70:i*85}ms">${h}</div>`}).join("");
-board.insertAdjacentHTML("afterbegin",`<span class="ring" id="ring"></span>`);
-const els=[...board.querySelectorAll(".obj")];
+const pages = [];
 
-let lastBW=0;
-function layout(){
-  const W=desk.clientWidth;const n=W<700;
-  if(n){
-    scale=Math.min(W/NB[0],1.05);
-    if(n!==narrow){narrow=n;lastBW=0;Object.assign($("#ring").style,{left:"360px",top:"830px",width:"170px",height:"170px"});els.forEach((e,i)=>{const q=OBJ[i].n;place(e,q[0],q[1]+(q[1]>250?70:0),q[2])})}
-    board.style.width=NB[0]+"px";board.style.height=NB[1]+"px";
-    board.style.transform=`translate(${Math.max(0,(W-NB[0]*scale)/2)}px,0) scale(${scale})`;
-    desk.style.height=Math.round(NB[1]*scale)+"px";return;
+/* 1. opening */
+pages.push(sheet(1, `
+  <p>FADE IN:</p>
+  ${slug(1,"INT. A ROOM FULL OF NOTEBOOKS - NIGHT","opening")}
+  ${act(`BHANU PRATAP, writer and director first, sits with a stack of notebooks he will never fill. He likes stories. He spends most of his time reading, watching films, dissecting scenes.`)}
+  ${act(`He writes poetry, watches video essays about random things, takes pretty good photos.`)}
+  ${stk("books")}${ch("BHANU")}
+  ${par("to us")}
+  ${dia(`I've spent 3+ years making content for people you know: Steven Bartlett, Andrew Ross Sorkin from the New York Times' DealBook, Dr Arthur Brooks, Nick Moar (founder, DMG Media) and some YC-backed startups.`)}
+  ${ch("BHANU")}${par("cont'd")}
+  ${dia(`I like coming up with the idea, I like running the team, and I really like seeing people share what we made.`)}
+  ${act(`He opens the first notebook. Five scenes. Every number in them is real.`)}
+  ${tr("CUT TO:")}`));
+
+/* 2. Bartlett */
+{ const w = W.bartlett;
+pages.push(sheet(2, `
+  ${slug(2,"INT. THE DIARY OF A CEO, EDIT SUITE - NIGHT","bartlett")}
+  ${act(`An episode plays. It is hours long. STEVEN BARTLETT talks to a guest who will say one perfect thing, somewhere in there.`)}
+  ${act(`BHANU's job: turn it into short clips that millions of people watch. He runs that, from the full episode to the posted clip.`)}
+  ${stk("typingcat")}${ch("BHANU")}${dia(did(w))}
+  ${note("the guest question bit. keep it!")}
+  ${ch("BHANU")}${par("to the next guest")}
+  ${dia(`At the end of every episode, the last guest leaves a question for the next one. Mine would be: "Can I post this bit?"`)}
+  ${ch("INSTAGRAM")}${par("as it showed them, 20 Nov 2026")}
+  ${dia(`<span class="circ">14.6M plays</span> on the six clips here. <span class="hl">582K likes</span> on the same six. <span class="hl">5.1M plays</span> on the biggest one.`)}
+  <p class="super">INSERT: THE SIX CLIPS</p>
+  <div class="insert">${w.reels.map(reel).join("")}</div>
+  ${act(`Steven is on Dragons' Den, so we brought numbers.`)}
+  <p class="super">INSERT: FIVE MORE CLIPS, SCREENSHOTS FROM HIS TEAM. <span class="hl">8.2M VIEWS.</span></p>
+  <div class="insert wide">${w.proof.shots.map(s=>`<figure class="shot"><img src="${M(s[0])}.jpg" alt="Instagram analytics, ${s[1]}" loading="lazy"><figcaption><b>${s[1]}</b><br>${s[2]}</figcaption></figure>`).join("")}</div>
+  ${ch("ZARA JARVIS","V.O.")}${par("our point of contact for Steven Bartlett's Instagram")}
+  ${dia(esc(w.proof.quote))}
+  ${tr("CUT TO:")}`)); }
+
+/* 3. Maple */
+{ const w = W.maple;
+pages.push(sheet(3, `
+  ${slug(3,"INT. A BUSY RESTAURANT KITCHEN - DINNER RUSH","maple")}
+  ${act(`The phone rings. Nobody picks up. Busy kitchens miss a lot of calls.`)}
+  ${act(`MAPLE, an AI that answers the phone for restaurants, picks it up.`)}
+  ${act(`Every other company in this space ran the same ad: a picture and a list of features. BHANU went with real phone calls instead.`)}
+  ${stk("chefcat")}${ch("BHANU")}${dia(did(w))}
+  ${note("this is the whole idea")}
+  ${ch("BHANU")}${par("beat")}
+  ${dia(`People skip ads. Almost nobody skips listening in on someone else's phone call.`)}
+  ${ch("THE COST OF ONE CUSTOMER")}${par("before")}${dia(`<span class="strike">$300.</span>`)}
+  ${ch("THE COST OF ONE CUSTOMER")}${par("then")}${dia(`<span class="strike">$98.</span>`)}
+  ${ch("THE COST OF ONE CUSTOMER")}${par("month three")}${dia(`<span class="circ">$63.</span> <span class="hl">79% cheaper</span> than where we started.`)}
+  <p class="super">INSERT: THE ADS, IN META'S AD LIBRARY</p>
+  ${w.ads.map(a=>act(`<a href="${a[1]}" target="_blank" rel="noopener">${a[0]}</a>`)).join("")}
+  ${tr("CUT TO:")}`)); }
+
+/* 4. Aakash */
+{ const w = W.aakash;
+pages.push(sheet(4, `
+  ${slug(4,"EXT. AAKASH BHALLA'S INSTAGRAM - DAY ONE","aakash")}
+  ${act(`AAKASH BHALLA, a salesman who started an agency. Eight of his businesses failed before one worked. He has a lot to teach, but almost nobody is listening.`)}
+  ${sup("Day one. 377 accounts reached.")}
+  ${ch("BHANU")}${dia(did(w))}
+  ${note("before / after. put them side by side")}
+  <div class="insert two">${w.beforeAfter.map(b=>`<figure class="shot"><span class="tape"></span><img style="position:static;width:100%;outline:1px solid #111" src="${M(b[0])}.jpg" alt="${b[1]}" loading="lazy"><p>${b[1]}</p></figure>`).join("")}</div>
+  ${sup(`Day 60. <span class="hl">1.97M reached.</span>`)}
+  ${stk("stonks")}${ch("INSTAGRAM")}
+  ${dia(`<span class="circ">65K+ followers</span>, up from 2,000. <span class="hl">7M+ organic impressions.</span> 60 days. Not a year.`)}
+  ${ch("AAKASH'S ACCOUNTANT")}${par("probably")}
+  ${dia(`6 figures in sales that came from content.`)}
+  <p class="super">INSERT: ONE OF THE REELS</p>
+  <div class="insert">${w.reels.map(reel).join("")}</div>
+  ${tr("CUT TO:")}`)); }
+
+/* 5. Brooks */
+{ const w = W.brooks;
+pages.push(sheet(5, `
+  ${slug(5,"INT. HARVARD, A LECTURE HALL - DAY","brooks")}
+  ${act(`DR ARTHUR BROOKS teaches people how to be happier. His ideas are big. Instagram clips are short.`)}
+  ${act(`BHANU's job sits right in the middle.`)}${stk("smilecat")}
+  ${ch("BHANU")}${dia(did(w))}
+  ${note("fun fact, keep")}
+  ${stk("horncat")}${ch("BHANU")}${par("aside")}
+  ${dia(`Before Harvard, he played the French horn for a living.`)}
+  ${ch("INSTAGRAM")}${par("as it showed them, 20 Nov 2026")}
+  ${dia(`<span class="circ">559K plays</span> on three of these four. <span class="hl">208K</span> on the biggest one. <span class="hl">56K likes</span> across all four.`)}
+  <p class="super">INSERT: FOUR OF THE CLIPS</p>
+  <div class="insert">${w.reels.slice(0,3).map(reel).join("")}</div>
+  <div class="insert">${w.reels.slice(3).map(reel).join("")}</div>
+  ${tr("CUT TO:")}`)); }
+
+/* 6. MMH */
+{ const w = W.mmh;
+pages.push(sheet(6, `
+  ${slug(6,"INT. METRO MEDIA HOUSE - CONTINUOUS","mmh")}
+  ${act(`The agency behind the Steven Bartlett and Arthur Brooks clips, plus work for Andrew Ross Sorkin from the New York Times' DealBook.`)}
+  ${sup("Apr 2025 to Aug 2026. Lead creative strategist.")}
+  ${act(`BHANU wears a lot of hats here.`)}
+  ${ch("BHANU")}${dia(did(w))}
+  ${note("30+ people. say it louder")}
+  ${ch("THE PRODUCTION BUDGET")}${par("relieved")}
+  ${dia(`<span class="circ">90%+</span> less production overhead.`)}
+  ${stk("umactually")}${ch("BHANU")}${par("guilty")}
+  ${dia(`And yes, I made a post about fixing brainrot. I may have had a little brainrot while making it.`)}
+  ${ch("INSTAGRAM")}
+  ${dia(`<span class="hl">293K plays</span> on the three reels here. <span class="hl">2,059 people</span> commented on two posts to get our reading list.`)}
+  <p class="super">INSERT: OUR OWN POSTS</p>
+  <div class="insert">${w.reels.map(reel).join("")}</div>
+  <div class="insert">${w.posts.map(post).join("")}</div>
+  ${tr("CUT TO:")}`)); }
+
+/* 7. cast list / CV */
+pages.push(sheet(7, `
+  ${slug(7,"INT. A ROOM FULL OF NOTEBOOKS - LATER","cv")}
+  ${act(`BHANU closes the last notebook. A cast list is taped inside the cover.`)}
+  <p class="super">INSERT: THE CAST LIST</p>
+  <dl class="cast">
+    <dt>Core skills</dt><dd>${S.skills.join(". ")}.</dd>
+    <dt>Tools</dt><dd>${S.tools.join(", ")}.</dd>
+    <dt>Selected clients</dt><dd>${S.clients.join(". ")}.</dd>
+    <dt>Beyond work</dt><dd>${S.beyond}</dd>
+  </dl>
+  ${ch("BHANU")}${dia(S.learned)}
+  ${note("he does. hire him")}
+  ${stk("phonecat")}${ch("BHANU")}${par("looking up")}
+  ${dia(`${S.contact}`)}
+  ${act(`He writes an address on the last page:`)}
+  <p class="center" style="margin:28px 0"><a class="hl" href="mailto:${S.email}" id="contact" style="font-weight:700;font-size:20px;text-decoration:none">${S.email}</a></p>
+  ${tr("FADE OUT.")}
+  <p class="center" style="margin-top:48px;text-decoration:underline">THE END</p>`));
+
+document.getElementById("script").innerHTML = pages.join("");
+
+
+/* ===== cover: one bulb lights everything ===== */
+(() => {
+  const cover = document.getElementById("cover"), bulb = document.getElementById("bulb");
+  const objs = [...cover.querySelectorAll("[data-o]")];
+  objs.forEach(o => o.style.setProperty("--m", `url(${o.querySelector("img").getAttribute("src")})`));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let ang = 0, vel = 0, target = 0, on = 0, onT = 0, mx = null, t0 = performance.now(), drag = false;
+  /* flicker scripts: [brightness, ms] steps the filament snaps through, like a tungsten bulb catching */
+  let seq = null, seqI = 0, seqT = 0, seqEnd = 1;
+  const play = (steps, end) => { seq = steps; seqI = 0; seqT = performance.now(); seqEnd = end; };
+  const WARMUP = [[0,550],[.85,55],[0,120],[.25,40],[0,300],[1,70],[.12,90],[.9,45],[0,160],[.6,35],[1,60],[.35,50],[1,90],[.7,40]];
+  const ON_TAP = [[.6,40],[0,80],[1,45],[.25,45],[1,60],[.8,35]];
+  const OFF_TAP= [[.3,35],[1,45],[.1,40]];
+  let warming = false;
+  const dark0 = localStorage.getItem("bp-dark") === "1";
+  const start = () => {
+    if (dark0) return;                                    // dark mode remembered: the bulb stays off
+    if (reduce) { onT = 1; return; }
+    warming = true; play(WARMUP, 1); setTimeout(() => warming = false, 1700);
+  };
+  /* the corner switch: dark mode = bulb off, nightlight on */
+  const sw = document.getElementById("switch");
+  const setDark = d => {
+    document.documentElement.classList.toggle("dark", d);
+    sw.setAttribute("aria-pressed", String(!d)); localStorage.setItem("bp-dark", d ? "1" : "0");
+    if (reduce) onT = d ? 0 : 1; else play(d ? OFF_TAP : ON_TAP, d ? 0 : 1);
+  };
+  document.documentElement.classList.toggle("dark", dark0); sw.setAttribute("aria-pressed", String(!dark0));
+  sw.addEventListener("click", () => setDark(!document.documentElement.classList.contains("dark")));
+  if (document.readyState === "complete") setTimeout(start, 200); else addEventListener("load", () => setTimeout(start, 200));
+  const anchor = () => (innerWidth < 840 ? .74 : .655);
+  addEventListener("pointermove", e => { mx = e.clientX; if (drag) target = -Math.max(-38, Math.min(38, (e.clientX - innerWidth*anchor())/innerWidth*120)); });
+  bulb.addEventListener("pointerdown", e => { drag = true; bulb.style.cursor = "grabbing"; bulb._x = e.clientX; });
+  addEventListener("pointerup", e => { if (!drag) return; drag = false; bulb.style.cursor = "grab";
+    target = 0; });
+  function frame(now){
+    const t = (now - t0)/1000;
+    if (!drag) target = reduce ? 0 : (mx===null ? Math.sin(t*.9)*6 : -Math.max(-14, Math.min(14, (mx - innerWidth*anchor())/innerWidth*28)));
+    vel += (target - ang)*0.018; vel *= 0.94; ang += vel;          // a heavy pendulum
+    if (seq) {
+      let el = now - seqT;
+      while (seq && el >= seq[seqI][1]) { el -= seq[seqI][1]; seqT += seq[seqI][1]; if (++seqI >= seq.length) { seq = null; onT = seqEnd; } }
+      on = seq ? seq[seqI][0] : onT;
+    } else on += (onT - on)*0.12;
+    const flick = 1;
+    const W = cover.clientWidth, H = cover.clientHeight, bw = bulb.offsetWidth, bh = bulb.offsetHeight;
+    const ax = W*anchor(), rad = ang*Math.PI/180;
+    bulb.style.left = (ax - bw/2) + "px";
+    bulb.style.transform = `rotate(${ang}deg)`;
+    const L = bh*.72, lx = ax - Math.sin(rad)*L, ly = Math.cos(rad)*L;   // where the filament is
+    cover.style.setProperty("--lx", lx + "px"); cover.style.setProperty("--ly", ly + "px");
+    cover.style.setProperty("--on", (on*flick).toFixed(3));
+    window.LAMP = { ang, on: on*flick, ax, L, bw, bh };   // read by the 3D layer (cover3d.js)
+    document.documentElement.style.setProperty("--off", warming ? (1 - on).toFixed(3) : 0);
+    const cr = cover.getBoundingClientRect();
+    objs.forEach(o => {
+      const r = o.getBoundingClientRect(), cx = r.left - cr.left + r.width/2, cy = r.top - cr.top + r.height/2;
+      const dx = cx - lx, dy = cy - ly, d = Math.hypot(dx, dy) || 1;
+      // shadow falls away from the bulb, longer and softer with distance
+      const k = Math.min(36, d/22);
+      o.style.setProperty("--sx", (dx/d*k).toFixed(1)+"px"); o.style.setProperty("--sy", (dy/d*k).toFixed(1)+"px");
+      o.style.setProperty("--sb", (8 + d/40).toFixed(1)+"px"); o.style.setProperty("--sa", (.18 + .3*on).toFixed(2));
+      // highlight sits on the side facing the bulb
+      o.style.setProperty("--hx", (50 - dx/d*34).toFixed(1)+"%"); o.style.setProperty("--hy", (45 - dy/d*30).toFixed(1)+"%");
+      o.style.setProperty("--wa", (Math.atan2(dy, dx)*180/Math.PI + 90).toFixed(0)+"deg");
+      o.style.setProperty("--on", (on*flick).toFixed(3));
+    });
+    const seal = document.getElementById("seal"), sr = seal.getBoundingClientRect();
+    const sdx = sr.left - cr.left + sr.width/2 - lx, sdy = sr.top - cr.top + sr.height/2 - ly, sd = Math.hypot(sdx, sdy) || 1;
+    seal.style.setProperty("--ca", (Math.atan2(sdy, sdx)*180/Math.PI + 90).toFixed(1) + "deg");
+    seal.style.setProperty("--seal-sh", `${(sdx/sd*Math.min(14,sd/40)).toFixed(1)}px ${(sdy/sd*Math.min(14,sd/40)).toFixed(1)}px ${(6+sd/60).toFixed(0)}px rgba(40,30,20,${(.15+.25*on).toFixed(2)})`);
+
+    requestAnimationFrame(frame);
   }
-  narrow=false;
-  scale=Math.max(.5,Math.min(innerHeight/WB[1],W/WB[0],1.7));
-  const bw=Math.max(WB[0],Math.round(W/scale)),extra=bw-WB[0];
-  if(bw!==lastBW){lastBW=bw;
-    const mx=x=>x+(Math.min(Math.max(x,0),WB[0])/WB[0])*extra;
-    Object.assign($("#ring").style,{left:mx(690)+"px",top:"330px",width:"180px",height:"180px"});
-    els.forEach((e,i)=>{const p=OBJ[i].w;place(e,mx(p[0]),p[1],p[2])});
-  }
-  board.style.width=bw+"px";board.style.height=WB[1]+"px";
-  board.style.transform=`translate(${Math.max(0,(W-bw*scale)/2)}px,0) scale(${scale})`;
-  desk.style.height=Math.round(WB[1]*scale)+"px";
-}
-function place(e,x,y,r){e.style.left=x+"px";e.style.top=y+"px";e.style.setProperty("--r",r+"deg")}
-const ro=new ResizeObserver(layout);ro.observe(desk);addEventListener("resize",layout);layout();
-const RMQ=matchMedia("(prefers-reduced-motion: reduce)").matches;
-function land(){
-  board.classList.remove("pre");if(RMQ)return;
-  const small=desk.clientWidth<700,KIND=k=>k=="stk"?"stk":/book|mug/.test(k)?"heavy":/pol|stack/.test(k)?"mid":/pencil|pc|tape/.test(k)?"small":"paper";
-  const PR={paper:{tf:.62,e:.1,sway:18,tilt:24,spin:16,skid:10,dy:-60},mid:{tf:.5,e:.22,sway:5,tilt:14,spin:11,skid:14,dy:-50},heavy:{tf:.44,e:.3,sway:0,tilt:7,spin:6,skid:7,dy:-40},small:{tf:.46,e:.38,sway:3,tilt:22,spin:46,skid:20,dy:-40},stk:{tf:.2,e:.04,sway:0,tilt:0,spin:22,skid:0,dy:0}};
-  const it=els.map((e,i)=>({e,k:OBJ[i].k})).filter(x=>parseFloat(x.e.style.left)>-400);
-  const order=it.filter(x=>x.k!="stk").concat(it.filter(x=>x.k=="stk"));
-  const done=[];let nOther=0;
-  order.forEach((x,n)=>{
-    const kind=KIND(x.k),P=PR[kind],e=x.e,R=parseFloat(e.style.getPropertyValue("--r"))||0,isSheet=e.classList.contains("sheet");
-    const rnd=a=>(Math.random()*2-1)*a,sg=()=>Math.random()<.5?-1:1;
-    const delay=kind=="stk"?1350+(n-nOther)*85:(nOther++,n*105);
-    const dx0=rnd(70),sw=sg(),sp=sg(),sk=sg(),tx=sg(),ty=sg(),phase=Math.random()*6;
-    const tf=P.tf,g=2/(tf*tf);const fr=[];let t=0,h=1,v=0,tc=null,bounces=0,end=null;const dt=1/60;
-    while(true){
-      if(tc===null){h=1-(t/tf)**2;if(t>=tf){h=0;tc=t;v=(2/tf)*P.e;}}
-      else if(end===null){v-=g*dt;h+=v*dt;if(h<=0){h=0;bounces++;v=-v*P.e;if(Math.abs(v)<.12||bounces>2){v=0;end=t}}}
-      const a=t-(tc??t);const after=tc!==null;
-      const wob=after?P.spin*.09*Math.exp(-a*7)*Math.sin(a*24):0;
-      const s=1+(kind=="stk"?.9:.38)*h;
-      const x=dx0*h+P.sway*Math.sin(t*7+phase)*h+(after?P.skid*sk*Math.exp(-a*9):P.skid*sk);
-      const y=P.dy*h;
-      const rot=R+P.spin*sp*Math.pow(h,.7)+wob;
-      const k={transform:`perspective(1400px) translate(${x.toFixed(2)}px,${y.toFixed(2)}px) rotateX(${(P.tilt*tx*h).toFixed(2)}deg) rotateY(${(P.tilt*.7*ty*h).toFixed(2)}deg) rotate(${rot.toFixed(2)}deg) scale(${s.toFixed(4)})`,opacity:Math.min(1,t/.08)};
-      if(isSheet)k["--lift"]=(1+8*h).toFixed(3);else if(!small)k.filter=`drop-shadow(${(4+34*h).toFixed(1)}px ${(8+54*h).toFixed(1)}px ${(5+40*h).toFixed(1)}px rgba(28,32,6,${(.3-.12*h).toFixed(3)}))`;
-      fr.push([t,k]);t+=dt;
-      if(end!==null&&t>end+.32)break;if(t>3)break;
-    }
-    const T=fr[fr.length-1][0];
-    const last={transform:`perspective(1400px) translate(0px,0px) rotateX(0deg) rotateY(0deg) rotate(${R}deg) scale(1)`,opacity:1};if(isSheet)last["--lift"]="1";
-    const kf=fr.map(([tt,k])=>Object.assign(k,{offset:tt/(T+dt)}));kf.push(Object.assign(last,{offset:1}));
-    e.animate(kf,{duration:(T+dt)*1000,delay,fill:"backwards",easing:"linear"});
-    const cx=e.offsetLeft+e.offsetWidth/2,cy=e.offsetTop+e.offsetHeight/2,hitAt=delay+tc*1000;
-    const force=kind=="heavy"?3.2:kind=="mid"?1.7:kind=="stk"?.6:1;
-    done.filter(d=>d.at<hitAt).forEach(d=>{const dx=d.cx-cx,dy=d.cy-cy,dist=Math.hypot(dx,dy);if(dist>420||dist<1)return;const f=force*(1-dist/420);d.e.animate([{translate:"0 0"},{translate:`${(dx/dist*f).toFixed(2)}px ${(dy/dist*f).toFixed(2)}px`},{translate:"0 0"}],{duration:300,delay:hitAt,easing:"cubic-bezier(.2,.8,.3,1)"})});
-    if(kind=="heavy")desk.animate([{translate:"0 0"},{translate:"0 1.6px"},{translate:"0 -.8px"},{translate:"0 0"}],{duration:240,delay:hitAt});
-    done.push({e,cx,cy,at:hitAt});
-  });
-}
-let landed=false;const go=()=>{if(landed)return;landed=true;requestAnimationFrame(land)};
-(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go);setTimeout(go,1600);
-
-els.forEach((e,i)=>{
-  if(!OBJ[i].go)return;
-  e.addEventListener("click",()=>open(OBJ[i].go));
-  e.addEventListener("keydown",ev=>{if(ev.key=="Enter"||ev.key==" "){ev.preventDefault();open(OBJ[i].go)}});
+  requestAnimationFrame(frame);
+  // the scene navigator only appears once you're past the cover
+  new IntersectionObserver(([e]) => document.body.classList.toggle("past", !e.isIntersecting), {threshold:.1}).observe(cover);
+})();
+/* navigator */
+const nav = document.getElementById("nav");
+[...document.querySelectorAll(".slug")].forEach(s=>{
+  const a = document.createElement("a"); a.href = "#"+s.id;
+  a.innerHTML = `<span>${s.dataset.n}</span><span>${s.textContent.replace(/^(INT|EXT)\. /,"").split(" - ")[0]}</span>`;
+  nav.appendChild(a);
 });
-const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
-desk.addEventListener("pointermove",ev=>{if(RM||ev.pointerType!="mouse")return;const r=desk.getBoundingClientRect();board.style.setProperty("--mx",((ev.clientX-r.left)/r.width*2-1).toFixed(3));board.style.setProperty("--my",((ev.clientY-r.top)/r.height*2-1).toFixed(3))});
-desk.addEventListener("pointerleave",()=>{board.style.setProperty("--mx",0);board.style.setProperty("--my",0)});
-const lives=[...board.querySelectorAll("video.live")];
-const io2=new IntersectionObserver(([en])=>lives.forEach(v=>{if(en.isIntersecting&&!RM)v.play().catch(()=>{});else v.pause()}),{threshold:.15});io2.observe(desk);
-const PAGES={"#maple":"maple.html","#aakash":"aakash.html","#bartlett":"bartlett.html","#receipts":"bartlett.html#receipts","#brooks":"brooks.html","#mmh":"mmh.html","#cv":"cv.html","#beyond":"cv.html#beyond"};
-function open(sel){if(PAGES[sel]&&!$(sel)){location.href=PAGES[sel];return}const t=$(sel);if(t)t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+nav.insertAdjacentHTML("beforeend", `<a class="mail" href="mailto:${S.email}">write to me &rarr;</a>`);
+const links = [...nav.querySelectorAll("a[href^='#']")];
+const so = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.toggle("on", l.hash==="#"+e.target.id)); } }),{rootMargin:"-30% 0px -60% 0px"});
+document.querySelectorAll(".slug").forEach(s=>so.observe(s));
 
-
-const sen=D.createElement("div");$(".tabs").before(sen);const io0=new IntersectionObserver(([en])=>$(".tabs").classList.toggle("stuck",!en.isIntersecting&&en.boundingClientRect.top<0));io0.observe(sen);
-const tabA=[...D.querySelectorAll(".tabs a")];const io1=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)tabA.forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+en.target.id))}),{rootMargin:"-45% 0px -50% 0px"});D.querySelectorAll("main section[id],#contact").forEach(x=>io1.observe(x));
-/* Maple bars */
-const CAC=[["Before",300],["Then",98],["Month three",63]];
-if($("#cac"))$("#cac").innerHTML=CAC.map(([l,v],i)=>`<div class="bar${i==2?" last":""}"><span>${l}</span><i style="width:${v/3}%"></i><em>$${v}</em></div>`).join("");
-
-/* reels */
-const frame=m=>m.kind=="image"?`<div class="frame r45"><span class="blur" style="background-image:url(${m.src})"></span><img src="${m.src}" alt="${esc(m.cap)}" loading="lazy"></div>`:`<div class="frame" data-v="${m.id}"></div>`;
-D.querySelectorAll(".rail").forEach(r=>{r.innerHTML=MEDIA[r.dataset.g].map(m=>`<div class="reel">${frame(m)}<p>${esc(m.cap)}</p><small><span>${esc(m.stat||"")}</span><a href="${m.url}" target="_blank" rel="noopener">Instagram</a></small></div>`).join("")});
-D.querySelectorAll(".frame[data-v]").forEach(f=>{const id=f.dataset.v;f.innerHTML=`<video muted loop playsinline preload="none" poster="${P(id)}" src="media/${id}.mp4"></video><span class="snd">Tap for sound</span>`});
-const vids=[...D.querySelectorAll(".frame video")];
-const io=new IntersectionObserver(es=>es.forEach(en=>{const v=en.target;if(en.isIntersecting&&en.intersectionRatio>.55){v.play().catch(()=>{})}else{v.pause()}}),{threshold:[0,.55,1]});
-vids.forEach(v=>io.observe(v));
-D.querySelectorAll(".frame[data-v]").forEach(f=>f.addEventListener("click",()=>{const v=f.querySelector("video");const on=v.muted;vids.forEach(o=>{o.muted=true;o.parentNode.classList.remove("live");o.nextElementSibling.textContent="Tap for sound"});if(on){v.muted=false;v.play().catch(()=>{});f.classList.add("live");f.querySelector(".snd").textContent="Sound on"}}));
-
-D.querySelectorAll(".rail").forEach(r=>{const w=r.parentNode;const f=()=>w.style.setProperty("--more",r.scrollLeft+r.clientWidth>=r.scrollWidth-4?0:1);r.addEventListener("scroll",f,{passive:true});f()});
-/* tickets */
-const TK=[[1121175,"44K","12K"],[2243486,"110K","36K"],[1405493,"57K","14K"],[742733,"28K","6.2K"],[2719331,"95K","33K"]];
-if($("#tickets"))$("#tickets").innerHTML=TK.map(([v,l,s],i)=>`<div class="tkc"><div class="tk"><b>${v>=1e6?(v/1e6).toFixed(2)+"M":Math.round(v/1e3)+"K"}</b><span>views</span><span>${l} likes, ${s} saves</span></div><img class="slip" src="media/stat${i+1}.jpg" alt="Instagram analytics: ${v.toLocaleString("en-GB")} views" loading="lazy"></div>`).join("");
-
-/* jobs */
-const JOBS=[
- ["Lead creative strategist","Metro Media House, remote","Apr 2025 to Aug 2026",["Helped build how the agency finds new clients and delivers its work.","Led the content for Steven Bartlett (DOAC), Andrew Ross Sorkin and Dr Arthur Brooks.","Led a team of 30+ people who made videos and posts.","Set up systems and AI tools that made production more than 90% cheaper."]],
- ["Copywriter and creative strategist","WeTriumph, remote","May to Aug 2024",["Planned content and Meta ads for brands that sell online.","Wrote website copy, product descriptions and ads for Meta and Google.","Ran campaigns from the first idea to the finished edit.","Used the numbers to see what worked, then made more of it."]],
- ["Brand design intern","Layerecipe Media, remote","Jan to Mar 2023",["Designed brand looks for local businesses: logos, colours and style guides.","Worked with founders so the design matched what they were selling."]],
- ["Freelance content writer","Independent, remote","2020 to 2022",["Wrote scripts for small and mid-sized YouTube creators that grew their subscribers.","Wrote articles on tech, entertainment and self-improvement that got 20% more shares.","Clients kept coming back because I could write in their voice."]]
-];
-if($("#jobs"))$("#jobs").innerHTML=JOBS.map(([t,a,w,l])=>`<div class="job"><h3>${t}</h3><span class="when">${w}</span><span class="at">${a}</span><ul>${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
-}
+/* play in view, tap for sound */
+const vio = new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target; if(e.isIntersecting){ if(!v.src) v.src=v.dataset.src; v.play().catch(()=>{}); } else v.pause(); }),{threshold:.4});
+document.querySelectorAll("video[data-src]").forEach(v=>vio.observe(v));
+document.addEventListener("click", e=>{
+  const f = e.target.closest("[data-v]"); if(!f) return;
+  const v = f.querySelector("video"), on = v.muted;
+  document.querySelectorAll("[data-v]").forEach(x=>{x.querySelector("video").muted=true; x.classList.remove("on"); x.querySelector(".snd").textContent="Tap for sound";});
+  if(on){ v.muted=false; v.play(); f.classList.add("on"); f.querySelector(".snd").textContent="Sound on"; }
+});
 </script>
 </body>
 </html>
